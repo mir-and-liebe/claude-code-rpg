@@ -31,7 +31,7 @@ export function NarrativeModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="narrative-title">
       <div className="max-w-lg w-full mx-4 card p-8 relative">
         <button
           onClick={dismiss}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useProgress } from "@/lib/use-progress";
 import { Swords, Cpu, Rocket, Loader2, Save, User, Shield } from "lucide-react";
 import type { CharacterClass } from "@/lib/types";
@@ -37,17 +37,20 @@ const classes: {
 
 export default function CharacterPage() {
   const { progress, loading, updateCharacter } = useProgress();
-  const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
+  const [name, setName] = useState<string | null>(null);
+  const [title, setTitle] = useState<string | null>(null);
   const [selectedClass, setSelectedClass] = useState<CharacterClass>("");
   const [saved, setSaved] = useState(false);
+  const [initialized, setInitialized] = useState(false);
 
-  // Initialize from progress once loaded
-  if (!loading && progress && !name && !title) {
-    setName(progress.character_name);
-    setTitle(progress.character_title);
-    setSelectedClass((progress.character_class || "") as CharacterClass);
-  }
+  useEffect(() => {
+    if (!loading && progress && !initialized) {
+      setName(progress.character_name);
+      setTitle(progress.character_title);
+      setSelectedClass((progress.character_class || "") as CharacterClass);
+      setInitialized(true);
+    }
+  }, [loading, progress, initialized]);
 
   if (loading) {
     return (
@@ -59,8 +62,8 @@ export default function CharacterPage() {
 
   function handleSave() {
     updateCharacter({
-      character_name: name,
-      character_title: title,
+      character_name: name || "Vibecoder",
+      character_title: title || "",
       character_class: selectedClass,
     });
     setSaved(true);
@@ -84,7 +87,7 @@ export default function CharacterPage() {
           </label>
           <input
             type="text"
-            value={name}
+            value={name ?? ""}
             onChange={(e) => setName(e.target.value)}
             className="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text focus:border-gold/40 focus:outline-none transition-colors"
           />
@@ -96,7 +99,7 @@ export default function CharacterPage() {
           </label>
           <input
             type="text"
-            value={title}
+            value={title ?? ""}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text focus:border-gold/40 focus:outline-none transition-colors"
           />

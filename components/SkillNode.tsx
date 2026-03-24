@@ -14,6 +14,7 @@ interface Props {
 
 export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const [confirmUncomplete, setConfirmUncomplete] = useState(false);
 
   // Fog of War — hidden skill
   if (!revealed) {
@@ -31,7 +32,7 @@ export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Prop
               </span>
             </div>
             <p className="text-[13px] text-text-muted italic">
-              Complete Level 3 to reveal this skill
+              Complete all Level 1{node.level > 4 ? "–3" : "–" + (node.level - 1)} skills in this tree to unlock
             </p>
           </div>
         </div>
@@ -51,9 +52,9 @@ export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Prop
         <button
           onClick={() => {
             if (node.completed) {
-              onToggle(node.id); // Uncomplete directly
+              setConfirmUncomplete(true);
             } else if (onChallenge) {
-              onChallenge(node.id, node.name); // Open challenge
+              onChallenge(node.id, node.name);
             } else {
               onToggle(node.id);
             }
@@ -140,6 +141,27 @@ export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Prop
           )}
         </div>
       </div>
+      {confirmUncomplete && (
+        <div className="mt-3 p-3 rounded-lg bg-fire/5 border border-fire/20 flex items-center justify-between gap-3">
+          <p className="text-[12px] text-fire">
+            Remove this skill? You&apos;ll lose {node.xpRequired} XP.
+          </p>
+          <div className="flex gap-2 shrink-0">
+            <button
+              onClick={() => setConfirmUncomplete(false)}
+              className="text-[11px] px-3 py-1 rounded-lg border border-border text-text-muted hover:text-text cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => { onToggle(node.id); setConfirmUncomplete(false); }}
+              className="text-[11px] px-3 py-1 rounded-lg bg-fire/10 border border-fire/20 text-fire hover:bg-fire/15 cursor-pointer"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

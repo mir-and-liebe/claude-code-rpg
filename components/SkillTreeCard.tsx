@@ -16,7 +16,7 @@ export function SkillTreeCard({ tree, completedSkills }: Props) {
 
   return (
     <Link href={`/skills/${tree.id}`}>
-      <div className="card p-5 cursor-pointer group">
+      <div className="card card-interactive p-5 cursor-pointer group">
         <div className="flex items-center gap-3 mb-3">
           <div
             className="w-9 h-9 rounded-lg flex items-center justify-center"

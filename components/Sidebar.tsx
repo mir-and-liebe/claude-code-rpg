@@ -84,7 +84,7 @@ export function Sidebar() {
               onClick={() => setOpen(false)}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-300 cursor-pointer",
-                pathname === item.href
+                (pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href)))
                   ? "bg-surface-hover text-text"
                   : "text-text-muted hover:text-text-secondary hover:bg-surface-hover/50"
               )}
@@ -92,7 +92,7 @@ export function Sidebar() {
               <item.Icon
                 className={cn(
                   "w-4 h-4 shrink-0 transition-colors duration-300",
-                  pathname === item.href ? "text-gold" : ""
+                  (pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))) ? "text-gold" : ""
                 )}
               />
               <span className="tracking-wide">{item.label}</span>

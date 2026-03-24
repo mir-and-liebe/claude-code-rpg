@@ -9,7 +9,7 @@
   --color-border-subtle: #3F3F46;
   --color-text: #FAFAFA;
   --color-text-secondary: #A1A1AA;
-  --color-text-muted: #71717A;
+  --color-text-muted: #8C8C9E;
   --color-gold: #CA8A04;
   --color-gold-light: #EAB308;
   --color-gold-dim: #854D0E;
@@ -62,7 +62,7 @@ code, .font-mono {
   transition: border-color 300ms ease, box-shadow 300ms ease;
 }
 
-.card:hover {
+.card-interactive:hover {
   border-color: var(--color-border-subtle);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }

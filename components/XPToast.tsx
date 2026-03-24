@@ -37,7 +37,7 @@ export function XPToast() {
   if (!lastToggledSkillXp) return null;
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 animate-[fadeUp_2s_ease-out_forwards]">
+    <div className="fixed bottom-20 right-8 z-50 animate-[fadeUp_2s_ease-out_forwards]">
       <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold/10 border border-gold/20 text-gold font-mono text-sm">
         <Zap className="w-4 h-4" />
         +{lastToggledSkillXp} XP

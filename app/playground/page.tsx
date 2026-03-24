@@ -3,7 +3,16 @@
 import { useState, useRef, useEffect } from "react";
 import { TerminalSquare, ArrowRight } from "lucide-react";
 import commandResponses from "@/data/command-responses.json";
+import skillTreesData from "@/data/skills.json";
+import type { SkillTree } from "@/lib/types";
 import Link from "next/link";
+
+const skillToTree: Record<string, string> = {};
+for (const tree of skillTreesData as SkillTree[]) {
+  for (const node of tree.nodes) {
+    skillToTree[node.id] = tree.id;
+  }
+}
 
 type Responses = Record<string, { output: string; relatedSkill: string }>;
 const responses = commandResponses as Responses;
@@ -152,7 +161,7 @@ export default function PlaygroundPage() {
               </pre>
               {entry.relatedSkill && (
                 <Link
-                  href={`/skills/${entry.relatedSkill.split("-").slice(0, -1).join("-") || "prompt-architect"}`}
+                  href={`/skills/${skillToTree[entry.relatedSkill] || "prompt-architect"}`}
                   className="inline-flex items-center gap-1 mt-2 text-[11px] text-gold/60 hover:text-gold transition-colors"
                 >
                   <ArrowRight className="w-3 h-3" />

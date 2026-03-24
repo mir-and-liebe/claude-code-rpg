@@ -53,7 +53,7 @@ export function RecommendedSkill({
 
   return (
     <Link href={`/skills/${bestTree.id}`} prefetch={true}>
-      <div className="card p-5 cursor-pointer group">
+      <div className="card card-interactive p-5 cursor-pointer group">
         <div className="flex items-center gap-2 mb-3">
           <Compass className="w-4 h-4 text-gold" />
           <span className="text-[10px] text-gold tracking-widest uppercase font-mono">

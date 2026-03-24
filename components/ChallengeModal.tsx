@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Check, XIcon, SkipForward, Sparkles } from "lucide-react";
 import challengesData from "@/data/challenges.json";
 
@@ -28,11 +28,13 @@ export function ChallengeModal({ skillId, skillName, onComplete, onClose }: Prop
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
 
-  if (!challenge) {
-    // No challenge for this skill — auto-complete
-    onComplete(false);
-    return null;
-  }
+  useEffect(() => {
+    if (!challenge) {
+      onComplete(false);
+    }
+  }, [challenge, onComplete]);
+
+  if (!challenge) return null;
 
   function handleSubmit() {
     const isCorrect = selected === challenge!.answer;
@@ -54,7 +56,7 @@ export function ChallengeModal({ skillId, skillName, onComplete, onClose }: Prop
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="challenge-title">
       <div className="max-w-lg w-full mx-4 card p-6 relative">
         <button
           onClick={onClose}

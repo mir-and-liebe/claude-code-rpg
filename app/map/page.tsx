@@ -8,6 +8,7 @@ import combosData from "@/data/combos.json";
 import { treeIconMap } from "@/lib/icons";
 import { SkeletonDashboard } from "@/components/Skeleton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface ComboData {
@@ -27,6 +28,7 @@ const TREE_X: Record<string, number> = {
 
 export default function MapPage() {
   const { completedSkills, loading } = useProgress();
+  const router = useRouter();
   const [tooltip, setTooltip] = useState<{
     name: string;
     tree: string;
@@ -164,6 +166,7 @@ export default function MapPage() {
                 <g
                   key={node.id}
                   className="cursor-pointer"
+                  onClick={() => router.push(`/skills/${tree.id}`)}
                   onMouseEnter={() =>
                     setTooltip({
                       name: node.name,

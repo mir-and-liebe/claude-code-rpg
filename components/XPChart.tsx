@@ -14,7 +14,16 @@ interface Props {
 }
 
 export function XPChart({ data }: Props) {
-  if (data.length < 2) return null;
+  if (data.length < 2) {
+    return (
+      <div className="card p-5">
+        <h2 className="text-xl mb-3">XP Over Time</h2>
+        <p className="text-sm text-text-muted py-6 text-center">
+          Complete your second session to see your progress chart
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="card p-5">
