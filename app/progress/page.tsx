@@ -1,6 +1,7 @@
 "use client";
 
 import { useProgress } from "@/lib/use-progress";
+import { SkeletonProgress } from "@/components/Skeleton";
 import {
   getTreeProgress,
   levelFromXp,
@@ -14,6 +15,7 @@ import { treeIconMap } from "@/lib/icons";
 import { XPBar } from "@/components/XPBar";
 import { XPChart } from "@/components/XPChart";
 import { CollectionCard } from "@/components/CollectionCard";
+import { ExportProgress } from "@/components/ExportProgress";
 import skillTreesData from "@/data/skills.json";
 import collectionsData from "@/data/collections.json";
 import {
@@ -27,7 +29,6 @@ import {
   TrendingUp,
   Award,
   Gauge,
-  Loader2,
   Target,
 } from "lucide-react";
 
@@ -44,11 +45,7 @@ export default function ProgressPage() {
   const { completedSkills, loading, progress } = useProgress();
 
   if (loading || !progress) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-5 h-5 animate-spin text-text-muted" />
-      </div>
-    );
+    return <SkeletonProgress />;
   }
 
   const charClass = (progress.character_class || "") as CharacterClass;
@@ -83,11 +80,22 @@ export default function ProgressPage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl">Progress</h1>
-        <p className="text-sm text-text-muted mt-1">
-          Track your vibecoding journey across all skill trees
-        </p>
+      <div className="flex items-end justify-between">
+        <div>
+          <h1 className="text-3xl">Progress</h1>
+          <p className="text-sm text-text-muted mt-1">
+            Track your vibecoding journey across all skill trees
+          </p>
+        </div>
+        <ExportProgress
+          name={progress.character_name}
+          rank={getRank(level)}
+          level={level}
+          totalXp={totalXp}
+          trees={trees}
+          badges={badges}
+          streakBest={progress.streak_best}
+        />
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

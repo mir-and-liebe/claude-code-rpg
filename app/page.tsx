@@ -19,8 +19,10 @@ import { BadgeGrid } from "@/components/BadgeGrid";
 import { DailyQuest } from "@/components/DailyQuest";
 import { StreakBadge } from "@/components/StreakBadge";
 import { ComboCard } from "@/components/ComboCard";
+import { RecommendedSkill } from "@/components/RecommendedSkill";
 import narrativeData from "@/data/narrative.json";
 import skillTreesData from "@/data/skills.json";
+import { SkeletonDashboard } from "@/components/Skeleton";
 import {
   FileText,
   TerminalSquare,
@@ -29,7 +31,6 @@ import {
   Plug,
   Wrench,
   Scroll,
-  Loader2,
 } from "lucide-react";
 
 const vaultStats = [
@@ -45,11 +46,7 @@ export default function DashboardPage() {
   const { completedSkills, loading, progress } = useProgress();
 
   if (loading || !progress) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-5 h-5 animate-spin text-text-muted" />
-      </div>
-    );
+    return <SkeletonDashboard />;
   }
 
   const charClass = (progress.character_class || "") as CharacterClass;
@@ -111,6 +108,12 @@ export default function DashboardPage() {
       </div>
 
       <CharacterCard profile={profile} />
+
+      <RecommendedSkill
+        trees={trees}
+        completedSkills={completedSkills}
+        characterClass={charClass}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <DailyQuest />

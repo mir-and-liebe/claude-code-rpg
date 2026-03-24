@@ -49,6 +49,8 @@ export function SkillNode({ node, color, onToggle, revealed }: Props) {
       <div className="flex items-start gap-4">
         <button
           onClick={() => onToggle(node.id)}
+          aria-label={`${node.completed ? "Uncomplete" : "Complete"} ${node.name}`}
+          title="Enter or Space to toggle"
           className={`mt-0.5 w-8 h-8 rounded-full border flex items-center justify-center text-xs font-mono shrink-0 transition-all duration-300 cursor-pointer ${
             node.completed
               ? "border-gold/40 bg-gold/10 text-gold"

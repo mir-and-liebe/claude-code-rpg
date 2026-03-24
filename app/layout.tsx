@@ -9,6 +9,18 @@ export const metadata: Metadata = {
   title: "CC RPG — Vibecoder Mastery Dashboard",
   description:
     "RPG-style skill tracker for mastering Claude Code vibecoding",
+  openGraph: {
+    title: "CC RPG — Vibecoder Mastery Dashboard",
+    description:
+      "RPG-style skill tracker for mastering Claude Code. 6 skill trees, tiered badges, daily quests, and the Octalysis gamification framework.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "CC RPG — Vibecoder Mastery Dashboard",
+    description:
+      "RPG-style skill tracker for mastering Claude Code vibecoding",
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +45,7 @@ export default function RootLayout({
       <body className="antialiased">
         <ProgressProvider>
           <Sidebar />
-          <main className="ml-56 min-h-screen p-8">{children}</main>
+          <main className="md:ml-56 min-h-screen p-4 pt-16 md:p-8">{children}</main>
           <XPToast />
           <NarrativeModal />
         </ProgressProvider>

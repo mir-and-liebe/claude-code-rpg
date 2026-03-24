@@ -16,7 +16,8 @@
         "description": "Learn to give Claude clear, structured instructions using the /plan command. Understand how Claude interprets your intent and translates it to code.",
         "whyItMatters": "Clear intent = clear output. A vague prompt gets vague code. The /plan command forces you to think before coding — exactly like writing a good ticket.",
         "pmAnalogy": "This is writing a user story with acceptance criteria. The better your story, the better the sprint output.",
-        "completed": false
+        "completed": false,
+        "impact": "Every clear prompt you write eliminates a round of back-and-forth rework"
       },
       {
         "id": "pa-2",
@@ -27,7 +28,8 @@
         "description": "Master CLAUDE.md files and the 66 rules in your setup. Understand how rules auto-load context so Claude follows your coding standards, security practices, and patterns.",
         "whyItMatters": "AI needs context like devs need tickets. Your 66 rules (coding-style, security, testing per language) are persistent instructions that make every Claude session start smart.",
         "pmAnalogy": "Rules are your team's definition of done, coding standards doc, and onboarding guide — all loaded automatically every time.",
-        "completed": false
+        "completed": false,
+        "impact": "Rules you load once save context-setting time across every future session"
       },
       {
         "id": "pa-3",
@@ -38,7 +40,8 @@
         "description": "Use the /prompt-optimize command to analyze draft prompts and output ECC-enriched versions. Learn prompt patterns that maximize Claude's output quality.",
         "whyItMatters": "10x output quality from the same model. A well-structured prompt with the right context, constraints, and examples produces dramatically better code.",
         "pmAnalogy": "Like A/B testing your PRDs — small wording changes in requirements lead to dramatically different engineering outcomes.",
-        "completed": false
+        "completed": false,
+        "impact": "An optimized prompt produces 10x better code from the same model"
       },
       {
         "id": "pa-4",
@@ -49,7 +52,8 @@
         "description": "Implement eval-driven development (EDD) using the eval-harness skill. Create formal evaluations for Claude sessions, measure quality, and iterate on prompts based on data.",
         "whyItMatters": "Measure prompt quality like you measure KPIs. Without evals, you're guessing if your prompts are good. With evals, you have data.",
         "pmAnalogy": "This is your analytics dashboard for AI output — conversion rates for prompt → working code.",
-        "completed": false
+        "completed": false,
+        "impact": "Data-driven prompt iteration compounds quality over every session"
       },
       {
         "id": "pa-5",
@@ -60,7 +64,8 @@
         "description": "Master the instinct system: continuous-learning-v2 observes sessions via hooks, creates atomic instincts with confidence scoring, and evolves them over time. Use /instinct-status, /instinct-export, /promote, /evolve.",
         "whyItMatters": "AI learns your patterns — a self-improving system. Instincts are learned behaviors that get promoted from project to global scope as confidence grows.",
         "pmAnalogy": "Like building a recommendation engine for your own workflow. The system learns what works and automates it.",
-        "completed": false
+        "completed": false,
+        "impact": "A self-improving system means your setup gets smarter while you sleep"
       }
     ]
   },
@@ -81,7 +86,8 @@
         "description": "Master your terminal setup: Starship prompt, eza (modern ls), bat (modern cat), zsh-autosuggestions, zsh-syntax-highlighting. Use aliases (ls→eza, cat→bat).",
         "whyItMatters": "Fluent navigation = faster iteration. Modern CLI tools give you color-coded, tree-view, syntax-highlighted output that makes the terminal feel like an IDE.",
         "pmAnalogy": "Like switching from email to Slack — same communication, 10x faster with better formatting.",
-        "completed": false
+        "completed": false,
+        "impact": "Fluent terminal navigation saves minutes per session that compound into hours"
       },
       {
         "id": "cli-2",
@@ -92,7 +98,8 @@
         "description": "Master git workflows with Claude Code: branching, committing, PRs via gh CLI, and the /checkpoint command for saving progress snapshots during long sessions.",
         "whyItMatters": "Ship with confidence, rollback without fear. Git is your undo button for code. /checkpoint saves mid-session state so you never lose work.",
         "pmAnalogy": "Version control is like saving drafts of your PRD — you can always go back to what worked.",
-        "completed": false
+        "completed": false,
+        "impact": "Confident git workflows mean you ship without fear of breaking things"
       },
       {
         "id": "cli-3",
@@ -103,7 +110,8 @@
         "description": "Learn and use the 60 slash commands in your setup: /plan, /tdd, /code-review, /docs, /e2e, language-specific commands (/go-*, /rust-*, /kotlin-*), and workflow commands.",
         "whyItMatters": "Your toolkit is massive — use it. Each command encapsulates expert knowledge: /tdd enforces test-first, /code-review runs adversarial review layers, /e2e generates Playwright tests.",
         "pmAnalogy": "Like having 60 expert playbooks. Instead of writing process docs, you just type a command.",
-        "completed": false
+        "completed": false,
+        "impact": "Each command you master replaces a manual workflow with a one-liner"
       },
       {
         "id": "cli-4",
@@ -114,7 +122,8 @@
         "description": "Use session persistence: /save-session captures full context to ~/.claude/sessions/, /resume-session reloads it. Manage session history with /sessions.",
         "whyItMatters": "Never lose context across sessions. Long vibecoding tasks often span multiple sessions — persistence means you pick up exactly where you left off.",
         "pmAnalogy": "Like saving your Jira board state before a meeting — when you come back, everything is where you left it.",
-        "completed": false
+        "completed": false,
+        "impact": "Session persistence means you never lose context across breaks"
       },
       {
         "id": "cli-5",
@@ -125,7 +134,8 @@
         "description": "Master automated workflows: /loop-start for recurring tasks, LaunchAgent cron jobs (like your 5AM vault sync), and the hooks system for event-driven automation.",
         "whyItMatters": "Hands-off monitoring like a production system. Hooks trigger on tool calls, loops poll for changes, crons run maintenance — your Claude setup runs itself.",
         "pmAnalogy": "Like setting up automated Slack alerts, scheduled reports, and CI/CD pipelines — but for your entire dev workflow.",
-        "completed": false
+        "completed": false,
+        "impact": "Automated loops free you to focus on product decisions, not babysitting"
       }
     ]
   },
@@ -146,7 +156,8 @@
         "description": "Master the 3 foundation MCPs: github (PRs, issues, repos), memory (persistent context across sessions), filesystem (file operations). These are used in nearly every session.",
         "whyItMatters": "Foundation tools every session needs. GitHub MCP lets Claude create PRs directly. Memory MCP persists knowledge. Filesystem MCP enables file operations beyond the sandbox.",
         "pmAnalogy": "Like Jira + Confluence + Google Drive — the core tools your team uses daily.",
-        "completed": false
+        "completed": false,
+        "impact": "Core MCPs eliminate context-switching between terminal and browser"
       },
       {
         "id": "mcp-2",
@@ -157,7 +168,8 @@
         "description": "Deploy from your terminal: Vercel for frontend/Next.js, Railway for backend services, Cloudflare Workers for edge functions. Claude can deploy, check status, and manage environments.",
         "whyItMatters": "Ship to production from your terminal. No clicking through dashboards — tell Claude to deploy and it handles Vercel previews, Railway services, or Cloudflare Workers.",
         "pmAnalogy": "Like having a DevOps engineer on speed dial. You say 'ship it' and infrastructure happens.",
-        "completed": false
+        "completed": false,
+        "impact": "Deploy from terminal means shipping in seconds instead of clicking through dashboards"
       },
       {
         "id": "mcp-3",
@@ -168,7 +180,8 @@
         "description": "Query and manage data: Supabase for Postgres + auth + realtime, ClickHouse for analytics queries. Claude can write queries, manage schemas, and analyze data.",
         "whyItMatters": "Query and manage data without a DBA. As a PM-turned-vibecoder, data is your strength — now you can query production databases and analytics directly through Claude.",
         "pmAnalogy": "Like having SQL superpowers. You describe the metric you want, Claude writes and runs the query.",
-        "completed": false
+        "completed": false,
+        "impact": "Direct data access means you answer product questions without waiting for engineering"
       },
       {
         "id": "mcp-4",
@@ -179,7 +192,8 @@
         "description": "AI-powered research: Context7 for live documentation lookup (/docs command), Exa for web search, Firecrawl for web scraping, Confluence for internal docs.",
         "whyItMatters": "AI-powered research at your fingertips. Instead of tab-switching to docs, ask Claude. It looks up current API docs, searches the web, and reads your team's Confluence.",
         "pmAnalogy": "Like having a research analyst who reads every doc, API reference, and internal wiki before answering your question.",
-        "completed": false
+        "completed": false,
+        "impact": "AI-powered research replaces hours of tab-switching with instant answers"
       },
       {
         "id": "mcp-5",
@@ -190,7 +204,8 @@
         "description": "Multi-agent and advanced MCPs: DevFleet dispatches parallel Claude agents in isolated worktrees. Browser-use/Browserbase automate web tasks. Fal-ai generates images/video/audio.",
         "whyItMatters": "Multi-agent, browser automation, AI generation. DevFleet lets you split a project into parallel agents. Browser MCPs automate testing. Fal-ai adds creative AI capabilities.",
         "pmAnalogy": "Like managing a distributed team with specialists: one agent does backend, another frontend, another QA — all running in parallel.",
-        "completed": false
+        "completed": false,
+        "impact": "Multi-agent orchestration lets you parallelize work like managing a sprint team"
       }
     ]
   },
@@ -211,7 +226,8 @@
         "description": "Start with focused delegation: the architect agent designs system architecture, the planner agent creates implementation plans. Learn to invoke agents and interpret their output.",
         "whyItMatters": "Start with focused delegation. A single well-chosen agent is better than doing everything yourself. The architect thinks about structure; the planner thinks about steps.",
         "pmAnalogy": "Like assigning a task to your best engineer — clear scope, focused execution, expert output.",
-        "completed": false
+        "completed": false,
+        "impact": "Focused delegation to one agent produces better output than doing it yourself"
       },
       {
         "id": "ac-2",
@@ -222,7 +238,8 @@
         "description": "Use review agents for quality gates: code-reviewer for general quality, security-reviewer for vulnerabilities, database-reviewer for query/schema issues. These run adversarial review layers.",
         "whyItMatters": "Quality gates without waiting for humans. The code-reviewer uses Blind Hunter, Edge Case Hunter, and Acceptance Auditor layers — more thorough than most human reviews.",
         "pmAnalogy": "Like having QA, security, and a senior engineer review every PR instantly — no calendar coordination needed.",
-        "completed": false
+        "completed": false,
+        "impact": "AI code review catches bugs that human reviewers miss when tired"
       },
       {
         "id": "ac-3",
@@ -233,7 +250,8 @@
         "description": "Fix build errors without deep language knowledge: cpp-build-resolver, go-build-resolver, rust-build-resolver, kotlin-build-resolver, java-build-resolver, pytorch-build-resolver.",
         "whyItMatters": "Fix errors without understanding every line. Build errors are the #1 blocker for PM-vibecoders. These agents read the error, understand the language, and apply minimal fixes.",
         "pmAnalogy": "Like having a specialist mechanic for each car brand — you don't need to know engines, you just need the right specialist.",
-        "completed": false
+        "completed": false,
+        "impact": "Build resolvers fix errors in languages you dont know, unblocking you instantly"
       },
       {
         "id": "ac-4",
@@ -244,7 +262,8 @@
         "description": "Orchestrate multiple agents: /orchestrate for sequential and tmux/worktree workflows, /devfleet for parallel agent dispatch. Plan projects, auto-chain missions, run agents in isolated worktrees.",
         "whyItMatters": "Parallel execution = PM managing a sprint. Instead of one agent doing everything sequentially, dispatch multiple agents working on different parts simultaneously.",
         "pmAnalogy": "This IS sprint management. You break the work into stories, assign them to agents, and they execute in parallel while you review.",
-        "completed": false
+        "completed": false,
+        "impact": "Parallel agents compress a week of solo work into an afternoon"
       },
       {
         "id": "ac-5",
@@ -255,7 +274,8 @@
         "description": "Design and build your own specialized agents. Understand agent markdown format, tool permissions, model routing, and how to compose agents with skills and rules.",
         "whyItMatters": "Build your own AI team. When no existing agent fits your need, create one. Custom agents encode domain expertise that compounds over time.",
         "pmAnalogy": "Like hiring and training a new team member — you define the role, the skills, and the playbook. Then they execute independently.",
-        "completed": false
+        "completed": false,
+        "impact": "Custom agents encode your domain expertise so it compounds permanently"
       }
     ]
   },
@@ -276,7 +296,8 @@
         "description": "Use BMAD's product brief skill for collaborative discovery. Define the problem, target users, value proposition, and success metrics before any code.",
         "whyItMatters": "Start with the problem, not the code. As a PM, this is your home turf — BMAD structures your product thinking into a format AI agents can execute.",
         "pmAnalogy": "You already do this. BMAD just gives it a structure that bridges to code implementation.",
-        "completed": false
+        "completed": false,
+        "impact": "Starting with a brief prevents the #1 PM mistake: building the wrong thing"
       },
       {
         "id": "ps-2",
@@ -287,7 +308,8 @@
         "description": "Create implementation-ready PRDs and UX specifications using BMAD. The PRD skill enforces completeness; the UX skill generates design patterns and specifications.",
         "whyItMatters": "Structured specs that AI can execute. A BMAD PRD isn't just documentation — it's an instruction set that dev agents follow to build exactly what you specified.",
         "pmAnalogy": "Like writing a PRD that auto-generates Jira tickets with full acceptance criteria. The spec IS the implementation plan.",
-        "completed": false
+        "completed": false,
+        "impact": "A structured PRD becomes an instruction set that AI agents execute precisely"
       },
       {
         "id": "ps-3",
@@ -298,7 +320,8 @@
         "description": "Design architecture with AI (bmad-create-architecture) and break it into epics and stories (bmad-create-epics-and-stories). Each story becomes an implementable unit.",
         "whyItMatters": "Break work into implementable chunks. Architecture decisions are captured for AI consistency. Stories have all the context an agent needs to implement them.",
         "pmAnalogy": "Like sprint planning with your tech lead — you decide what to build and in what order, but AI handles the technical architecture.",
-        "completed": false
+        "completed": false,
+        "impact": "Architecture decisions made once prevent costly rewrites later"
       },
       {
         "id": "ps-4",
@@ -309,7 +332,8 @@
         "description": "Run sprints with AI: bmad-sprint-planning generates sprint plans from epics, bmad-dev-story implements individual stories. Track progress with bmad-sprint-status.",
         "whyItMatters": "Watch AI implement your stories. You plan the sprint, prioritize stories, and AI agents execute them. bmad-dev-story follows the story spec file exactly.",
         "pmAnalogy": "You're the PM AND the engineering manager. You write the stories, assign them to AI, and review the output.",
-        "completed": false
+        "completed": false,
+        "impact": "AI-executed sprints let you ship features at the speed of thought"
       },
       {
         "id": "ps-5",
@@ -320,7 +344,8 @@
         "description": "Complete the product cycle: bmad-qa for quality assurance, bmad-retrospective for post-epic review, bmad-correct-course for mid-sprint pivots.",
         "whyItMatters": "Full product cycle, solo. You've gone from idea → brief → PRD → architecture → stories → implementation → QA → retro. That's a complete product shipped by one person.",
         "pmAnalogy": "This is the dream — shipping a complete product with the speed of a team, the cost of one person, and the product sense of an experienced PM.",
-        "completed": false
+        "completed": false,
+        "impact": "Completing the full cycle means you can ship any product idea solo"
       }
     ]
   },
@@ -341,7 +366,8 @@
         "description": "Develop the ability to read code that Claude generates. Understand function structure, imports, types, and control flow. Use Claude to explain code you don't understand.",
         "whyItMatters": "You can't vibe what you can't read. Even with AI writing code, you need to review it, approve it, and catch when it's wrong. Reading code is the minimum viable technical skill.",
         "pmAnalogy": "Like reviewing a technical design doc — you don't write it, but you need to understand it to approve it.",
-        "completed": false
+        "completed": false,
+        "impact": "Reading code lets you catch when AI is wrong before it ships"
       },
       {
         "id": "cc-2",
@@ -352,7 +378,8 @@
         "description": "Use test-driven development via the /tdd command. Understand the red-green-refactor cycle. Tests are written FIRST, then minimal code to pass. Target 80%+ coverage.",
         "whyItMatters": "Tests are your acceptance criteria in code. As a PM, you define 'done'. TDD translates acceptance criteria into automated tests that verify the code actually works.",
         "pmAnalogy": "Like writing acceptance criteria that automatically verify themselves. No more 'works on my machine' — tests prove it.",
-        "completed": false
+        "completed": false,
+        "impact": "Tests are automated acceptance criteria — they verify code does what you specified"
       },
       {
         "id": "cc-3",
@@ -363,7 +390,8 @@
         "description": "Run code reviews using /code-review and language-specific review agents. Understand adversarial review layers: Blind Hunter (fresh eyes), Edge Case Hunter (boundary conditions), Acceptance Auditor (requirements).",
         "whyItMatters": "Catch issues before they ship. AI-generated code can have subtle bugs. Multi-layer review catches what single-pass review misses — especially edge cases and security issues.",
         "pmAnalogy": "Like QA testing with a checklist — systematic, thorough, and catches things human reviewers miss because they're tired.",
-        "completed": false
+        "completed": false,
+        "impact": "Multi-layer review catches entire classes of bugs humans miss"
       },
       {
         "id": "cc-4",
@@ -374,7 +402,8 @@
         "description": "Use /refactor-clean and language pattern skills to improve code structure. Understand when code needs refactoring (duplication, complexity, poor naming) and how to direct Claude to fix it.",
         "whyItMatters": "Clean code = maintainable product. Technical debt compounds. Learning to identify and fix it keeps your vibecoded projects healthy long-term.",
         "pmAnalogy": "Like product debt — if you never clean up the UX inconsistencies, the product becomes unusable. Same with code.",
-        "completed": false
+        "completed": false,
+        "impact": "Clean code today prevents exponential maintenance cost tomorrow"
       },
       {
         "id": "cc-5",
@@ -385,7 +414,8 @@
         "description": "Vibecode across multiple languages using your 12 language-specific skill sets. Each has patterns, testing, and review agents. Understand when to use TypeScript vs Python vs Go vs Rust.",
         "whyItMatters": "Vibecode in any stack. Different problems need different languages. With language-specific skills and agents, you can ship a Go backend, React frontend, and Python ML pipeline.",
         "pmAnalogy": "Like being a PM who can ship on web, mobile, and backend — the more platforms you can build for, the more products you can create.",
-        "completed": false
+        "completed": false,
+        "impact": "Multi-language fluency means you can vibecode for any platform or stack"
       }
     ]
   }

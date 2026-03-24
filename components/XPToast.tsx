@@ -1,10 +1,38 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Zap } from "lucide-react";
 import { useProgress } from "@/lib/use-progress";
 
+function playCoinSound() {
+  try {
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(987, ctx.currentTime); // B5
+    osc.frequency.setValueAtTime(1319, ctx.currentTime + 0.05); // E6
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.15);
+  } catch {
+    // Audio not available
+  }
+}
+
 export function XPToast() {
   const { lastToggledSkillXp } = useProgress();
+  const prevXp = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (lastToggledSkillXp && lastToggledSkillXp !== prevXp.current) {
+      playCoinSound();
+      prevXp.current = lastToggledSkillXp;
+    }
+  }, [lastToggledSkillXp]);
 
   if (!lastToggledSkillXp) return null;
 
