@@ -16,6 +16,7 @@ import {
   Map,
   TerminalSquare,
   Brain,
+  BookOpen as BookOpenIcon,
 } from "lucide-react";
 
 const navItems = [
@@ -24,6 +25,7 @@ const navItems = [
   { href: "/map", label: "Map", Icon: Map },
   { href: "/playground", label: "Playground", Icon: TerminalSquare },
   { href: "/review", label: "Review", Icon: Brain },
+  { href: "/anki", label: "Anki Deck", Icon: BookOpenIcon },
   { href: "/bestpractices", label: "Best Practices", Icon: BookOpen },
   { href: "/progress", label: "Progress", Icon: BarChart3 },
   { href: "/character", label: "Character", Icon: UserCog },

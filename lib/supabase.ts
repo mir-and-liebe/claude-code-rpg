@@ -23,6 +23,9 @@ export interface ProgressRow {
   streak_last_date: string | null;
   discovered_easter_eggs: string[];
   verified_skills: string[];
+  anki_xp: number;
+  anki_streak: number;
+  anki_last_date: string | null;
 }
 
 const DEFAULT_PROGRESS: ProgressRow = {
@@ -41,6 +44,9 @@ const DEFAULT_PROGRESS: ProgressRow = {
   streak_last_date: null,
   discovered_easter_eggs: [],
   verified_skills: [],
+  anki_xp: 0,
+  anki_streak: 0,
+  anki_last_date: null,
 };
 
 export async function loadProgress(): Promise<ProgressRow> {

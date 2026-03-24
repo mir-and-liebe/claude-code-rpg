@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "sync-vault": "npx tsx scripts/sync-vault.ts"
+    "sync-vault": "npx tsx scripts/sync-vault.ts",
+    "sync-anki": "npx tsx scripts/sync-anki-cards.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.100.0",

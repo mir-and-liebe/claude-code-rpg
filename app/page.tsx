@@ -23,6 +23,8 @@ import { RecommendedSkill } from "@/components/RecommendedSkill";
 import narrativeData from "@/data/narrative.json";
 import skillTreesData from "@/data/skills.json";
 import { SkeletonDashboard } from "@/components/Skeleton";
+import Link from "next/link";
+import { BookOpen as BookOpenDash } from "lucide-react";
 import {
   FileText,
   TerminalSquare,
@@ -137,8 +139,25 @@ export default function DashboardPage() {
         characterClass={charClass}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <DailyQuest />
+        <Link
+          href="/anki"
+          className="card card-interactive p-5 gold-accent cursor-pointer group"
+        >
+          <div className="flex items-center gap-2 mb-2">
+            <BookOpenDash className="w-4 h-4 text-gold" />
+            <span className="text-[10px] text-gold tracking-widest uppercase font-mono">
+              Anki Deck
+            </span>
+          </div>
+          <p className="text-sm font-semibold group-hover:text-gold transition-colors">
+            {progress.anki_xp || 0} XP earned
+          </p>
+          <p className="text-[11px] text-text-muted mt-1">
+            Flashcards for permanent knowledge
+          </p>
+        </Link>
         {chapter && (
           <div className="card p-5 gold-accent">
             <div className="flex items-center gap-2 mb-2">
