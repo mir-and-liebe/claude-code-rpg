@@ -8,10 +8,11 @@ interface Props {
   node: SkillNodeType;
   color: string;
   onToggle: (id: string) => void;
+  onChallenge?: (id: string, name: string) => void;
   revealed: boolean;
 }
 
-export function SkillNode({ node, color, onToggle, revealed }: Props) {
+export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   // Fog of War — hidden skill
@@ -48,9 +49,17 @@ export function SkillNode({ node, color, onToggle, revealed }: Props) {
     >
       <div className="flex items-start gap-4">
         <button
-          onClick={() => onToggle(node.id)}
+          onClick={() => {
+            if (node.completed) {
+              onToggle(node.id); // Uncomplete directly
+            } else if (onChallenge) {
+              onChallenge(node.id, node.name); // Open challenge
+            } else {
+              onToggle(node.id);
+            }
+          }}
           aria-label={`${node.completed ? "Uncomplete" : "Complete"} ${node.name}`}
-          title="Enter or Space to toggle"
+          title={node.completed ? "Click to uncomplete" : "Click to take challenge"}
           className={`mt-0.5 w-8 h-8 rounded-full border flex items-center justify-center text-xs font-mono shrink-0 transition-all duration-300 cursor-pointer ${
             node.completed
               ? "border-gold/40 bg-gold/10 text-gold"

@@ -4,6 +4,8 @@ import { Sidebar } from "@/components/Sidebar";
 import { ProgressProvider } from "@/lib/use-progress";
 import { XPToast } from "@/components/XPToast";
 import { NarrativeModal } from "@/components/NarrativeModal";
+import { ChallengeGate } from "@/components/ChallengeGate";
+import { ReferenceDrawer } from "@/components/ReferenceDrawer";
 
 export const metadata: Metadata = {
   title: "CC RPG — Vibecoder Mastery Dashboard",
@@ -48,6 +50,8 @@ export default function RootLayout({
           <main className="md:ml-56 min-h-screen p-4 pt-16 md:p-8">{children}</main>
           <XPToast />
           <NarrativeModal />
+          <ChallengeGate />
+          <ReferenceDrawer />
         </ProgressProvider>
       </body>
     </html>

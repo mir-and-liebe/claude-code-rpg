@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function SkillTreeDetail({ initialTree }: Props) {
-  const { completedSkills, loading, toggleSkill } = useProgress();
+  const { completedSkills, loading, toggleSkill, challengeSkill } = useProgress();
 
   if (loading) {
     return (
@@ -81,6 +81,7 @@ export function SkillTreeDetail({ initialTree }: Props) {
               node={node}
               color={tree.color}
               onToggle={toggleSkill}
+              onChallenge={challengeSkill}
               revealed={isSkillRevealed(node, tree, completedSkills)}
             />
           </div>

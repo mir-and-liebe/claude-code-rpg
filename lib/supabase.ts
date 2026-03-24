@@ -22,6 +22,7 @@ export interface ProgressRow {
   streak_best: number;
   streak_last_date: string | null;
   discovered_easter_eggs: string[];
+  verified_skills: string[];
 }
 
 const DEFAULT_PROGRESS: ProgressRow = {
@@ -39,6 +40,7 @@ const DEFAULT_PROGRESS: ProgressRow = {
   streak_best: 0,
   streak_last_date: null,
   discovered_easter_eggs: [],
+  verified_skills: [],
 };
 
 export async function loadProgress(): Promise<ProgressRow> {
