@@ -15,38 +15,38 @@ export function SkillTreeCard({ tree }: Props) {
 
   return (
     <Link href={`/skills/${tree.id}`}>
-      <div className="bg-surface rounded-xl border border-border p-5 card-hover cursor-pointer group">
-        <div className="flex items-center gap-3 mb-2">
+      <div className="card p-5 cursor-pointer group">
+        <div className="flex items-center gap-3 mb-3">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center"
-            style={{ backgroundColor: `${tree.color}15` }}
+            className="w-9 h-9 rounded-lg flex items-center justify-center"
+            style={{ backgroundColor: `${tree.color}10` }}
           >
             {Icon && (
-              <Icon className="w-5 h-5" style={{ color: tree.color }} />
+              <Icon className="w-4 h-4" style={{ color: tree.color }} />
             )}
           </div>
           <div>
-            <h3 className="font-bold text-sm group-hover:text-accent transition-colors duration-200">
+            <h3 className="text-sm font-semibold text-text group-hover:text-gold transition-colors duration-300" style={{ fontFamily: "Inter, sans-serif" }}>
               {tree.name}
             </h3>
             <p className="text-[11px] text-text-muted">{tree.tagline}</p>
           </div>
         </div>
-        <p className="text-[10px] text-accent/70 italic mb-3 font-mono">
-          PM: {tree.pmSuperpower}
+        <p className="text-[11px] text-text-muted italic mb-4 leading-relaxed">
+          {tree.pmSuperpower}
         </p>
         <div className="flex items-center gap-2 mb-3">
           {tree.nodes.map((node) => (
             <div
               key={node.id}
-              className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-[10px] font-bold font-mono transition-all duration-200 ${
+              className={`w-6 h-6 rounded-full border flex items-center justify-center text-[9px] font-mono transition-all duration-300 ${
                 node.completed
-                  ? "border-xp bg-xp/20 text-xp"
+                  ? "border-gold/40 bg-gold/10 text-gold"
                   : "border-border bg-bg text-text-muted"
               }`}
             >
               {node.completed ? (
-                <Check className="w-3 h-3" />
+                <Check className="w-2.5 h-2.5" />
               ) : (
                 node.level
               )}
@@ -58,8 +58,8 @@ export function SkillTreeCard({ tree }: Props) {
           max={progress.xpTotal}
           color={tree.color}
         />
-        <p className="text-[10px] text-text-muted mt-1.5 text-right font-mono">
-          {progress.completed}/{progress.total} skills ({progress.percentage}%)
+        <p className="text-[11px] text-text-muted mt-2 text-right font-mono">
+          {progress.completed}/{progress.total} ({progress.percentage}%)
         </p>
       </div>
     </Link>

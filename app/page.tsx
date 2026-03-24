@@ -34,56 +34,54 @@ export default function DashboardPage() {
   );
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="max-w-5xl mx-auto space-y-8">
+      <div className="flex items-end justify-between">
         <div>
-          <h1 className="text-2xl font-bold glitch-hover">Dashboard</h1>
-          <p className="text-sm text-text-muted mt-0.5">
+          <h1 className="text-3xl">Dashboard</h1>
+          <p className="text-sm text-text-muted mt-1">
             Your vibecoding journey at a glance
           </p>
         </div>
         <div className="text-right">
-          <p className="text-xs text-text-muted font-mono">Overall Progress</p>
-          <p className="text-lg font-bold text-accent neon-text-green font-mono">
-            {completedSkills}/{totalSkills} skills
+          <p className="text-[10px] text-text-muted tracking-widest uppercase">
+            Overall Progress
+          </p>
+          <p className="text-xl text-gold font-mono mt-0.5">
+            {completedSkills}/{totalSkills}
           </p>
         </div>
       </div>
 
       <CharacterCard profile={profile} />
 
-      <div>
-        <h2 className="text-lg font-bold mb-3">Skill Trees</h2>
+      <section>
+        <h2 className="text-xl mb-4">Skill Trees</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {trees.map((tree) => (
             <SkillTreeCard key={tree.id} tree={tree} />
           ))}
         </div>
-      </div>
+      </section>
 
-      <div>
-        <h2 className="text-lg font-bold mb-3">Badges</h2>
+      <section>
+        <h2 className="text-xl mb-4">Badges</h2>
         <BadgeGrid badges={profile.badges} />
-      </div>
+      </section>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <h2 className="text-lg font-bold mb-4">Vault Stats</h2>
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+      <section className="card p-6">
+        <h2 className="text-xl mb-5">Vault Stats</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-6">
           {vaultStats.map((stat) => (
-            <div key={stat.label} className="text-center group">
-              <div className="flex justify-center mb-1.5">
-                <stat.Icon className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors duration-200" />
-              </div>
-              <p className="text-xl font-bold text-accent font-mono neon-text-green">
-                {stat.value}
-              </p>
-              <p className="text-[10px] text-text-muted font-mono">
+            <div key={stat.label} className="text-center">
+              <stat.Icon className="w-4 h-4 text-text-muted mx-auto mb-2" />
+              <p className="text-2xl font-mono text-text">{stat.value}</p>
+              <p className="text-[11px] text-text-muted mt-0.5 tracking-wide">
                 {stat.label}
               </p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

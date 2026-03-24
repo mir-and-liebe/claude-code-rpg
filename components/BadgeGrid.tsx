@@ -14,21 +14,23 @@ export function BadgeGrid({ badges }: Props) {
         return (
           <div
             key={badge.id}
-            className={`rounded-xl border p-4 text-center transition-all duration-200 ${
+            className={`rounded-xl border p-4 text-center transition-all duration-300 ${
               badge.unlocked
-                ? "border-xp/30 bg-xp/5 glow-xp"
-                : "border-border bg-surface opacity-40 grayscale"
+                ? "border-gold/20 bg-gold/[0.03] badge-unlocked"
+                : "border-border bg-surface opacity-30"
             }`}
           >
-            <div className="flex justify-center mb-2">
+            <div className="flex justify-center mb-2.5">
               {badge.unlocked ? (
-                <Icon className="w-6 h-6 text-xp" />
+                <Icon className="w-5 h-5 text-gold" />
               ) : (
-                <Lock className="w-6 h-6 text-text-muted" />
+                <Lock className="w-5 h-5 text-text-muted" />
               )}
             </div>
-            <p className="text-xs font-bold font-mono mb-0.5">{badge.name}</p>
-            <p className="text-[10px] text-text-muted">{badge.description}</p>
+            <p className="text-xs font-semibold mb-0.5">{badge.name}</p>
+            <p className="text-[11px] text-text-muted leading-relaxed">
+              {badge.description}
+            </p>
           </div>
         );
       })}

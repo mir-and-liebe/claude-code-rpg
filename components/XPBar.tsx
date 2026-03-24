@@ -10,21 +10,20 @@ export function XPBar({ current, max, label, color }: Props) {
 
   return (
     <div>
-      <div className="flex justify-between text-[10px] text-text-muted mb-1 font-mono">
+      <div className="flex justify-between text-[11px] text-text-muted mb-1.5 font-mono">
         <span>
           {current.toLocaleString()} / {max.toLocaleString()} XP
         </span>
-        {label && <span>{label}</span>}
+        {label && <span className="text-text-secondary">{label}</span>}
       </div>
-      <div className="h-2.5 bg-bg rounded-full overflow-hidden border border-border">
+      <div className="h-1.5 bg-bg rounded-full overflow-hidden">
         <div
           className="h-full rounded-full xp-bar-fill"
           style={{
             width: `${percentage}%`,
             ...(color
               ? {
-                  background: `linear-gradient(90deg, ${color}, ${color}88)`,
-                  boxShadow: `0 0 8px ${color}40`,
+                  background: `linear-gradient(90deg, ${color}60, ${color})`,
                 }
               : {}),
           }}

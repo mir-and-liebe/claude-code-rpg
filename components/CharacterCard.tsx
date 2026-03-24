@@ -10,27 +10,22 @@ export function CharacterCard({ profile }: Props) {
   const unlockedBadges = profile.badges.filter((b) => b.unlocked);
 
   return (
-    <div className="bg-surface rounded-xl border border-accent/20 p-6 glow-accent relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="flex items-start gap-5 relative">
-        <div className="w-20 h-20 rounded-xl bg-accent/10 border-2 border-accent/40 flex items-center justify-center shrink-0">
-          <Swords className="w-9 h-9 text-accent" />
+    <div className="card p-6">
+      <div className="flex items-start gap-6">
+        <div className="w-20 h-20 rounded-xl bg-gold/5 border border-gold/20 flex items-center justify-center shrink-0">
+          <Swords className="w-8 h-8 text-gold" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-3 mb-1">
-            <h2 className="text-xl font-bold truncate neon-text-green">
-              {profile.name}
-            </h2>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20 font-mono whitespace-nowrap">
+          <div className="flex items-baseline gap-3 mb-1">
+            <h2 className="text-2xl tracking-tight">{profile.name}</h2>
+            <span className="text-xs text-gold font-mono">
               Lv. {profile.level}
             </span>
           </div>
-          <p className="text-sm text-text-muted mb-1">{profile.title}</p>
-          <div className="flex items-center gap-1.5 mb-3">
-            <Shield className="w-3 h-3 text-accent-glow" />
-            <p className="text-xs text-accent-glow font-medium font-mono">
-              {profile.rank}
-            </p>
+          <p className="text-sm text-text-secondary mb-1">{profile.title}</p>
+          <div className="flex items-center gap-1.5 mb-4">
+            <Shield className="w-3 h-3 text-gold/60" />
+            <p className="text-xs text-gold tracking-wide">{profile.rank}</p>
           </div>
           <XPBar
             current={profile.totalXp}
@@ -40,13 +35,15 @@ export function CharacterCard({ profile }: Props) {
         </div>
       </div>
       {unlockedBadges.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-border relative">
-          <p className="text-xs text-text-muted mb-2 font-mono">Badges</p>
+        <div className="mt-5 pt-5 border-t border-border">
+          <p className="text-[10px] text-text-muted tracking-widest uppercase mb-3">
+            Badges
+          </p>
           <div className="flex gap-2 flex-wrap">
             {unlockedBadges.map((badge) => (
               <span
                 key={badge.id}
-                className="text-xs px-2 py-1 rounded-md bg-xp/10 text-xp border border-xp/20 font-mono cursor-default"
+                className="text-xs px-2.5 py-1 rounded-md bg-gold/5 text-gold border border-gold/15 cursor-default"
                 title={badge.description}
               >
                 {badge.name}

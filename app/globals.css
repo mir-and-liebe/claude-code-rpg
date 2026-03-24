@@ -1,157 +1,110 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @theme {
-  --color-bg: #020617;
-  --color-surface: #0F172A;
-  --color-surface-hover: #1E293B;
-  --color-border: #1E293B;
-  --color-border-glow: #334155;
-  --color-text: #F8FAFC;
-  --color-text-muted: #64748B;
-  --color-accent: #22C55E;
-  --color-accent-glow: #4ADE80;
-  --color-accent-dim: #166534;
-  --color-xp: #FACC15;
-  --color-xp-glow: #FDE68A;
+  /* Quiet Luxury — Dark */
+  --color-bg: #09090B;
+  --color-surface: #18181B;
+  --color-surface-hover: #27272A;
+  --color-border: #27272A;
+  --color-border-subtle: #3F3F46;
+  --color-text: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+  --color-text-muted: #71717A;
+  --color-gold: #CA8A04;
+  --color-gold-light: #EAB308;
+  --color-gold-dim: #854D0E;
+  --color-xp: #EAB308;
+  --color-xp-dim: #A16207;
   --color-health: #22C55E;
-  --color-mana: #3B82F6;
+  --color-mana: #6366F1;
   --color-fire: #EF4444;
-  --color-neon-purple: #A855F7;
-  --color-neon-cyan: #22D3EE;
-  --color-neon-pink: #EC4899;
-  --color-neon-orange: #F97316;
-  --color-tree-prompt: #A855F7;
-  --color-tree-cli: #22D3EE;
-  --color-tree-mcp: #F97316;
-  --color-tree-agent: #EC4899;
-  --color-tree-product: #22C55E;
-  --color-tree-code: #FACC15;
+  --color-tree-prompt: #A78BFA;
+  --color-tree-cli: #67E8F9;
+  --color-tree-mcp: #FB923C;
+  --color-tree-agent: #F472B6;
+  --color-tree-product: #4ADE80;
+  --color-tree-code: #FDE047;
 }
 
+/* Base Typography */
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: "Fira Sans", system-ui, -apple-system, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6,
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h4, h5, h6 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
 code, .font-mono {
   font-family: "Fira Code", "JetBrains Mono", monospace;
+  font-size: 0.9em;
 }
 
-/* CRT Scanline Overlay */
-.crt-overlay::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
+/* Subtle Elevation */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: border-color 300ms ease, box-shadow 300ms ease;
 }
 
-/* Neon Glow Effects */
-.glow-accent {
-  box-shadow:
-    0 0 10px rgba(34, 197, 94, 0.15),
-    0 0 30px rgba(34, 197, 94, 0.1),
-    inset 0 0 10px rgba(34, 197, 94, 0.05);
+.card:hover {
+  border-color: var(--color-border-subtle);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.glow-xp {
-  box-shadow:
-    0 0 10px rgba(250, 204, 21, 0.2),
-    0 0 25px rgba(250, 204, 21, 0.1);
+/* Gold Accent Bar */
+.gold-accent {
+  border-left: 2px solid var(--color-gold);
 }
 
-.glow-purple {
-  box-shadow:
-    0 0 10px rgba(168, 85, 247, 0.2),
-    0 0 25px rgba(168, 85, 247, 0.1);
-}
-
-.glow-cyan {
-  box-shadow:
-    0 0 10px rgba(34, 211, 238, 0.2),
-    0 0 25px rgba(34, 211, 238, 0.1);
-}
-
-.neon-text-green {
-  text-shadow: 0 0 7px rgba(34, 197, 94, 0.5), 0 0 20px rgba(34, 197, 94, 0.3);
-}
-
-.neon-text-xp {
-  text-shadow: 0 0 7px rgba(250, 204, 21, 0.5), 0 0 20px rgba(250, 204, 21, 0.3);
-}
-
-.neon-text-purple {
-  text-shadow: 0 0 7px rgba(168, 85, 247, 0.5), 0 0 20px rgba(168, 85, 247, 0.3);
-}
-
-/* Skill Node States */
-.skill-node-locked {
-  opacity: 0.4;
-  filter: grayscale(0.8);
-}
-
-.skill-node-active {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(34, 197, 94, 0.2); }
-  50% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4), 0 0 40px rgba(34, 197, 94, 0.1); }
-}
-
-/* XP Bar */
+/* XP Bar — refined */
 .xp-bar-fill {
-  background: linear-gradient(90deg, var(--color-xp), var(--color-xp-glow));
-  box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
-  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, var(--color-gold-dim), var(--color-gold));
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Card Hover */
-.card-hover {
-  transition: all 200ms ease;
-}
-.card-hover:hover {
-  border-color: var(--color-border-glow);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+/* Subtle badge glow */
+.badge-unlocked {
+  box-shadow: 0 0 0 1px var(--color-gold-dim), 0 2px 8px rgba(202, 138, 4, 0.1);
 }
 
-/* Glitch effect for headers */
-@keyframes glitch {
-  0%, 100% { text-shadow: 0 0 7px rgba(34, 197, 94, 0.5); }
-  25% { text-shadow: -2px 0 rgba(34, 211, 238, 0.5), 2px 0 rgba(236, 72, 153, 0.5); }
-  50% { text-shadow: 0 0 15px rgba(34, 197, 94, 0.8); }
-  75% { text-shadow: 2px 0 rgba(34, 211, 238, 0.5), -2px 0 rgba(236, 72, 153, 0.5); }
-}
-
-.glitch-hover:hover {
-  animation: glitch 0.3s ease-in-out;
-}
-
-/* Focus states for keyboard nav */
+/* Focus states */
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
 
-/* Respect reduced motion */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .crt-overlay::before {
-    display: none;
-  }
+}
+
+/* Smooth page transitions */
+.page-enter {
+  animation: fadeIn 400ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }

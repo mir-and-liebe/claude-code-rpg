@@ -17,7 +17,6 @@ import {
   Check,
   TrendingUp,
   Award,
-  Target,
   Gauge,
 } from "lucide-react";
 
@@ -45,58 +44,50 @@ export default function ProgressPage() {
   );
 
   const statCards = [
-    { label: "Level", value: profile.level, Icon: TrendingUp, color: "text-accent" },
+    { label: "Level", value: profile.level, Icon: TrendingUp, color: "text-gold" },
     { label: "Total XP", value: profile.totalXp.toLocaleString(), Icon: Zap, color: "text-xp" },
     { label: "Badges", value: profile.badges.filter((b) => b.unlocked).length, Icon: Award, color: "text-health" },
     { label: "Completion", value: `${Math.round((profile.totalXp / totalXpPossible) * 100)}%`, Icon: Gauge, color: "text-mana" },
   ];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-8">
       <div>
-        <h1 className="text-2xl font-bold glitch-hover">Progress</h1>
-        <p className="text-sm text-text-muted mt-0.5">
+        <h1 className="text-3xl">Progress</h1>
+        <p className="text-sm text-text-muted mt-1">
           Track your vibecoding journey across all skill trees
         </p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {statCards.map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-surface rounded-xl border border-border p-4 text-center card-hover"
-          >
-            <div className="flex justify-center mb-1.5">
-              <stat.Icon className={`w-4 h-4 ${stat.color}`} />
-            </div>
-            <p className={`text-2xl font-bold font-mono ${stat.color}`}>
-              {stat.value}
+          <div key={stat.label} className="card p-5 text-center">
+            <stat.Icon className={`w-4 h-4 mx-auto mb-2 ${stat.color}`} />
+            <p className={`text-2xl font-mono ${stat.color}`}>{stat.value}</p>
+            <p className="text-[11px] text-text-muted mt-0.5 tracking-wide">
+              {stat.label}
             </p>
-            <p className="text-xs text-text-muted font-mono">{stat.label}</p>
           </div>
         ))}
       </div>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <div className="flex items-center gap-2 mb-4">
-          <Target className="w-4 h-4 text-accent" />
-          <h2 className="text-lg font-bold">Skill Tree Breakdown</h2>
-        </div>
-        <div className="space-y-5">
+      <div className="card p-6">
+        <h2 className="text-xl mb-5">Skill Tree Breakdown</h2>
+        <div className="space-y-6">
           {treeStats.map(({ tree, progress }) => {
             const Icon = treeIconMap[tree.icon];
             return (
               <div key={tree.id}>
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2.5 mb-2">
                   {Icon && (
                     <Icon
                       className="w-4 h-4"
                       style={{ color: tree.color }}
                     />
                   )}
-                  <span className="text-sm font-bold">{tree.name}</span>
-                  <span className="text-[10px] text-text-muted ml-auto font-mono">
-                    {progress.completed}/{progress.total} skills
+                  <span className="text-sm font-semibold">{tree.name}</span>
+                  <span className="text-[11px] text-text-muted ml-auto font-mono">
+                    {progress.completed}/{progress.total}
                   </span>
                 </div>
                 <XPBar
@@ -110,33 +101,30 @@ export default function ProgressPage() {
         </div>
       </div>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <div className="flex items-center gap-2 mb-4">
-          <Crown className="w-4 h-4 text-xp" />
-          <h2 className="text-lg font-bold">Rank Progression</h2>
-        </div>
-        <div className="space-y-3">
+      <div className="card p-6">
+        <h2 className="text-xl mb-5">Rank Progression</h2>
+        <div className="space-y-2">
           {ranks.map((r) => {
             const achieved = profile.level >= r.level;
             return (
               <div
                 key={r.rank}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                   achieved
-                    ? "bg-accent/10 border border-accent/20"
-                    : "bg-bg border border-border opacity-50"
+                    ? "bg-gold/[0.03] border border-gold/15"
+                    : "bg-bg border border-border opacity-40"
                 }`}
               >
                 <r.Icon
-                  className={`w-5 h-5 ${
-                    achieved ? "text-accent" : "text-text-muted"
+                  className={`w-4 h-4 ${
+                    achieved ? "text-gold" : "text-text-muted"
                   }`}
                 />
-                <span className="text-sm font-medium">{r.rank}</span>
-                <span className="text-[10px] text-text-muted ml-auto font-mono">
-                  Level {r.level}+
+                <span className="text-sm">{r.rank}</span>
+                <span className="text-[11px] text-text-muted ml-auto font-mono">
+                  Lv. {r.level}+
                 </span>
-                {achieved && <Check className="w-4 h-4 text-health" />}
+                {achieved && <Check className="w-3.5 h-3.5 text-gold" />}
               </div>
             );
           })}

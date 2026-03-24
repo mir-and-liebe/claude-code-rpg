@@ -15,42 +15,39 @@ export function SkillNode({ node, color, onToggle }: Props) {
 
   return (
     <div
-      className={`relative border rounded-xl p-4 transition-all duration-200 ${
+      className={`border rounded-xl p-5 transition-all duration-300 ${
         node.completed
-          ? "border-xp/30 bg-xp/5"
-          : "border-border bg-surface hover:border-border-glow"
+          ? "border-gold/20 bg-gold/[0.03]"
+          : "border-border bg-surface hover:border-border-subtle"
       }`}
     >
-      <div className="flex items-start gap-3">
+      <div className="flex items-start gap-4">
         <button
           onClick={() => onToggle(node.id)}
-          className={`mt-0.5 w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold font-mono shrink-0 transition-all duration-200 cursor-pointer ${
+          className={`mt-0.5 w-8 h-8 rounded-full border flex items-center justify-center text-xs font-mono shrink-0 transition-all duration-300 cursor-pointer ${
             node.completed
-              ? "border-xp bg-xp/20 text-xp glow-xp"
-              : "border-border bg-bg text-text-muted hover:border-accent hover:text-accent"
+              ? "border-gold/40 bg-gold/10 text-gold"
+              : "border-border bg-bg text-text-muted hover:border-text-muted"
           }`}
         >
           {node.completed ? <Check className="w-3.5 h-3.5" /> : node.level}
         </button>
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h4 className="font-bold text-sm">{node.name}</h4>
+          <div className="flex items-baseline gap-2.5 mb-1.5">
+            <h4 className="font-semibold text-sm text-text">{node.name}</h4>
             <span
               className="text-[10px] px-1.5 py-0.5 rounded font-mono"
-              style={{
-                backgroundColor: `${color}15`,
-                color: color,
-              }}
+              style={{ color, backgroundColor: `${color}10` }}
             >
               {node.xpRequired} XP
             </span>
           </div>
-          <p className="text-xs text-text-muted mb-2 leading-relaxed">
+          <p className="text-[13px] text-text-secondary mb-3 leading-relaxed">
             {node.description}
           </p>
           <button
             onClick={() => setExpanded(!expanded)}
-            className="flex items-center gap-1 text-[11px] text-accent hover:text-accent-glow transition-colors duration-200 cursor-pointer"
+            className="flex items-center gap-1.5 text-[12px] text-text-muted hover:text-text-secondary transition-colors duration-300 cursor-pointer"
           >
             {expanded ? (
               <>
@@ -63,31 +60,36 @@ export function SkillNode({ node, color, onToggle }: Props) {
             )}
           </button>
           {expanded && (
-            <div className="mt-3 space-y-2 text-xs">
-              <div className="p-3 rounded-lg bg-bg border border-border">
-                <div className="flex items-center gap-1.5 text-text-muted mb-1.5">
-                  <Lightbulb className="w-3 h-3" />
-                  <span className="font-medium font-mono">Why it matters</span>
+            <div className="mt-4 space-y-3 text-[13px]">
+              <div className="p-4 rounded-lg bg-bg border-l-2 border-text-muted">
+                <div className="flex items-center gap-1.5 text-text-secondary mb-2">
+                  <Lightbulb className="w-3.5 h-3.5" />
+                  <span className="text-[11px] font-semibold tracking-wide uppercase">
+                    Why it matters
+                  </span>
                 </div>
-                <p className="text-text leading-relaxed">{node.whyItMatters}</p>
+                <p className="text-text-secondary leading-relaxed">
+                  {node.whyItMatters}
+                </p>
               </div>
               <div
-                className="p-3 rounded-lg border"
-                style={{
-                  backgroundColor: `${color}08`,
-                  borderColor: `${color}20`,
-                }}
+                className="p-4 rounded-lg border-l-2"
+                style={{ backgroundColor: `${color}05`, borderColor: `${color}40` }}
               >
-                <div className="flex items-center gap-1.5 mb-1.5" style={{ color }}>
-                  <Briefcase className="w-3 h-3" />
-                  <span className="font-medium font-mono">PM analogy</span>
+                <div className="flex items-center gap-1.5 mb-2" style={{ color }}>
+                  <Briefcase className="w-3.5 h-3.5" />
+                  <span className="text-[11px] font-semibold tracking-wide uppercase">
+                    PM analogy
+                  </span>
                 </div>
-                <p className="text-text leading-relaxed">{node.pmAnalogy}</p>
+                <p className="text-text-secondary leading-relaxed">
+                  {node.pmAnalogy}
+                </p>
               </div>
-              <div className="p-2.5 rounded-lg bg-surface-hover flex items-center gap-1.5">
-                <Zap className="w-3 h-3 text-xp shrink-0" />
-                <p className="text-text-muted font-mono">
-                  <span className="font-medium text-text">XP Source:</span>{" "}
+              <div className="p-3 rounded-lg bg-surface-hover flex items-start gap-2">
+                <Zap className="w-3.5 h-3.5 text-gold mt-0.5 shrink-0" />
+                <p className="text-text-muted font-mono text-[12px]">
+                  <span className="text-text-secondary">XP Source:</span>{" "}
                   {node.xpSource}
                 </p>
               </div>

@@ -29,16 +29,16 @@ const vaultFiles = [
 
 export default function VaultPage() {
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div className="max-w-5xl mx-auto space-y-8">
       <div>
-        <h1 className="text-2xl font-bold glitch-hover">Vault Mirror</h1>
-        <p className="text-sm text-text-muted mt-0.5">
-          Your Obsidian cc/ vault synced via GitHub Actions. Auto-updates daily.
+        <h1 className="text-3xl">Vault Mirror</h1>
+        <p className="text-sm text-text-muted mt-1">
+          Your Obsidian cc/ vault synced via GitHub Actions
         </p>
       </div>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <h2 className="text-lg font-bold mb-3">Setup Overview</h2>
+      <div className="card p-6">
+        <h2 className="text-xl mb-4">Setup Overview</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             {
@@ -56,21 +56,21 @@ export default function VaultPage() {
           ].map((system) => (
             <div
               key={system.title}
-              className="p-4 rounded-lg bg-bg border border-border card-hover"
+              className="p-4 rounded-lg bg-bg border border-border"
             >
-              <h3 className="text-sm font-bold mb-2">{system.title}</h3>
-              <div className="space-y-1.5 text-xs text-text-muted">
-                <p className="flex items-center gap-1.5">
-                  <ExternalLink className="w-3 h-3 shrink-0" />
-                  <span className="font-mono">{system.source}</span>
+              <h3 className="text-sm font-semibold mb-3">{system.title}</h3>
+              <div className="space-y-2 text-[13px] text-text-secondary">
+                <p className="flex items-center gap-2">
+                  <ExternalLink className="w-3 h-3 text-text-muted shrink-0" />
+                  <span className="font-mono text-[12px]">{system.source}</span>
                 </p>
-                <p className="flex items-center gap-1.5">
-                  <FileText className="w-3 h-3 shrink-0" />
-                  <span className="font-mono">{system.location}</span>
+                <p className="flex items-center gap-2">
+                  <FileText className="w-3 h-3 text-text-muted shrink-0" />
+                  <span className="font-mono text-[12px]">{system.location}</span>
                 </p>
-                <p className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-health shrink-0" />
-                  {system.status}
+                <p className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-health shrink-0" />
+                  <span>{system.status}</span>
                 </p>
               </div>
             </div>
@@ -78,19 +78,19 @@ export default function VaultPage() {
         </div>
       </div>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <h2 className="text-lg font-bold mb-3">Vault Contents</h2>
-        <div className="space-y-2">
+      <div className="card p-6">
+        <h2 className="text-xl mb-4">Vault Contents</h2>
+        <div className="space-y-1">
           {vaultFiles.map((file) => (
             <div
               key={file.name}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-bg border border-border card-hover"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-hover transition-colors duration-300"
             >
               <file.Icon className="w-4 h-4 text-text-muted shrink-0" />
-              <span className="text-sm font-mono text-accent">
+              <span className="text-[13px] font-mono text-text">
                 {file.name}
               </span>
-              <span className="text-xs text-text-muted ml-auto">
+              <span className="text-[12px] text-text-muted ml-auto">
                 {file.desc}
               </span>
             </div>
@@ -98,8 +98,8 @@ export default function VaultPage() {
         </div>
       </div>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <h2 className="text-lg font-bold mb-3">Supported Languages</h2>
+      <div className="card p-6">
+        <h2 className="text-xl mb-4">Supported Languages</h2>
         <div className="flex flex-wrap gap-2">
           {[
             "TypeScript", "Python", "Go", "Rust", "Java", "Kotlin",
@@ -107,7 +107,7 @@ export default function VaultPage() {
           ].map((lang) => (
             <span
               key={lang}
-              className="text-xs px-3 py-1.5 rounded-lg bg-accent/10 border border-accent/20 text-accent font-mono cursor-default hover:bg-accent/15 transition-colors duration-200"
+              className="text-[12px] px-3 py-1.5 rounded-lg bg-surface-hover text-text-secondary font-mono cursor-default hover:text-text transition-colors duration-300"
             >
               {lang}
             </span>
@@ -115,28 +115,28 @@ export default function VaultPage() {
         </div>
       </div>
 
-      <div className="bg-surface rounded-xl border border-border p-5">
-        <h2 className="text-lg font-bold mb-3">Sync Configuration</h2>
-        <div className="space-y-2.5 text-xs">
-          <p className="flex items-center gap-2">
-            <FileText className="w-3.5 h-3.5 text-text-muted" />
-            <span className="text-text-muted">Source:</span>
-            <span className="font-mono text-text">
+      <div className="card p-6">
+        <h2 className="text-xl mb-4">Sync Configuration</h2>
+        <div className="space-y-3 text-[13px]">
+          <p className="flex items-center gap-3">
+            <FileText className="w-4 h-4 text-text-muted shrink-0" />
+            <span className="text-text-muted w-16">Source</span>
+            <span className="font-mono text-text-secondary">
               ~/Library/Mobile Documents/.../Obsidian/self-mastery/cc/
             </span>
           </p>
-          <p className="flex items-center gap-2">
-            <Clock className="w-3.5 h-3.5 text-text-muted" />
-            <span className="text-text-muted">Schedule:</span>
-            <span className="font-mono text-text">
+          <p className="flex items-center gap-3">
+            <Clock className="w-4 h-4 text-text-muted shrink-0" />
+            <span className="text-text-muted w-16">Schedule</span>
+            <span className="font-mono text-text-secondary">
               Daily at 5:00 AM via LaunchAgent
             </span>
           </p>
-          <p className="flex items-center gap-2">
-            <RefreshCw className="w-3.5 h-3.5 text-text-muted" />
-            <span className="text-text-muted">Method:</span>
-            <span className="font-mono text-text">
-              GitHub Action cron parses vault MD &rarr; JSON
+          <p className="flex items-center gap-3">
+            <RefreshCw className="w-4 h-4 text-text-muted shrink-0" />
+            <span className="text-text-muted w-16">Method</span>
+            <span className="font-mono text-text-secondary">
+              GitHub Action cron &mdash; vault MD &rarr; JSON
             </span>
           </p>
         </div>
