@@ -1,17 +1,42 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronDown, ChevronUp, Lightbulb, Briefcase, Zap } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Lightbulb, Briefcase, Zap, Lock, Sparkles } from "lucide-react";
 import type { SkillNode as SkillNodeType } from "@/lib/types";
 
 interface Props {
   node: SkillNodeType;
   color: string;
   onToggle: (id: string) => void;
+  revealed: boolean;
 }
 
-export function SkillNode({ node, color, onToggle }: Props) {
+export function SkillNode({ node, color, onToggle, revealed }: Props) {
   const [expanded, setExpanded] = useState(false);
+
+  // Fog of War — hidden skill
+  if (!revealed) {
+    return (
+      <div className="border border-border rounded-xl p-5 bg-surface opacity-40">
+        <div className="flex items-start gap-4">
+          <div className="w-8 h-8 rounded-full border border-border bg-bg flex items-center justify-center">
+            <Lock className="w-3 h-3 text-text-muted" />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-baseline gap-2.5 mb-1.5">
+              <h4 className="font-semibold text-sm text-text-muted">???</h4>
+              <span className="text-[10px] px-1.5 py-0.5 rounded font-mono text-text-muted bg-surface-hover">
+                Lv. {node.level}
+              </span>
+            </div>
+            <p className="text-[13px] text-text-muted italic">
+              Complete Level 3 to reveal this skill
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -45,6 +70,13 @@ export function SkillNode({ node, color, onToggle }: Props) {
           <p className="text-[13px] text-text-secondary mb-3 leading-relaxed">
             {node.description}
           </p>
+          {/* Impact statement (CD1 — Humanity Hero) */}
+          {node.completed && node.impact && (
+            <div className="flex items-start gap-1.5 mb-3 p-2.5 rounded-lg bg-gold/[0.03] border border-gold/10">
+              <Sparkles className="w-3 h-3 text-gold mt-0.5 shrink-0" />
+              <p className="text-[11px] text-gold/80 italic">{node.impact}</p>
+            </div>
+          )}
           <button
             onClick={() => setExpanded(!expanded)}
             className="flex items-center gap-1.5 text-[12px] text-text-muted hover:text-text-secondary transition-colors duration-300 cursor-pointer"

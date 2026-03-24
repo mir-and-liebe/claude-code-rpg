@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Swords, TreePine, BookOpen, BarChart3, Vault } from "lucide-react";
+import { Swords, TreePine, BookOpen, BarChart3, Vault, UserCog } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Dashboard", Icon: Swords },
   { href: "/skills", label: "Skill Trees", Icon: TreePine },
   { href: "/bestpractices", label: "Best Practices", Icon: BookOpen },
   { href: "/progress", label: "Progress", Icon: BarChart3 },
+  { href: "/character", label: "Character", Icon: UserCog },
   { href: "/vault", label: "Vault", Icon: Vault },
 ];
 

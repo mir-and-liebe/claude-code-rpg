@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ch1",
+    "title": "The Awakening",
+    "trigger": "first_skill",
+    "text": "You were a PM who shipped products through people. Specs, sprints, standups — that was your world. But today, something shifted. You opened a terminal and gave an instruction, and the machine listened. Not like a developer listens, half-distracted in a standup. It listened completely. You just took your first step into vibecoding."
+  },
+  {
+    "id": "ch2",
+    "title": "The Forge",
+    "trigger": "5_skills",
+    "text": "Your terminal is no longer a black box. It's a forge. Starship glows at your prompt. Eza paints your file trees in color. Bat highlights your code. You have 60 commands at your fingertips and you're starting to use them like a craftsman uses tools — by feel, not by manual."
+  },
+  {
+    "id": "ch3",
+    "title": "The Delegation",
+    "trigger": "10_skills",
+    "text": "You stopped writing code alone. You've learned what every great PM already knows: the best work happens through delegation. But your team isn't human — it's 28 agents, each a specialist. Code reviewers that never tire. Build resolvers that speak every language. You're not coding. You're conducting."
+  },
+  {
+    "id": "ch4",
+    "title": "The Architect",
+    "trigger": "20_skills",
+    "text": "You see systems where others see files. The PRD flows into architecture, architecture into stories, stories into sprints that AI agents execute in parallel. 24 MCPs connect your terminal to deploy pipelines, databases, and documentation. You're no longer learning tools. You're designing workflows."
+  },
+  {
+    "id": "ch5",
+    "title": "The Vibecoding Architect",
+    "trigger": "all_skills",
+    "text": "You are no longer learning to vibecode. You are the vibecoding architect. Ideas become deployed products in hours, not quarters. Your instincts have been codified — the system learns from you as you learn from it. You shipped products through people. Now you ship them through intelligence. The PM who codes is the most dangerous person in the room."
+  }
+]

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import { ProgressProvider } from "@/lib/use-progress";
+import { XPToast } from "@/components/XPToast";
+import { NarrativeModal } from "@/components/NarrativeModal";
 
 export const metadata: Metadata = {
   title: "CC RPG — Vibecoder Mastery Dashboard",
@@ -17,10 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -35,6 +34,8 @@ export default function RootLayout({
         <ProgressProvider>
           <Sidebar />
           <main className="ml-56 min-h-screen p-8">{children}</main>
+          <XPToast />
+          <NarrativeModal />
         </ProgressProvider>
       </body>
     </html>

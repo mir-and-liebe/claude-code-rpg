@@ -1,0 +1,37 @@
+[
+  {
+    "id": "speed-runner",
+    "name": "Speed Runner",
+    "condition": "3_skills_1_day",
+    "xp": 100,
+    "description": "Complete 3 skills in a single day"
+  },
+  {
+    "id": "balanced-build",
+    "name": "Balanced Build",
+    "condition": "1_per_tree",
+    "xp": 150,
+    "description": "Complete at least 1 skill in every tree"
+  },
+  {
+    "id": "night-owl",
+    "name": "Night Owl",
+    "condition": "skill_after_midnight",
+    "xp": 50,
+    "description": "Complete a skill after midnight"
+  },
+  {
+    "id": "combo-hunter",
+    "name": "Combo Hunter",
+    "condition": "3_combos",
+    "xp": 200,
+    "description": "Discover 3 skill combos"
+  },
+  {
+    "id": "streak-warrior",
+    "name": "Streak Warrior",
+    "condition": "7_day_streak",
+    "xp": 150,
+    "description": "Maintain a 7-day learning streak"
+  }
+]

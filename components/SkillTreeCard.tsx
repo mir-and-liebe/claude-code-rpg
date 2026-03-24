@@ -1,15 +1,16 @@
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Lock } from "lucide-react";
 import type { SkillTree } from "@/lib/types";
-import { getTreeProgress } from "@/lib/rpg";
+import { getTreeProgress, isSkillRevealed } from "@/lib/rpg";
 import { treeIconMap } from "@/lib/icons";
 import { XPBar } from "./XPBar";
 
 interface Props {
   tree: SkillTree;
+  completedSkills: Set<string>;
 }
 
-export function SkillTreeCard({ tree }: Props) {
+export function SkillTreeCard({ tree, completedSkills }: Props) {
   const progress = getTreeProgress(tree);
   const Icon = treeIconMap[tree.icon];
 
@@ -36,22 +37,29 @@ export function SkillTreeCard({ tree }: Props) {
           {tree.pmSuperpower}
         </p>
         <div className="flex items-center gap-2 mb-3">
-          {tree.nodes.map((node) => (
-            <div
-              key={node.id}
-              className={`w-6 h-6 rounded-full border flex items-center justify-center text-[9px] font-mono transition-all duration-300 ${
-                node.completed
-                  ? "border-gold/40 bg-gold/10 text-gold"
-                  : "border-border bg-bg text-text-muted"
-              }`}
-            >
-              {node.completed ? (
-                <Check className="w-2.5 h-2.5" />
-              ) : (
-                node.level
-              )}
-            </div>
-          ))}
+          {tree.nodes.map((node) => {
+            const revealed = isSkillRevealed(node, tree, completedSkills);
+            return (
+              <div
+                key={node.id}
+                className={`w-6 h-6 rounded-full border flex items-center justify-center text-[9px] font-mono transition-all duration-300 ${
+                  node.completed
+                    ? "border-gold/40 bg-gold/10 text-gold"
+                    : revealed
+                      ? "border-border bg-bg text-text-muted"
+                      : "border-border bg-bg"
+                }`}
+              >
+                {node.completed ? (
+                  <Check className="w-2.5 h-2.5" />
+                ) : revealed ? (
+                  node.level
+                ) : (
+                  <Lock className="w-2 h-2 text-text-muted" />
+                )}
+              </div>
+            );
+          })}
         </div>
         <XPBar
           current={progress.xpEarned}

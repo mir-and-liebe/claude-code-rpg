@@ -1,66 +1,74 @@
 [
   {
-    "id": "first-skill",
-    "name": "First Steps",
-    "description": "Complete your first skill node",
+    "id": "first-steps",
     "icon": "Star",
-    "condition": "first_skill",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "First Steps", "condition": "skills_1", "description": "Complete your first skill" },
+      { "tier": "silver", "name": "Getting Started", "condition": "skills_5", "description": "Complete 5 skills" },
+      { "tier": "gold", "name": "Committed Learner", "condition": "skills_10", "description": "Complete 10 skills" }
+    ]
   },
   {
     "id": "mcp-collector",
-    "name": "MCP Collector",
-    "description": "Complete 3 nodes in MCP Mastery",
     "icon": "Plug",
-    "condition": "mcp_collector",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "MCP Novice", "condition": "mcp_1", "description": "Complete 1 MCP node" },
+      { "tier": "silver", "name": "MCP Collector", "condition": "mcp_3", "description": "Complete 3 MCP nodes" },
+      { "tier": "gold", "name": "MCP Master", "condition": "mcp_5", "description": "Complete all MCP nodes" }
+    ]
   },
   {
     "id": "agent-whisperer",
-    "name": "Agent Whisperer",
-    "description": "Complete 3 nodes in Agent Craft",
     "icon": "Bot",
-    "condition": "agent_whisperer",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "Agent Rookie", "condition": "agent_1", "description": "Complete 1 Agent node" },
+      { "tier": "silver", "name": "Agent Whisperer", "condition": "agent_3", "description": "Complete 3 Agent nodes" },
+      { "tier": "gold", "name": "Agent Commander", "condition": "agent_5", "description": "Complete all Agent nodes" }
+    ]
   },
   {
-    "id": "first-deploy",
-    "name": "First Deploy",
-    "description": "Complete 2 nodes in Product Shipper",
+    "id": "product-shipper",
     "icon": "Rocket",
-    "condition": "first_deploy",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "First Brief", "condition": "product_1", "description": "Complete 1 Product node" },
+      { "tier": "silver", "name": "Ship It", "condition": "product_3", "description": "Complete 3 Product nodes" },
+      { "tier": "gold", "name": "Solo Shipper", "condition": "product_5", "description": "Complete all Product nodes" }
+    ]
   },
   {
     "id": "prompt-master",
-    "name": "Prompt Master",
-    "description": "Complete all Prompt Architect nodes",
     "icon": "Wand2",
-    "condition": "prompt_master",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "Prompt Beginner", "condition": "prompt_1", "description": "Complete 1 Prompt node" },
+      { "tier": "silver", "name": "Prompt Crafter", "condition": "prompt_3", "description": "Complete 3 Prompt nodes" },
+      { "tier": "gold", "name": "Prompt Master", "condition": "prompt_5", "description": "Complete all Prompt nodes" }
+    ]
   },
   {
     "id": "polyglot",
-    "name": "Polyglot Vibecoder",
-    "description": "Complete all Code Comprehension nodes",
     "icon": "BookOpen",
-    "condition": "polyglot",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "Code Reader", "condition": "code_1", "description": "Complete 1 Code node" },
+      { "tier": "silver", "name": "Code Reviewer", "condition": "code_3", "description": "Complete 3 Code nodes" },
+      { "tier": "gold", "name": "Polyglot Vibecoder", "condition": "code_5", "description": "Complete all Code nodes" }
+    ]
   },
   {
     "id": "tree-complete",
-    "name": "Tree Master",
-    "description": "Complete all nodes in any skill tree",
     "icon": "Trophy",
-    "condition": "tree_complete",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "Focused Learner", "condition": "tree_half", "description": "Complete half of any tree" },
+      { "tier": "silver", "name": "Tree Master", "condition": "tree_complete", "description": "Complete any full tree" },
+      { "tier": "gold", "name": "Multi-Master", "condition": "trees_3", "description": "Complete 3 full trees" }
+    ]
   },
   {
     "id": "all-trees",
-    "name": "Vibecoding Architect",
-    "description": "Complete all nodes in all skill trees",
     "icon": "Crown",
-    "condition": "all_trees",
-    "unlocked": false
+    "tiers": [
+      { "tier": "bronze", "name": "Well Rounded", "condition": "all_trees_1", "description": "Complete 1 skill in every tree" },
+      { "tier": "silver", "name": "Vibecoder Elite", "condition": "all_trees_half", "description": "Complete half of all trees" },
+      { "tier": "gold", "name": "Vibecoding Architect", "condition": "all_trees", "description": "Complete all skills in all trees" }
+    ]
   }
 ]

@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function CharacterCard({ profile }: Props) {
-  const unlockedBadges = profile.badges.filter((b) => b.unlocked);
+  const earnedBadges = profile.badges.filter((b) => b.currentTier !== "none");
 
   return (
     <div className="card p-6">
@@ -23,9 +23,16 @@ export function CharacterCard({ profile }: Props) {
             </span>
           </div>
           <p className="text-sm text-text-secondary mb-1">{profile.title}</p>
-          <div className="flex items-center gap-1.5 mb-4">
-            <Shield className="w-3 h-3 text-gold/60" />
-            <p className="text-xs text-gold tracking-wide">{profile.rank}</p>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-1.5">
+              <Shield className="w-3 h-3 text-gold/60" />
+              <p className="text-xs text-gold tracking-wide">{profile.rank}</p>
+            </div>
+            {profile.characterClass && (
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-surface-hover text-text-muted font-mono capitalize">
+                {profile.characterClass}
+              </span>
+            )}
           </div>
           <XPBar
             current={profile.totalXp}
@@ -34,21 +41,30 @@ export function CharacterCard({ profile }: Props) {
           />
         </div>
       </div>
-      {unlockedBadges.length > 0 && (
+      {earnedBadges.length > 0 && (
         <div className="mt-5 pt-5 border-t border-border">
           <p className="text-[10px] text-text-muted tracking-widest uppercase mb-3">
             Badges
           </p>
           <div className="flex gap-2 flex-wrap">
-            {unlockedBadges.map((badge) => (
-              <span
-                key={badge.id}
-                className="text-xs px-2.5 py-1 rounded-md bg-gold/5 text-gold border border-gold/15 cursor-default"
-                title={badge.description}
-              >
-                {badge.name}
-              </span>
-            ))}
+            {earnedBadges.map((badge) => {
+              const tier = badge.tiers.find((t) => t.tier === badge.currentTier);
+              const tierColor =
+                badge.currentTier === "gold"
+                  ? "bg-gold/5 text-gold border-gold/15"
+                  : badge.currentTier === "silver"
+                    ? "bg-zinc-400/5 text-zinc-400 border-zinc-400/15"
+                    : "bg-amber-700/5 text-amber-700 border-amber-700/15";
+              return (
+                <span
+                  key={badge.id}
+                  className={`text-xs px-2.5 py-1 rounded-md border cursor-default ${tierColor}`}
+                  title={tier?.description}
+                >
+                  {tier?.name}
+                </span>
+              );
+            })}
           </div>
         </div>
       )}

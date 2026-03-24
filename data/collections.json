@@ -1,0 +1,23 @@
+[
+  {
+    "id": "set-white-hat",
+    "name": "White Hat Master",
+    "description": "Master the drives of meaning, accomplishment, and creativity",
+    "badges": ["prompt-master", "product-shipper", "polyglot"],
+    "bonusXp": 500
+  },
+  {
+    "id": "set-toolsmith",
+    "name": "The Toolsmith",
+    "description": "Master the infrastructure of vibecoding",
+    "badges": ["mcp-collector", "agent-whisperer", "tree-complete"],
+    "bonusXp": 500
+  },
+  {
+    "id": "set-completionist",
+    "name": "The Completionist",
+    "description": "Leave no skill unlearned",
+    "badges": ["first-steps", "all-trees"],
+    "bonusXp": 1000
+  }
+]

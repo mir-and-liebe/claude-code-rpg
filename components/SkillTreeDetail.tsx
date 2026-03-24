@@ -2,7 +2,7 @@
 
 import { ArrowLeft, Loader2 } from "lucide-react";
 import type { SkillTree } from "@/lib/types";
-import { getTreeProgress } from "@/lib/rpg";
+import { getTreeProgress, isSkillRevealed } from "@/lib/rpg";
 import { treeIconMap } from "@/lib/icons";
 import { useProgress } from "@/lib/use-progress";
 import { SkillNode } from "@/components/SkillNode";
@@ -81,6 +81,7 @@ export function SkillTreeDetail({ initialTree }: Props) {
               node={node}
               color={tree.color}
               onToggle={toggleSkill}
+              revealed={isSkillRevealed(node, tree, completedSkills)}
             />
           </div>
         ))}

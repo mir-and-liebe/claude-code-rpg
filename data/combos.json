@@ -1,0 +1,44 @@
+[
+  {
+    "id": "combo-fullstack",
+    "name": "Full Stack Vibecoder",
+    "skills": ["pa-3", "cc-2"],
+    "bonusXp": 200,
+    "description": "Prompt optimization + TDD = AI that writes tested code"
+  },
+  {
+    "id": "combo-deploy",
+    "name": "Deploy Pipeline",
+    "skills": ["mcp-2", "ps-4"],
+    "bonusXp": 200,
+    "description": "Deploy MCPs + Sprint execution = ship from terminal"
+  },
+  {
+    "id": "combo-teamlead",
+    "name": "AI Team Lead",
+    "skills": ["ac-4", "ps-3"],
+    "bonusXp": 200,
+    "description": "Multi-agent + Architecture = parallel AI sprints"
+  },
+  {
+    "id": "combo-sentinel",
+    "name": "Code Sentinel",
+    "skills": ["ac-2", "cc-3"],
+    "bonusXp": 200,
+    "description": "Review agents + Code review = zero bugs shipped"
+  },
+  {
+    "id": "combo-autopilot",
+    "name": "Autopilot Mode",
+    "skills": ["cli-5", "pa-5"],
+    "bonusXp": 250,
+    "description": "Loop automation + Instinct mastery = self-improving system"
+  },
+  {
+    "id": "combo-datawhisperer",
+    "name": "Data Whisperer",
+    "skills": ["mcp-3", "mcp-4"],
+    "bonusXp": 200,
+    "description": "Data layer + Research docs = query anything, know everything"
+  }
+]
