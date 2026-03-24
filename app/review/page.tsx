@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { RotateCcw, Check, Brain, Loader2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { calculateNextReview, qualityFromRating } from "@/lib/spaced-repetition";
+import Link from "next/link";
 import skillTreesData from "@/data/skills.json";
 import type { SkillTree, SkillNode } from "@/lib/types";
 
@@ -88,11 +89,19 @@ export default function ReviewPage() {
       <div className="max-w-lg mx-auto text-center py-20">
         <Check className="w-10 h-10 text-gold mx-auto mb-4" />
         <h1 className="text-2xl mb-2">All Caught Up</h1>
-        <p className="text-text-muted">
+        <p className="text-text-muted mb-4">
           {queue.length === 0
-            ? "No skills due for review yet. Complete some skill challenges first."
-            : `Reviewed ${queue.length} skill${queue.length !== 1 ? "s" : ""}. Come back tomorrow.`}
+            ? "No skills due for review. Complete some skill challenges first — they'll appear here for review the next day."
+            : `Reviewed ${queue.length} skill${queue.length !== 1 ? "s" : ""}. Nice work. Come back tomorrow.`}
         </p>
+        {queue.length === 0 && (
+          <Link
+            href="/skills"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gold/10 border border-gold/20 text-gold text-sm hover:bg-gold/15 transition-colors"
+          >
+            Go to Skill Trees
+          </Link>
+        )}
       </div>
     );
   }
@@ -138,7 +147,7 @@ export default function ReviewPage() {
               {skill.tree.name}
             </p>
             <p className="text-sm text-text-muted mt-6">
-              Tap to reveal answer
+              Click to reveal answer
             </p>
           </div>
         ) : (

@@ -33,14 +33,34 @@ import {
   Scroll,
 } from "lucide-react";
 
-const vaultStats = [
-  { label: "Rules", value: 66, Icon: FileText },
-  { label: "Commands", value: 60, Icon: TerminalSquare },
-  { label: "Agents", value: 28, Icon: Bot },
-  { label: "Skills", value: 91, Icon: Sparkles },
-  { label: "MCPs", value: 24, Icon: Plug },
-  { label: "CLIs", value: 14, Icon: Wrench },
-];
+// Dynamic vault stats from vault JSON files
+function getVaultStats() {
+  try {
+    const cmds = require("@/data/vault/commands.json");
+    const agents = require("@/data/vault/agents.json");
+    const rules = require("@/data/vault/rules.json");
+    const skills = require("@/data/vault/skills.json");
+    const mcps = require("@/data/vault/mcps.json");
+    const clis = require("@/data/vault/clis.json");
+    return [
+      { label: "Rules", value: rules?.count || 66, Icon: FileText },
+      { label: "Commands", value: cmds?.count || 60, Icon: TerminalSquare },
+      { label: "Agents", value: agents?.count || 28, Icon: Bot },
+      { label: "Skills", value: skills?.count || 91, Icon: Sparkles },
+      { label: "MCPs", value: mcps?.count || 24, Icon: Plug },
+      { label: "CLIs", value: clis?.count || 14, Icon: Wrench },
+    ];
+  } catch {
+    return [
+      { label: "Rules", value: 66, Icon: FileText },
+      { label: "Commands", value: 60, Icon: TerminalSquare },
+      { label: "Agents", value: 28, Icon: Bot },
+      { label: "Skills", value: 91, Icon: Sparkles },
+      { label: "MCPs", value: 24, Icon: Plug },
+      { label: "CLIs", value: 14, Icon: Wrench },
+    ];
+  }
+}
 
 export default function DashboardPage() {
   const { completedSkills, loading, progress } = useProgress();
@@ -79,7 +99,9 @@ export default function DashboardPage() {
   };
 
   // Current narrative chapter
-  const chapterId = getCurrentChapter(completedSkills.size, 30);
+  const totalSkillCount = trees.reduce((s, t) => s + t.nodes.length, 0);
+  const chapterId = getCurrentChapter(completedSkills.size, totalSkillCount);
+  const vaultStats = getVaultStats();
   const chapter = narrativeData.find((c) => c.id === chapterId);
 
   return (
@@ -101,7 +123,7 @@ export default function DashboardPage() {
               Progress
             </p>
             <p className="text-xl text-gold font-mono mt-0.5">
-              {completedSkills.size}/30
+              {completedSkills.size}/{totalSkillCount} skills
             </p>
           </div>
         </div>
@@ -146,11 +168,9 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {combos.length > 0 && (
-        <section>
-          <ComboCard combos={combos} />
-        </section>
-      )}
+      <section>
+        <ComboCard combos={combos} totalCombos={6} />
+      </section>
 
       <section>
         <h2 className="text-xl mb-4">Badges</h2>

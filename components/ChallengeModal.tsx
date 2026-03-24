@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Check, XIcon, SkipForward, Sparkles } from "lucide-react";
+import { X, Check, XIcon, SkipForward, Sparkles, BookOpen, ChevronDown } from "lucide-react";
 import challengesData from "@/data/challenges.json";
+import skillTreesData from "@/data/skills.json";
+import type { SkillTree } from "@/lib/types";
 
 interface Challenge {
   skillId: string;
@@ -27,6 +29,16 @@ export function ChallengeModal({ skillId, skillName, onComplete, onClose }: Prop
   const [selected, setSelected] = useState<string | boolean | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+
+  // Find skill description for "Learn first"
+  const skillInfo = (() => {
+    for (const tree of skillTreesData as SkillTree[]) {
+      const node = tree.nodes.find((n) => n.id === skillId);
+      if (node) return { description: node.description, whyItMatters: node.whyItMatters };
+    }
+    return null;
+  })();
 
   useEffect(() => {
     if (!challenge) {
@@ -72,6 +84,22 @@ export function ChallengeModal({ skillId, skillName, onComplete, onClose }: Prop
           </p>
           <span className="text-[10px] text-text-muted ml-auto">{skillName}</span>
         </div>
+
+        {skillInfo && (
+          <button
+            onClick={() => setShowHint(!showHint)}
+            className="flex items-center gap-1.5 text-[11px] text-text-muted hover:text-text-secondary mb-3 cursor-pointer transition-colors"
+          >
+            <BookOpen className="w-3 h-3" />
+            {showHint ? "Hide" : "Learn first"}
+            <ChevronDown className={`w-3 h-3 transition-transform ${showHint ? "rotate-180" : ""}`} />
+          </button>
+        )}
+        {showHint && skillInfo && (
+          <div className="p-3 rounded-lg bg-bg border-l-2 border-gold/30 mb-4 text-[12px] text-text-secondary leading-relaxed">
+            {skillInfo.description}
+          </div>
+        )}
 
         <h3 className="text-[15px] font-semibold mb-5 leading-relaxed">
           {challenge.question}

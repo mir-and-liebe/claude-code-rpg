@@ -10,9 +10,10 @@ interface Props {
   onToggle: (id: string) => void;
   onChallenge?: (id: string, name: string) => void;
   revealed: boolean;
+  verified?: boolean;
 }
 
-export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Props) {
+export function SkillNode({ node, color, onToggle, onChallenge, revealed, verified }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [confirmUncomplete, setConfirmUncomplete] = useState(false);
 
@@ -67,7 +68,9 @@ export function SkillNode({ node, color, onToggle, onChallenge, revealed }: Prop
               : "border-border bg-bg text-text-muted hover:border-text-muted"
           }`}
         >
-          {node.completed ? <Check className="w-3.5 h-3.5" /> : node.level}
+          {node.completed ? (
+            verified ? <Check className="w-3.5 h-3.5" /> : <span className="text-[9px]">~</span>
+          ) : node.level}
         </button>
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2.5 mb-1.5">

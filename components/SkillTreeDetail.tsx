@@ -14,7 +14,8 @@ interface Props {
 }
 
 export function SkillTreeDetail({ initialTree }: Props) {
-  const { completedSkills, loading, toggleSkill, challengeSkill } = useProgress();
+  const { completedSkills, loading, toggleSkill, challengeSkill, progress: progressData } = useProgress();
+  const verifiedSkills = new Set(progressData?.verified_skills || []);
 
   if (loading) {
     return (
@@ -83,6 +84,7 @@ export function SkillTreeDetail({ initialTree }: Props) {
               onToggle={toggleSkill}
               onChallenge={challengeSkill}
               revealed={isSkillRevealed(node, tree, completedSkills)}
+              verified={verifiedSkills.has(node.id)}
             />
           </div>
         ))}

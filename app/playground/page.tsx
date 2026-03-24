@@ -114,7 +114,7 @@ export default function PlaygroundPage() {
       <div>
         <h1 className="text-3xl">Playground</h1>
         <p className="text-sm text-text-muted mt-1">
-          Try Claude Code commands in a safe sandbox. Build muscle memory.
+          Explore Claude Code commands in a simulated terminal. Type any command to see how it works.
         </p>
       </div>
 
@@ -140,12 +140,26 @@ export default function PlaygroundPage() {
           {history.length === 0 && (
             <div className="text-text-muted">
               <p>Welcome to the Claude Code Playground.</p>
-              <p className="mt-1">
-                Type a slash command to see how it works.
+              <p className="mt-1 mb-3">
+                Type a slash command or click one to try it:
               </p>
-              <p className="mt-1 text-text-secondary">
-                Try: /plan, /tdd, /devfleet, /docs
-              </p>
+              <div className="flex flex-wrap gap-2">
+                {["/plan", "/tdd", "/devfleet", "/docs", "/code-review", "/instinct-status"].map((cmd) => (
+                  <button
+                    key={cmd}
+                    onClick={() => {
+                      const response = responses[cmd];
+                      if (response) {
+                        setHistory((prev) => [...prev, { input: cmd, output: response.output, relatedSkill: response.relatedSkill }]);
+                        setCmdHistory((prev) => [cmd, ...prev]);
+                      }
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-surface-hover border border-border text-gold text-[12px] font-mono hover:border-gold/20 transition-colors cursor-pointer"
+                  >
+                    {cmd}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
