@@ -1,7 +1,4 @@
-import type { SkillTree, Badge, RankTitle, CharacterProfile } from "./types";
-import skillTreesData from "@/data/skills.json";
-import badgesData from "@/data/badges.json";
-import progressData from "@/data/progress.json";
+import type { SkillTree, Badge, RankTitle } from "./types";
 
 const RANK_THRESHOLDS: { level: number; title: RankTitle }[] = [
   { level: 1, title: "Intern" },
@@ -13,7 +10,6 @@ const RANK_THRESHOLDS: { level: number; title: RankTitle }[] = [
 ];
 
 export function xpForLevel(level: number): number {
-  // Exponential curve: each level needs more XP
   return Math.floor(100 * Math.pow(1.15, level - 1));
 }
 
@@ -103,48 +99,4 @@ export function checkBadgeUnlock(
 
   const check = conditions[badge.condition];
   return check ? check() : false;
-}
-
-export function getCharacterProfile(): CharacterProfile {
-  const trees = loadSkillTrees();
-  const totalXp = trees.reduce((sum, t) => {
-    const p = getTreeProgress(t);
-    return sum + p.xpEarned;
-  }, 0);
-
-  const level = levelFromXp(totalXp);
-  const currentLevelXp = totalXpForLevel(level);
-  const nextLevelXp = xpForLevel(level);
-  const xpIntoLevel = totalXp - currentLevelXp;
-
-  const badges = loadBadges().map((b) => ({
-    ...b,
-    unlocked: checkBadgeUnlock(b, trees),
-  }));
-
-  return {
-    name: progressData.characterName,
-    title: progressData.characterTitle,
-    level,
-    totalXp,
-    xpToNextLevel: nextLevelXp - xpIntoLevel,
-    rank: getRank(level),
-    badges,
-    skillTrees: trees,
-  };
-}
-
-export function loadSkillTrees(): SkillTree[] {
-  const completed = new Set<string>(progressData.completedSkills as string[]);
-  return (skillTreesData as SkillTree[]).map((tree) => ({
-    ...tree,
-    nodes: tree.nodes.map((node) => ({
-      ...node,
-      completed: completed.has(node.id),
-    })),
-  }));
-}
-
-export function loadBadges(): Badge[] {
-  return badgesData as Badge[];
 }
