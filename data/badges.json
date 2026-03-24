@@ -1,0 +1,66 @@
+[
+  {
+    "id": "first-skill",
+    "name": "First Steps",
+    "description": "Complete your first skill node",
+    "icon": "Star",
+    "condition": "first_skill",
+    "unlocked": false
+  },
+  {
+    "id": "mcp-collector",
+    "name": "MCP Collector",
+    "description": "Complete 3 nodes in MCP Mastery",
+    "icon": "Plug",
+    "condition": "mcp_collector",
+    "unlocked": false
+  },
+  {
+    "id": "agent-whisperer",
+    "name": "Agent Whisperer",
+    "description": "Complete 3 nodes in Agent Craft",
+    "icon": "Bot",
+    "condition": "agent_whisperer",
+    "unlocked": false
+  },
+  {
+    "id": "first-deploy",
+    "name": "First Deploy",
+    "description": "Complete 2 nodes in Product Shipper",
+    "icon": "Rocket",
+    "condition": "first_deploy",
+    "unlocked": false
+  },
+  {
+    "id": "prompt-master",
+    "name": "Prompt Master",
+    "description": "Complete all Prompt Architect nodes",
+    "icon": "Wand2",
+    "condition": "prompt_master",
+    "unlocked": false
+  },
+  {
+    "id": "polyglot",
+    "name": "Polyglot Vibecoder",
+    "description": "Complete all Code Comprehension nodes",
+    "icon": "BookOpen",
+    "condition": "polyglot",
+    "unlocked": false
+  },
+  {
+    "id": "tree-complete",
+    "name": "Tree Master",
+    "description": "Complete all nodes in any skill tree",
+    "icon": "Trophy",
+    "condition": "tree_complete",
+    "unlocked": false
+  },
+  {
+    "id": "all-trees",
+    "name": "Vibecoding Architect",
+    "description": "Complete all nodes in all skill trees",
+    "icon": "Crown",
+    "condition": "all_trees",
+    "unlocked": false
+  }
+]

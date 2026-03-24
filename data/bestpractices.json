@@ -1,0 +1,132 @@
+[
+  {
+    "id": "bp-1",
+    "category": "Rules & Context",
+    "title": "66 Auto-Loading Rules",
+    "what": "Your setup has 66 rule files (9 common + 55 language-specific + 2 custom) that auto-load into every Claude session. They cover coding-style, testing, patterns, hooks, security, and performance for 11 languages.",
+    "why": "Rules are persistent instructions that shape Claude's behavior without you repeating yourself. Every session starts with your team's standards baked in — like onboarding a new developer who already read all your docs.",
+    "vaultSource": "rules/Rules Index",
+    "relatedSkillTree": "prompt-architect",
+    "relatedTools": ["CLAUDE.md", "~/.claude/rules/"]
+  },
+  {
+    "id": "bp-2",
+    "category": "Rules & Context",
+    "title": "Language-Specific Rule Sets",
+    "what": "Each of your 11 languages (TypeScript, Python, Go, Rust, Java, Kotlin, Swift, C++, C#, PHP, Perl) has 5 dedicated rules: coding-style, testing, patterns, hooks, and security.",
+    "why": "Different languages have different idioms. Python needs PEP 8 enforcement. Rust needs ownership guidance. Go needs idiomatic error handling. Language-specific rules prevent Claude from writing Java-style Go or Python-style Rust.",
+    "vaultSource": "rules/Rules Index",
+    "relatedSkillTree": "code-comprehension",
+    "relatedTools": ["Language-specific rules in ~/.claude/rules/"]
+  },
+  {
+    "id": "bp-3",
+    "category": "Commands",
+    "title": "60 Slash Commands",
+    "what": "Your setup includes 60 slash commands organized by domain: language-specific (/go-*, /rust-*, /kotlin-*), workflow (/plan, /tdd, /code-review), learning (/learn, /learn-eval), and build (/gradle-build, /e2e).",
+    "why": "Commands encapsulate expert workflows as one-liners. /tdd doesn't just run tests — it enforces the red-green-refactor cycle with 80%+ coverage. /code-review runs adversarial multi-layer review. Each command is a playbook.",
+    "vaultSource": "commands/Commands Index",
+    "relatedSkillTree": "cli-dominance",
+    "relatedTools": ["~/.claude/commands/"]
+  },
+  {
+    "id": "bp-4",
+    "category": "Agents",
+    "title": "28 Specialized ECC Agents",
+    "what": "28 agents organized by function: language reviewers (7), build resolvers (6), workflow agents (architect, planner, chief-of-staff, code-reviewer, tdd-guide, loop-operator, refactor-cleaner), and specialists.",
+    "why": "Agents are autonomous specialists. Unlike commands (which guide your session), agents run independently with their own tool permissions and focus. Delegating to the right agent is like assigning work to the right team member.",
+    "vaultSource": "agents/Agents Index",
+    "relatedSkillTree": "agent-craft",
+    "relatedTools": ["~/.claude/agents/"]
+  },
+  {
+    "id": "bp-5",
+    "category": "Agents",
+    "title": "BMAD Method Agents",
+    "what": "8 BMAD agents: analyst, architect, dev, pm, qa, quick-flow-solo-dev, sm (scrum master), ux-designer. Plus 30+ BMAD skills for the full product development lifecycle.",
+    "why": "BMAD gives you a complete product team in AI form. The PM agent creates briefs, the architect designs systems, the dev implements stories, QA tests, and the SM manages sprints. As an experienced PM, this amplifies your natural workflow.",
+    "vaultSource": "agents/Agents Index",
+    "relatedSkillTree": "product-shipper",
+    "relatedTools": ["~/_bmad/", "bmad-* skills"]
+  },
+  {
+    "id": "bp-6",
+    "category": "Skills",
+    "title": "91 Reusable Skill Libraries",
+    "what": "91 skills covering: language patterns (12), framework patterns (Django, Laravel, Spring Boot, Ktor), testing (TDD, E2E, pytest, JUnit), architecture, BMAD workflows (30+), and meta-skills (eval-harness, continuous-learning).",
+    "why": "Skills are reusable pattern libraries that load context on demand. When you /tdd, the tdd-workflow skill loads proven TDD patterns. When you work with Django, django-patterns loads ORM best practices. Skills prevent Claude from reinventing the wheel.",
+    "vaultSource": "skills/Skills Index",
+    "relatedSkillTree": "prompt-architect",
+    "relatedTools": ["~/.claude/skills/"]
+  },
+  {
+    "id": "bp-7",
+    "category": "MCP Servers",
+    "title": "24 MCP Server Integrations",
+    "what": "24 MCPs spanning: core (github, memory, filesystem), deploy (vercel, railway, cloudflare), data (supabase, clickhouse), research (context7, exa, firecrawl), AI (fal-ai, browser-use), security (insaits), and orchestration (devfleet).",
+    "why": "MCPs extend Claude's reach beyond the terminal. Instead of switching to a browser to check deploys, query databases, or search docs, Claude does it in-session. Each MCP eliminates a context switch.",
+    "vaultSource": "MCPs",
+    "relatedSkillTree": "mcp-mastery",
+    "relatedTools": ["~/.claude/mcp-configs/mcp-servers.json"]
+  },
+  {
+    "id": "bp-8",
+    "category": "Development Workflow",
+    "title": "Test-Driven Development (TDD)",
+    "what": "The /tdd command and tdd-workflow skill enforce red-green-refactor: write tests FIRST, implement minimal code to pass, then refactor. Target 80%+ coverage. Language-specific TDD for Go, Rust, Kotlin, Python, Django, Laravel, Spring Boot.",
+    "why": "TDD catches bugs before they exist. For PM-vibecoders, tests are automated acceptance criteria — they prove the code does what the spec says. 80% coverage means 80% of your requirements are verified automatically.",
+    "vaultSource": "skills/Skills Index",
+    "relatedSkillTree": "code-comprehension",
+    "relatedTools": ["/tdd", "tdd-workflow skill", "language-specific test commands"]
+  },
+  {
+    "id": "bp-9",
+    "category": "Development Workflow",
+    "title": "Adversarial Code Review",
+    "what": "Multi-layer review system: Blind Hunter (fresh-eyes review), Edge Case Hunter (boundary conditions), Acceptance Auditor (requirements verification). Available via /code-review and bmad-code-review skill.",
+    "why": "Single-pass review misses things. Three specialized review passes catch different classes of bugs: obvious issues, edge cases, and spec violations. It's more thorough than most human PR reviews.",
+    "vaultSource": "skills/Skills Index",
+    "relatedSkillTree": "code-comprehension",
+    "relatedTools": ["/code-review", "code-reviewer agent", "bmad-code-review skill"]
+  },
+  {
+    "id": "bp-10",
+    "category": "Development Workflow",
+    "title": "Continuous Learning System",
+    "what": "The instinct system (continuous-learning-v2) observes sessions via hooks, creates atomic instincts with confidence scoring, and evolves them over time. Manage with /instinct-status, /instinct-export, /promote, /evolve.",
+    "why": "Your Claude setup gets smarter over time. Instincts capture what works — coding patterns, error fixes, workflow preferences. They start project-scoped and get promoted to global as confidence grows. It's machine learning for your workflow.",
+    "vaultSource": "skills/Skills Index",
+    "relatedSkillTree": "prompt-architect",
+    "relatedTools": ["continuous-learning-v2 skill", "/instinct-* commands", "/evolve"]
+  },
+  {
+    "id": "bp-11",
+    "category": "Security",
+    "title": "AI Security Monitoring (Insaits)",
+    "what": "The insaits MCP provides AI-to-AI security monitoring: anomaly detection, credential exposure scanning, hallucination checks, and forensic tracing. 23 anomaly detection patterns.",
+    "why": "AI-generated code can introduce vulnerabilities. Insaits monitors Claude's output for credential leaks, suspicious patterns, and hallucinated APIs. It's security-as-you-code rather than security-after-the-fact.",
+    "vaultSource": "MCPs",
+    "relatedSkillTree": "mcp-mastery",
+    "relatedTools": ["insaits MCP", "security-reviewer agent"]
+  },
+  {
+    "id": "bp-12",
+    "category": "Terminal",
+    "title": "Modern Terminal Setup",
+    "what": "Zsh + Starship prompt + modern replacements: eza (ls with icons/trees), bat (cat with syntax highlighting), zsh-autosuggestions, zsh-syntax-highlighting. Aliases map old commands to new tools.",
+    "why": "A fast, informative terminal reduces friction. Syntax-highlighted output helps you read code in the terminal. Autosuggestions speed up repeated commands. Tree views show project structure at a glance.",
+    "vaultSource": "terminal/Terminal Setup",
+    "relatedSkillTree": "cli-dominance",
+    "relatedTools": ["starship", "eza", "bat", "zsh plugins"]
+  },
+  {
+    "id": "bp-13",
+    "category": "Obsidian Mirror",
+    "title": "Vault Sync as Single Source of Truth",
+    "what": "Your Obsidian cc/ vault mirrors ~/.claude/ config daily at 5AM via LaunchAgent. 10 markdown files with wiki-links provide a browsable dashboard of your entire Claude Code setup.",
+    "why": "Configuration visibility. Without the vault, your 66 rules, 60 commands, 91 skills are invisible files in ~/.claude/. The vault makes them browsable, searchable, and understandable — like documentation that writes itself.",
+    "vaultSource": "Dashboard",
+    "relatedSkillTree": "cli-dominance",
+    "relatedTools": ["LaunchAgent cron", "Obsidian", "~/.claude/"]
+  }
+]
