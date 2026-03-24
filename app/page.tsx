@@ -1,7 +1,27 @@
-import { getCharacterProfile, loadSkillTrees, getTreeProgress } from "@/lib/rpg";
+import {
+  getCharacterProfile,
+  loadSkillTrees,
+} from "@/lib/rpg";
 import { CharacterCard } from "@/components/CharacterCard";
 import { SkillTreeCard } from "@/components/SkillTreeCard";
 import { BadgeGrid } from "@/components/BadgeGrid";
+import {
+  FileText,
+  TerminalSquare,
+  Bot,
+  Sparkles,
+  Plug,
+  Wrench,
+} from "lucide-react";
+
+const vaultStats = [
+  { label: "Rules", value: 66, Icon: FileText },
+  { label: "Commands", value: 60, Icon: TerminalSquare },
+  { label: "Agents", value: 28, Icon: Bot },
+  { label: "Skills", value: 91, Icon: Sparkles },
+  { label: "MCPs", value: 24, Icon: Plug },
+  { label: "CLIs", value: 14, Icon: Wrench },
+];
 
 export default function DashboardPage() {
   const profile = getCharacterProfile();
@@ -17,14 +37,14 @@ export default function DashboardPage() {
     <div className="max-w-5xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
+          <h1 className="text-2xl font-bold glitch-hover">Dashboard</h1>
           <p className="text-sm text-text-muted mt-0.5">
             Your vibecoding journey at a glance
           </p>
         </div>
         <div className="text-right">
-          <p className="text-xs text-text-muted">Overall Progress</p>
-          <p className="text-lg font-bold text-accent-glow">
+          <p className="text-xs text-text-muted font-mono">Overall Progress</p>
+          <p className="text-lg font-bold text-accent neon-text-green font-mono">
             {completedSkills}/{totalSkills} skills
           </p>
         </div>
@@ -47,21 +67,19 @@ export default function DashboardPage() {
       </div>
 
       <div className="bg-surface rounded-xl border border-border p-5">
-        <h2 className="text-lg font-bold mb-3">Vault Stats</h2>
+        <h2 className="text-lg font-bold mb-4">Vault Stats</h2>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-          {[
-            { label: "Rules", value: 66 },
-            { label: "Commands", value: 60 },
-            { label: "Agents", value: 28 },
-            { label: "Skills", value: 91 },
-            { label: "MCPs", value: 24 },
-            { label: "CLIs", value: 14 },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-xl font-bold text-accent-glow">
+          {vaultStats.map((stat) => (
+            <div key={stat.label} className="text-center group">
+              <div className="flex justify-center mb-1.5">
+                <stat.Icon className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors duration-200" />
+              </div>
+              <p className="text-xl font-bold text-accent font-mono neon-text-green">
                 {stat.value}
               </p>
-              <p className="text-[10px] text-text-muted">{stat.label}</p>
+              <p className="text-[10px] text-text-muted font-mono">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>

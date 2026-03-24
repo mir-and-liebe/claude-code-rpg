@@ -10,7 +10,7 @@ export function XPBar({ current, max, label, color }: Props) {
 
   return (
     <div>
-      <div className="flex justify-between text-[10px] text-text-muted mb-1">
+      <div className="flex justify-between text-[10px] text-text-muted mb-1 font-mono">
         <span>
           {current.toLocaleString()} / {max.toLocaleString()} XP
         </span>
@@ -22,7 +22,10 @@ export function XPBar({ current, max, label, color }: Props) {
           style={{
             width: `${percentage}%`,
             ...(color
-              ? { background: `linear-gradient(90deg, ${color}, ${color}88)` }
+              ? {
+                  background: `linear-gradient(90deg, ${color}, ${color}88)`,
+                  boxShadow: `0 0 8px ${color}40`,
+                }
               : {}),
           }}
         />

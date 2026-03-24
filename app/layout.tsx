@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className="antialiased crt-overlay">
         <Sidebar />
         <main className="ml-56 min-h-screen p-6">{children}</main>
       </body>
