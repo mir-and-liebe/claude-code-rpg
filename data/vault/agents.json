@@ -1,7 +1,7 @@
 {
   "source": "agents/Agents Index.md",
   "lastSynced": "2026-03-24",
-  "count": 28,
+  "count": 16,
   "tables": [
     {
       "headers": [
@@ -26,14 +26,6 @@
           "File": "`~/.claude/agents/code-reviewer.md`"
         },
         {
-          "Agent": "cpp-build-resolver",
-          "File": "`~/.claude/agents/cpp-build-resolver.md`"
-        },
-        {
-          "Agent": "cpp-reviewer",
-          "File": "`~/.claude/agents/cpp-reviewer.md`"
-        },
-        {
           "Agent": "database-reviewer",
           "File": "`~/.claude/agents/database-reviewer.md`"
         },
@@ -50,36 +42,8 @@
           "File": "`~/.claude/agents/e2e-runner.md`"
         },
         {
-          "Agent": "flutter-reviewer",
-          "File": "`~/.claude/agents/flutter-reviewer.md`"
-        },
-        {
-          "Agent": "go-build-resolver",
-          "File": "`~/.claude/agents/go-build-resolver.md`"
-        },
-        {
-          "Agent": "go-reviewer",
-          "File": "`~/.claude/agents/go-reviewer.md`"
-        },
-        {
           "Agent": "harness-optimizer",
           "File": "`~/.claude/agents/harness-optimizer.md`"
-        },
-        {
-          "Agent": "java-build-resolver",
-          "File": "`~/.claude/agents/java-build-resolver.md`"
-        },
-        {
-          "Agent": "java-reviewer",
-          "File": "`~/.claude/agents/java-reviewer.md`"
-        },
-        {
-          "Agent": "kotlin-build-resolver",
-          "File": "`~/.claude/agents/kotlin-build-resolver.md`"
-        },
-        {
-          "Agent": "kotlin-reviewer",
-          "File": "`~/.claude/agents/kotlin-reviewer.md`"
         },
         {
           "Agent": "loop-operator",
@@ -94,20 +58,8 @@
           "File": "`~/.claude/agents/python-reviewer.md`"
         },
         {
-          "Agent": "pytorch-build-resolver",
-          "File": "`~/.claude/agents/pytorch-build-resolver.md`"
-        },
-        {
           "Agent": "refactor-cleaner",
           "File": "`~/.claude/agents/refactor-cleaner.md`"
-        },
-        {
-          "Agent": "rust-build-resolver",
-          "File": "`~/.claude/agents/rust-build-resolver.md`"
-        },
-        {
-          "Agent": "rust-reviewer",
-          "File": "`~/.claude/agents/rust-reviewer.md`"
         },
         {
           "Agent": "security-reviewer",

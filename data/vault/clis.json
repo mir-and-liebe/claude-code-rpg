@@ -1,7 +1,7 @@
 {
   "source": "CLIs.md",
   "lastSynced": "2026-03-24",
-  "count": 14,
+  "count": 19,
   "tables": [
     {
       "headers": [
@@ -23,6 +23,31 @@
         {
           "CLI": "`bat`",
           "Path": "/opt/homebrew/bin/bat",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`fzf`",
+          "Path": "/opt/homebrew/bin/fzf",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`zoxide`",
+          "Path": "/opt/homebrew/bin/zoxide",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`tmux`",
+          "Path": "/opt/homebrew/bin/tmux",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`direnv`",
+          "Path": "/opt/homebrew/bin/direnv",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`atuin`",
+          "Path": "/opt/homebrew/bin/atuin",
           "Installed": "yes"
         },
         {

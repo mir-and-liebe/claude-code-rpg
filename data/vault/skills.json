@@ -1,7 +1,7 @@
 {
   "source": "skills/Skills Index.md",
   "lastSynced": "2026-03-24",
-  "count": 91,
+  "count": 71,
   "tables": [
     {
       "headers": [
@@ -12,10 +12,6 @@
         {
           "Skill": "ai-regression-testing",
           "Description": "Regression testing strategies for AI-assisted development. Sandbox-mode API testing without database dependencies, autom"
-        },
-        {
-          "Skill": "android-clean-architecture",
-          "Description": "Clean Architecture patterns for Android and Kotlin Multiplatform projects — module structure, dependency rules, UseCas"
         },
         {
           "Skill": "api-design",
@@ -210,10 +206,6 @@
           "Description": "Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development."
         },
         {
-          "Skill": "compose-multiplatform-patterns",
-          "Description": "Compose Multiplatform and Jetpack Compose patterns for KMP projects — state management, navigation, theming, performan"
-        },
-        {
           "Skill": "configure-ecc",
           "Description": "Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to u"
         },
@@ -226,24 +218,8 @@
           "Description": "Automatically extract reusable patterns from Claude Code sessions and save them as learned skills for future use."
         },
         {
-          "Skill": "cpp-coding-standards",
-          "Description": "C++ coding standards based on the C++ Core Guidelines (isocpp.github.io). Use when writing, reviewing, or refactoring C+"
-        },
-        {
-          "Skill": "cpp-testing",
-          "Description": "Use only when writing/updating/fixing C++ tests, configuring GoogleTest/CTest, diagnosing failing or flaky tests, or add"
-        },
-        {
-          "Skill": "django-patterns",
-          "Description": "Django architecture patterns, REST API design with DRF, ORM best practices, caching, signals, middleware, and production"
-        },
-        {
-          "Skill": "django-tdd",
-          "Description": "Django testing strategies with pytest-django, TDD methodology, factory_boy, mocking, coverage, and testing Django REST F"
-        },
-        {
-          "Skill": "django-verification",
-          "Description": "Verification loop for Django projects: migrations, linting, tests with coverage, security scans, and deployment readines"
+          "Skill": "deploy-checklist",
+          "Description": "Pre-deployment verification checklist for Vercel + Supabase apps covering env vars, migrations, RLS, build checks, and m"
         },
         {
           "Skill": "e2e-testing",
@@ -262,64 +238,20 @@
           "Description": "Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wan"
         },
         {
-          "Skill": "golang-patterns",
-          "Description": "Idiomatic Go patterns, best practices, and conventions for building robust, efficient, and maintainable Go applications."
-        },
-        {
-          "Skill": "golang-testing",
-          "Description": "Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and test coverage. Follows TDD methodol"
-        },
-        {
           "Skill": "iterative-retrieval",
           "Description": "Pattern for progressively refining context retrieval to solve the subagent context problem"
-        },
-        {
-          "Skill": "java-coding-standards",
-          "Description": "Java coding standards for Spring Boot services: naming, immutability, Optional usage, streams, exceptions, generics, and"
-        },
-        {
-          "Skill": "kotlin-coroutines-flows",
-          "Description": "Kotlin Coroutines and Flow patterns for Android and KMP — structured concurrency, Flow operators, StateFlow, error han"
-        },
-        {
-          "Skill": "kotlin-exposed-patterns",
-          "Description": "JetBrains Exposed ORM patterns including DSL queries, DAO pattern, transactions, HikariCP connection pooling, Flyway mig"
-        },
-        {
-          "Skill": "kotlin-ktor-patterns",
-          "Description": "Ktor server patterns including routing DSL, plugins, authentication, Koin DI, kotlinx.serialization, WebSockets, and tes"
-        },
-        {
-          "Skill": "kotlin-patterns",
-          "Description": "Idiomatic Kotlin patterns, best practices, and conventions for building robust, efficient, and maintainable Kotlin appli"
-        },
-        {
-          "Skill": "kotlin-testing",
-          "Description": "Kotlin testing patterns with Kotest, MockK, coroutine testing, property-based testing, and Kover coverage. Follows TDD m"
-        },
-        {
-          "Skill": "laravel-patterns",
-          "Description": "Laravel architecture patterns, routing/controllers, Eloquent ORM, service layers, queues, events, caching, and API resou"
-        },
-        {
-          "Skill": "laravel-tdd",
-          "Description": "Test-driven development for Laravel with PHPUnit and Pest, factories, database testing, fakes, and coverage targets."
-        },
-        {
-          "Skill": "laravel-verification",
-          "Description": "Verification loop for Laravel projects: env checks, linting, static analysis, tests with coverage, security scans, and d"
         },
         {
           "Skill": "mcp-server-patterns",
           "Description": "Build MCP servers with Node/TypeScript SDK — tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use"
         },
         {
-          "Skill": "perl-patterns",
-          "Description": "Modern Perl 5.36+ idioms, best practices, and conventions for building robust, maintainable Perl applications."
+          "Skill": "next-app-router",
+          "Description": "Next.js App Router conventions including server components, server actions, route handlers, layouts, loading/error state"
         },
         {
-          "Skill": "perl-testing",
-          "Description": "Perl testing patterns using Test2::V0, Test::More, prove runner, mocking, coverage with Devel::Cover, and TDD methodolog"
+          "Skill": "obsidian-sync",
+          "Description": "On-demand trigger for syncing Claude Code configuration to the Obsidian vault at self-mastery/cc/."
         },
         {
           "Skill": "plankton-code-quality",
@@ -338,36 +270,24 @@
           "Description": "Python testing strategies using pytest, TDD methodology, fixtures, mocking, parametrization, and coverage requirements."
         },
         {
-          "Skill": "rust-patterns",
-          "Description": "Idiomatic Rust patterns, ownership, error handling, traits, concurrency, and best practices for building safe, performan"
-        },
-        {
-          "Skill": "rust-testing",
-          "Description": "Rust testing patterns including unit tests, integration tests, async testing, property-based testing, mocking, and cover"
-        },
-        {
           "Skill": "skill-stocktake",
           "Description": "Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake m"
-        },
-        {
-          "Skill": "springboot-patterns",
-          "Description": "Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and loggin"
-        },
-        {
-          "Skill": "springboot-tdd",
-          "Description": "Test-driven development for Spring Boot using JUnit 5, Mockito, MockMvc, Testcontainers, and JaCoCo. Use when adding fea"
-        },
-        {
-          "Skill": "springboot-verification",
-          "Description": "Verification loop for Spring Boot projects: build, static analysis, tests with coverage, security scans, and diff review"
         },
         {
           "Skill": "strategic-compact",
           "Description": "Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary au"
         },
         {
+          "Skill": "supabase-patterns",
+          "Description": "Supabase patterns for RLS policies, Edge Functions, Realtime subscriptions, database migrations, and TypeScript client u"
+        },
+        {
           "Skill": "tdd-workflow",
           "Description": "Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ c"
+        },
+        {
+          "Skill": "ui-ux-pro-max",
+          "Description": "UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte,"
         },
         {
           "Skill": "verification-loop",
