@@ -9,8 +9,8 @@
 |------|-------|------|
 | Rules | 67 files | [[rules/Rules Index]] |
 | Commands | 60 commands | [[commands/Commands Index]] |
-| Agents | 28 ECC agents | [[agents/Agents Index]] |
-| Skills | 91 skills | [[skills/Skills Index]] |
+| Agents | 16 ECC agents | [[agents/Agents Index]] |
+| Skills | 71 skills | [[skills/Skills Index]] |
 | Hooks | — | [[hooks/Hooks Overview]] |
 | MCP Servers | 25 configured | [[MCPs]] |
 | CLI Tools | — | [[CLIs]] |

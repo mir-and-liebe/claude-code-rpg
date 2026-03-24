@@ -1,12 +1,11 @@
 # Skills Index
 
-> Source: `~/.claude/skills/` — 91 skills
+> Source: `~/.claude/skills/` — 71 skills
 > Last synced: 2026-03-24
 
 | Skill | Description |
 |-------|-------------|
 | ai-regression-testing | Regression testing strategies for AI-assisted development. Sandbox-mode API testing without database dependencies, autom |
-| android-clean-architecture | Clean Architecture patterns for Android and Kotlin Multiplatform projects — module structure, dependency rules, UseCas |
 | api-design | REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, an |
 | backend-patterns | Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, a |
 | bmad-advanced-elicitation | 'Push the LLM to reconsider, refine, and improve its recent output.' |
@@ -55,44 +54,25 @@
 | bmad-ux-designer | ux-designer agent |
 | bmad-validate-prd | 'Validate a PRD against standards. Use when the user says "validate this PRD" or "run PRD validation"' |
 | coding-standards | Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development. |
-| compose-multiplatform-patterns | Compose Multiplatform and Jetpack Compose patterns for KMP projects — state management, navigation, theming, performan |
 | configure-ecc | Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to u |
 | continuous-learning-v2 | Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and e |
 | continuous-learning | Automatically extract reusable patterns from Claude Code sessions and save them as learned skills for future use. |
-| cpp-coding-standards | C++ coding standards based on the C++ Core Guidelines (isocpp.github.io). Use when writing, reviewing, or refactoring C+ |
-| cpp-testing | Use only when writing/updating/fixing C++ tests, configuring GoogleTest/CTest, diagnosing failing or flaky tests, or add |
-| django-patterns | Django architecture patterns, REST API design with DRF, ORM best practices, caching, signals, middleware, and production |
-| django-tdd | Django testing strategies with pytest-django, TDD methodology, factory_boy, mocking, coverage, and testing Django REST F |
-| django-verification | Verification loop for Django projects: migrations, linting, tests with coverage, security scans, and deployment readines |
+| deploy-checklist | Pre-deployment verification checklist for Vercel + Supabase apps covering env vars, migrations, RLS, build checks, and m |
 | e2e-testing | Playwright E2E testing patterns, Page Object Model, configuration, CI/CD integration, artifact management, and flaky tes |
 | eval-harness | Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles |
 | frontend-patterns | Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices. |
 | frontend-slides | Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wan |
-| golang-patterns | Idiomatic Go patterns, best practices, and conventions for building robust, efficient, and maintainable Go applications. |
-| golang-testing | Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and test coverage. Follows TDD methodol |
 | iterative-retrieval | Pattern for progressively refining context retrieval to solve the subagent context problem |
-| java-coding-standards | Java coding standards for Spring Boot services: naming, immutability, Optional usage, streams, exceptions, generics, and |
-| kotlin-coroutines-flows | Kotlin Coroutines and Flow patterns for Android and KMP — structured concurrency, Flow operators, StateFlow, error han |
-| kotlin-exposed-patterns | JetBrains Exposed ORM patterns including DSL queries, DAO pattern, transactions, HikariCP connection pooling, Flyway mig |
-| kotlin-ktor-patterns | Ktor server patterns including routing DSL, plugins, authentication, Koin DI, kotlinx.serialization, WebSockets, and tes |
-| kotlin-patterns | Idiomatic Kotlin patterns, best practices, and conventions for building robust, efficient, and maintainable Kotlin appli |
-| kotlin-testing | Kotlin testing patterns with Kotest, MockK, coroutine testing, property-based testing, and Kover coverage. Follows TDD m |
-| laravel-patterns | Laravel architecture patterns, routing/controllers, Eloquent ORM, service layers, queues, events, caching, and API resou |
-| laravel-tdd | Test-driven development for Laravel with PHPUnit and Pest, factories, database testing, fakes, and coverage targets. |
-| laravel-verification | Verification loop for Laravel projects: env checks, linting, static analysis, tests with coverage, security scans, and d |
 | mcp-server-patterns | Build MCP servers with Node/TypeScript SDK — tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use  |
-| perl-patterns | Modern Perl 5.36+ idioms, best practices, and conventions for building robust, maintainable Perl applications. |
-| perl-testing | Perl testing patterns using Test2::V0, Test::More, prove runner, mocking, coverage with Devel::Cover, and TDD methodolog |
+| next-app-router | Next.js App Router conventions including server components, server actions, route handlers, layouts, loading/error state |
+| obsidian-sync | On-demand trigger for syncing Claude Code configuration to the Obsidian vault at self-mastery/cc/. |
 | plankton-code-quality | Write-time code quality enforcement using Plankton — auto-formatting, linting, and Claude-powered fixes on every file  |
 | project-guidelines-example | Example project-specific skill template based on a real production application. |
 | python-patterns | Pythonic idioms, PEP 8 standards, type hints, and best practices for building robust, efficient, and maintainable Python |
 | python-testing | Python testing strategies using pytest, TDD methodology, fixtures, mocking, parametrization, and coverage requirements. |
-| rust-patterns | Idiomatic Rust patterns, ownership, error handling, traits, concurrency, and best practices for building safe, performan |
-| rust-testing | Rust testing patterns including unit tests, integration tests, async testing, property-based testing, mocking, and cover |
 | skill-stocktake | Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake m |
-| springboot-patterns | Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and loggin |
-| springboot-tdd | Test-driven development for Spring Boot using JUnit 5, Mockito, MockMvc, Testcontainers, and JaCoCo. Use when adding fea |
-| springboot-verification | Verification loop for Spring Boot projects: build, static analysis, tests with coverage, security scans, and diff review |
 | strategic-compact | Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary au |
+| supabase-patterns | Supabase patterns for RLS policies, Edge Functions, Realtime subscriptions, database migrations, and TypeScript client u |
 | tdd-workflow | Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ c |
+| ui-ux-pro-max | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte,  |
 | verification-loop | A comprehensive verification system for Claude Code sessions. |

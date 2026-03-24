@@ -7,6 +7,11 @@
 | `starship` | /opt/homebrew/bin/starship | yes |
 | `eza` | /opt/homebrew/bin/eza | yes |
 | `bat` | /opt/homebrew/bin/bat | yes |
+| `fzf` | /opt/homebrew/bin/fzf | yes |
+| `zoxide` | /opt/homebrew/bin/zoxide | yes |
+| `tmux` | /opt/homebrew/bin/tmux | yes |
+| `direnv` | /opt/homebrew/bin/direnv | yes |
+| `atuin` | /opt/homebrew/bin/atuin | yes |
 | `fnm` | /opt/homebrew/bin/fnm | yes |
 | `pyenv` | /opt/homebrew/bin/pyenv | yes |
 | `node` | /opt/homebrew/bin/node | yes |
