@@ -1,0 +1,167 @@
+{
+  "source": "agents/Agents Index.md",
+  "lastSynced": "2026-03-24",
+  "count": 28,
+  "tables": [
+    {
+      "headers": [
+        "Agent",
+        "File"
+      ],
+      "rows": [
+        {
+          "Agent": "architect",
+          "File": "`~/.claude/agents/architect.md`"
+        },
+        {
+          "Agent": "build-error-resolver",
+          "File": "`~/.claude/agents/build-error-resolver.md`"
+        },
+        {
+          "Agent": "chief-of-staff",
+          "File": "`~/.claude/agents/chief-of-staff.md`"
+        },
+        {
+          "Agent": "code-reviewer",
+          "File": "`~/.claude/agents/code-reviewer.md`"
+        },
+        {
+          "Agent": "cpp-build-resolver",
+          "File": "`~/.claude/agents/cpp-build-resolver.md`"
+        },
+        {
+          "Agent": "cpp-reviewer",
+          "File": "`~/.claude/agents/cpp-reviewer.md`"
+        },
+        {
+          "Agent": "database-reviewer",
+          "File": "`~/.claude/agents/database-reviewer.md`"
+        },
+        {
+          "Agent": "doc-updater",
+          "File": "`~/.claude/agents/doc-updater.md`"
+        },
+        {
+          "Agent": "docs-lookup",
+          "File": "`~/.claude/agents/docs-lookup.md`"
+        },
+        {
+          "Agent": "e2e-runner",
+          "File": "`~/.claude/agents/e2e-runner.md`"
+        },
+        {
+          "Agent": "flutter-reviewer",
+          "File": "`~/.claude/agents/flutter-reviewer.md`"
+        },
+        {
+          "Agent": "go-build-resolver",
+          "File": "`~/.claude/agents/go-build-resolver.md`"
+        },
+        {
+          "Agent": "go-reviewer",
+          "File": "`~/.claude/agents/go-reviewer.md`"
+        },
+        {
+          "Agent": "harness-optimizer",
+          "File": "`~/.claude/agents/harness-optimizer.md`"
+        },
+        {
+          "Agent": "java-build-resolver",
+          "File": "`~/.claude/agents/java-build-resolver.md`"
+        },
+        {
+          "Agent": "java-reviewer",
+          "File": "`~/.claude/agents/java-reviewer.md`"
+        },
+        {
+          "Agent": "kotlin-build-resolver",
+          "File": "`~/.claude/agents/kotlin-build-resolver.md`"
+        },
+        {
+          "Agent": "kotlin-reviewer",
+          "File": "`~/.claude/agents/kotlin-reviewer.md`"
+        },
+        {
+          "Agent": "loop-operator",
+          "File": "`~/.claude/agents/loop-operator.md`"
+        },
+        {
+          "Agent": "planner",
+          "File": "`~/.claude/agents/planner.md`"
+        },
+        {
+          "Agent": "python-reviewer",
+          "File": "`~/.claude/agents/python-reviewer.md`"
+        },
+        {
+          "Agent": "pytorch-build-resolver",
+          "File": "`~/.claude/agents/pytorch-build-resolver.md`"
+        },
+        {
+          "Agent": "refactor-cleaner",
+          "File": "`~/.claude/agents/refactor-cleaner.md`"
+        },
+        {
+          "Agent": "rust-build-resolver",
+          "File": "`~/.claude/agents/rust-build-resolver.md`"
+        },
+        {
+          "Agent": "rust-reviewer",
+          "File": "`~/.claude/agents/rust-reviewer.md`"
+        },
+        {
+          "Agent": "security-reviewer",
+          "File": "`~/.claude/agents/security-reviewer.md`"
+        },
+        {
+          "Agent": "tdd-guide",
+          "File": "`~/.claude/agents/tdd-guide.md`"
+        },
+        {
+          "Agent": "typescript-reviewer",
+          "File": "`~/.claude/agents/typescript-reviewer.md`"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Agent",
+        "File"
+      ],
+      "rows": [
+        {
+          "Agent": "analyst",
+          "File": "`~/_bmad/bmm/agents/analyst.md`"
+        },
+        {
+          "Agent": "architect",
+          "File": "`~/_bmad/bmm/agents/architect.md`"
+        },
+        {
+          "Agent": "dev",
+          "File": "`~/_bmad/bmm/agents/dev.md`"
+        },
+        {
+          "Agent": "pm",
+          "File": "`~/_bmad/bmm/agents/pm.md`"
+        },
+        {
+          "Agent": "qa",
+          "File": "`~/_bmad/bmm/agents/qa.md`"
+        },
+        {
+          "Agent": "quick-flow-solo-dev",
+          "File": "`~/_bmad/bmm/agents/quick-flow-solo-dev.md`"
+        },
+        {
+          "Agent": "sm",
+          "File": "`~/_bmad/bmm/agents/sm.md`"
+        },
+        {
+          "Agent": "ux-designer",
+          "File": "`~/_bmad/bmm/agents/ux-designer.md`"
+        }
+      ]
+    }
+  ]
+}

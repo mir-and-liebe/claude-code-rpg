@@ -1,0 +1,255 @@
+{
+  "source": "commands/Commands Index.md",
+  "lastSynced": "2026-03-24",
+  "count": 60,
+  "tables": [
+    {
+      "headers": [
+        "Command",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Command": "`/aside`",
+          "Description": "Answer a quick side question without interrupting or losing context from the current task. Resume work automatically aft"
+        },
+        {
+          "Command": "`/build-fix`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/checkpoint`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/claw`",
+          "Description": "Start NanoClaw v2 — ECC's persistent, zero-dependency REPL with model routing, skill hot-load, branching, compaction,"
+        },
+        {
+          "Command": "`/code-review`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/context-budget`",
+          "Description": "Analyze context window usage across agents, skills, MCP servers, and rules to find optimization opportunities. Helps red"
+        },
+        {
+          "Command": "`/cpp-build`",
+          "Description": "Fix C++ build errors, CMake issues, and linker problems incrementally. Invokes the cpp-build-resolver agent for minimal,"
+        },
+        {
+          "Command": "`/cpp-review`",
+          "Description": "Comprehensive C++ code review for memory safety, modern C++ idioms, concurrency, and security. Invokes the cpp-reviewer"
+        },
+        {
+          "Command": "`/cpp-test`",
+          "Description": "Enforce TDD workflow for C++. Write GoogleTest tests first, then implement. Verify coverage with gcov/lcov."
+        },
+        {
+          "Command": "`/devfleet`",
+          "Description": "Orchestrate parallel Claude Code agents via Claude DevFleet — plan projects from natural language, dispatch agents in"
+        },
+        {
+          "Command": "`/docs`",
+          "Description": "Look up current documentation for a library or topic via Context7."
+        },
+        {
+          "Command": "`/e2e`",
+          "Description": "Generate and run end-to-end tests with Playwright. Creates test journeys, runs tests, captures screenshots/videos/traces"
+        },
+        {
+          "Command": "`/eval`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/evolve`",
+          "Description": "Analyze instincts and suggest or generate evolved structures"
+        },
+        {
+          "Command": "`/go-build`",
+          "Description": "Fix Go build errors, go vet warnings, and linter issues incrementally. Invokes the go-build-resolver agent for minimal,"
+        },
+        {
+          "Command": "`/go-review`",
+          "Description": "Comprehensive Go code review for idiomatic patterns, concurrency safety, error handling, and security. Invokes the go-re"
+        },
+        {
+          "Command": "`/go-test`",
+          "Description": "Enforce TDD workflow for Go. Write table-driven tests first, then implement. Verify 80%+ coverage with go test -cover."
+        },
+        {
+          "Command": "`/gradle-build`",
+          "Description": "Fix Gradle build errors for Android and KMP projects"
+        },
+        {
+          "Command": "`/harness-audit`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/instinct-export`",
+          "Description": "Export instincts from project/global scope to a file"
+        },
+        {
+          "Command": "`/instinct-import`",
+          "Description": "Import instincts from file or URL into project/global scope"
+        },
+        {
+          "Command": "`/instinct-status`",
+          "Description": "Show learned instincts (project + global) with confidence"
+        },
+        {
+          "Command": "`/kotlin-build`",
+          "Description": "Fix Kotlin/Gradle build errors, compiler warnings, and dependency issues incrementally. Invokes the kotlin-build-resolve"
+        },
+        {
+          "Command": "`/kotlin-review`",
+          "Description": "Comprehensive Kotlin code review for idiomatic patterns, null safety, coroutine safety, and security. Invokes the kotlin"
+        },
+        {
+          "Command": "`/kotlin-test`",
+          "Description": "Enforce TDD workflow for Kotlin. Write Kotest tests first, then implement. Verify 80%+ coverage with Kover."
+        },
+        {
+          "Command": "`/learn-eval`",
+          "Description": "\"Extract reusable patterns from the session, self-evaluate quality before saving, and determine the right save location"
+        },
+        {
+          "Command": "`/learn`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/loop-start`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/loop-status`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/model-route`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/multi-backend`",
+          "Description": "\"Brief description\""
+        },
+        {
+          "Command": "`/multi-execute`",
+          "Description": "\"Brief description\""
+        },
+        {
+          "Command": "`/multi-frontend`",
+          "Description": "\"Brief description\""
+        },
+        {
+          "Command": "`/multi-plan`",
+          "Description": "\"Brief description\""
+        },
+        {
+          "Command": "`/multi-workflow`",
+          "Description": "\"Brief description\""
+        },
+        {
+          "Command": "`/orchestrate`",
+          "Description": "Sequential and tmux/worktree orchestration guidance for multi-agent workflows."
+        },
+        {
+          "Command": "`/plan`",
+          "Description": "Restate requirements, assess risks, and create step-by-step implementation plan. WAIT for user CONFIRM before touching a"
+        },
+        {
+          "Command": "`/pm2`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/projects`",
+          "Description": "List known projects and their instinct statistics"
+        },
+        {
+          "Command": "`/promote`",
+          "Description": "Promote project-scoped instincts to global scope"
+        },
+        {
+          "Command": "`/prompt-optimize`",
+          "Description": "Analyze a draft prompt and output an optimized, ECC-enriched version ready to paste and run. Does NOT execute the task �"
+        },
+        {
+          "Command": "`/prune`",
+          "Description": "Delete pending instincts older than 30 days that were never promoted"
+        },
+        {
+          "Command": "`/python-review`",
+          "Description": "Comprehensive Python code review for PEP 8 compliance, type hints, security, and Pythonic idioms. Invokes the python-rev"
+        },
+        {
+          "Command": "`/quality-gate`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/refactor-clean`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/resume-session`",
+          "Description": "Load the most recent session file from ~/.claude/sessions/ and resume work with full context from where the last session"
+        },
+        {
+          "Command": "`/rules-distill`",
+          "Description": "\"Scan skills to extract cross-cutting principles and distill them into rules\""
+        },
+        {
+          "Command": "`/rust-build`",
+          "Description": "Fix Rust build errors, borrow checker issues, and dependency problems incrementally. Invokes the rust-build-resolver age"
+        },
+        {
+          "Command": "`/rust-review`",
+          "Description": "Comprehensive Rust code review for ownership, lifetimes, error handling, unsafe usage, and idiomatic patterns. Invokes t"
+        },
+        {
+          "Command": "`/rust-test`",
+          "Description": "Enforce TDD workflow for Rust. Write tests first, then implement. Verify 80%+ coverage with cargo-llvm-cov."
+        },
+        {
+          "Command": "`/save-session`",
+          "Description": "Save current session state to a dated file in ~/.claude/sessions/ so work can be resumed in a future session with full c"
+        },
+        {
+          "Command": "`/sessions`",
+          "Description": "Manage Claude Code session history, aliases, and session metadata."
+        },
+        {
+          "Command": "`/setup-pm`",
+          "Description": "Configure your preferred package manager (npm/pnpm/yarn/bun)"
+        },
+        {
+          "Command": "`/skill-create`",
+          "Description": "Analyze local git history to extract coding patterns and generate SKILL.md files. Local version of the Skill Creator Git"
+        },
+        {
+          "Command": "`/skill-health`",
+          "Description": "Show skill portfolio health dashboard with charts and analytics"
+        },
+        {
+          "Command": "`/tdd`",
+          "Description": "Enforce test-driven development workflow. Scaffold interfaces, generate tests FIRST, then implement minimal code to pass"
+        },
+        {
+          "Command": "`/test-coverage`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/update-codemaps`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/update-docs`",
+          "Description": "—"
+        },
+        {
+          "Command": "`/verify`",
+          "Description": "—"
+        }
+      ]
+    }
+  ]
+}

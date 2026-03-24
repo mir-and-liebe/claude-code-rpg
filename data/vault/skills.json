@@ -1,0 +1,379 @@
+{
+  "source": "skills/Skills Index.md",
+  "lastSynced": "2026-03-24",
+  "count": 91,
+  "tables": [
+    {
+      "headers": [
+        "Skill",
+        "Description"
+      ],
+      "rows": [
+        {
+          "Skill": "ai-regression-testing",
+          "Description": "Regression testing strategies for AI-assisted development. Sandbox-mode API testing without database dependencies, autom"
+        },
+        {
+          "Skill": "android-clean-architecture",
+          "Description": "Clean Architecture patterns for Android and Kotlin Multiplatform projects — module structure, dependency rules, UseCas"
+        },
+        {
+          "Skill": "api-design",
+          "Description": "REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, an"
+        },
+        {
+          "Skill": "backend-patterns",
+          "Description": "Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, a"
+        },
+        {
+          "Skill": "bmad-advanced-elicitation",
+          "Description": "'Push the LLM to reconsider, refine, and improve its recent output.'"
+        },
+        {
+          "Skill": "bmad-analyst",
+          "Description": "analyst agent"
+        },
+        {
+          "Skill": "bmad-architect",
+          "Description": "architect agent"
+        },
+        {
+          "Skill": "bmad-brainstorming",
+          "Description": "'Facilitate interactive brainstorming sessions using diverse creative techniques and ideation methods. Use when the user"
+        },
+        {
+          "Skill": "bmad-check-implementation-readiness",
+          "Description": "'Validate PRD, UX, Architecture and Epics specs are complete. Use when the user says \"check implementation readiness\".'"
+        },
+        {
+          "Skill": "bmad-code-review",
+          "Description": "'Review code changes adversarially using parallel review layers (Blind Hunter, Edge Case Hunter, Acceptance Auditor) wit"
+        },
+        {
+          "Skill": "bmad-correct-course",
+          "Description": "'Manage significant changes during sprint execution. Use when the user says \"correct course\" or \"propose sprint change\"'"
+        },
+        {
+          "Skill": "bmad-create-architecture",
+          "Description": "'Create architecture solution design decisions for AI agent consistency. Use when the user says \"lets create architectur"
+        },
+        {
+          "Skill": "bmad-create-epics-and-stories",
+          "Description": "'Break requirements into epics and user stories. Use when the user says \"create the epics and stories list\"'"
+        },
+        {
+          "Skill": "bmad-create-prd",
+          "Description": "'Create a PRD from scratch. Use when the user says \"lets create a product requirements document\" or \"I want to create a"
+        },
+        {
+          "Skill": "bmad-create-product-brief",
+          "Description": "'Create product brief through collaborative discovery. Use when the user says \"lets create a product brief\" or \"help me"
+        },
+        {
+          "Skill": "bmad-create-story",
+          "Description": "'Creates a dedicated story file with all the context the agent will need to implement it later. Use when the user says \""
+        },
+        {
+          "Skill": "bmad-create-ux-design",
+          "Description": "'Plan UX patterns and design specifications. Use when the user says \"lets create UX design\" or \"create UX specifications"
+        },
+        {
+          "Skill": "bmad-dev-story",
+          "Description": "'Execute story implementation following a context filled story spec file. Use when the user says \"dev this story [story"
+        },
+        {
+          "Skill": "bmad-dev",
+          "Description": "dev agent"
+        },
+        {
+          "Skill": "bmad-distillator",
+          "Description": "Lossless LLM-optimized compression of source documents. Use when the user requests to 'distill documents' or 'create a d"
+        },
+        {
+          "Skill": "bmad-document-project",
+          "Description": "'Document brownfield projects for AI context. Use when the user says \"document this project\" or \"generate project docs\"'"
+        },
+        {
+          "Skill": "bmad-domain-research",
+          "Description": "'Conduct domain and industry research. Use when the user says \"lets create a research report on [domain or industry]\"'"
+        },
+        {
+          "Skill": "bmad-edit-prd",
+          "Description": "'Edit an existing PRD. Use when the user says \"edit this PRD\".'"
+        },
+        {
+          "Skill": "bmad-editorial-review-prose",
+          "Description": "'Clinical copy-editor that reviews text for communication issues. Use when user says review for prose or improve the pro"
+        },
+        {
+          "Skill": "bmad-editorial-review-structure",
+          "Description": "'Structural editor that proposes cuts, reorganization, and simplification while preserving comprehension. Use when user"
+        },
+        {
+          "Skill": "bmad-generate-project-context",
+          "Description": "'Create project-context.md with AI rules. Use when the user says \"generate project context\" or \"create project context\"'"
+        },
+        {
+          "Skill": "bmad-help",
+          "Description": "'Analyzes current state and user query to answer BMad questions or recommend the next workflow or agent. Use when user s"
+        },
+        {
+          "Skill": "bmad-index-docs",
+          "Description": "'Generates or updates an index.md to reference all docs in the folder. Use if user requests to create or update an index"
+        },
+        {
+          "Skill": "bmad-market-research",
+          "Description": "'Conduct market research on competition and customers. Use when the user says \"create a market research report about [bu"
+        },
+        {
+          "Skill": "bmad-party-mode",
+          "Description": "'Orchestrates group discussions between all installed BMAD agents, enabling natural multi-agent conversations. Use when"
+        },
+        {
+          "Skill": "bmad-pm",
+          "Description": "pm agent"
+        },
+        {
+          "Skill": "bmad-product-brief-preview",
+          "Description": "Create or update product briefs through guided or autonomous discovery. Use when the user requests to 'create a product"
+        },
+        {
+          "Skill": "bmad-qa-generate-e2e-tests",
+          "Description": "'Generate end to end automated tests for existing features. Use when the user says \"create qa automated tests for [featu"
+        },
+        {
+          "Skill": "bmad-qa",
+          "Description": "qa agent"
+        },
+        {
+          "Skill": "bmad-quick-dev-new-preview",
+          "Description": "'Implements any user intent, requirement, story, bug fix or change request by producing clean working code artifacts tha"
+        },
+        {
+          "Skill": "bmad-quick-dev",
+          "Description": "'Implement a Quick Tech Spec for small changes or features. Use when the user provides a quick tech spec and says \"imple"
+        },
+        {
+          "Skill": "bmad-quick-flow-solo-dev",
+          "Description": "quick-flow-solo-dev agent"
+        },
+        {
+          "Skill": "bmad-quick-spec",
+          "Description": "'Very quick process to create implementation-ready quick specs for small changes or features. Use when the user says \"cr"
+        },
+        {
+          "Skill": "bmad-retrospective",
+          "Description": "'Post-epic review to extract lessons and assess success. Use when the user says \"run a retrospective\" or \"lets retro the"
+        },
+        {
+          "Skill": "bmad-review-adversarial-general",
+          "Description": "'Perform a Cynical Review and produce a findings report. Use when the user requests a critical review of something'"
+        },
+        {
+          "Skill": "bmad-review-edge-case-hunter",
+          "Description": "'Walk every branching path and boundary condition in content, report only unhandled edge cases. Orthogonal to adversaria"
+        },
+        {
+          "Skill": "bmad-shard-doc",
+          "Description": "'Splits large markdown documents into smaller, organized files based on level 2 (default) sections. Use if the user says"
+        },
+        {
+          "Skill": "bmad-sm",
+          "Description": "sm agent"
+        },
+        {
+          "Skill": "bmad-sprint-planning",
+          "Description": "'Generate sprint status tracking from epics. Use when the user says \"run sprint planning\" or \"generate sprint plan\"'"
+        },
+        {
+          "Skill": "bmad-sprint-status",
+          "Description": "'Summarize sprint status and surface risks. Use when the user says \"check sprint status\" or \"show sprint status\"'"
+        },
+        {
+          "Skill": "bmad-tech-writer",
+          "Description": "tech-writer agent"
+        },
+        {
+          "Skill": "bmad-technical-research",
+          "Description": "'Conduct technical research on technologies and architecture. Use when the user says \"create a technical research report"
+        },
+        {
+          "Skill": "bmad-ux-designer",
+          "Description": "ux-designer agent"
+        },
+        {
+          "Skill": "bmad-validate-prd",
+          "Description": "'Validate a PRD against standards. Use when the user says \"validate this PRD\" or \"run PRD validation\"'"
+        },
+        {
+          "Skill": "coding-standards",
+          "Description": "Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development."
+        },
+        {
+          "Skill": "compose-multiplatform-patterns",
+          "Description": "Compose Multiplatform and Jetpack Compose patterns for KMP projects — state management, navigation, theming, performan"
+        },
+        {
+          "Skill": "configure-ecc",
+          "Description": "Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to u"
+        },
+        {
+          "Skill": "continuous-learning-v2",
+          "Description": "Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and e"
+        },
+        {
+          "Skill": "continuous-learning",
+          "Description": "Automatically extract reusable patterns from Claude Code sessions and save them as learned skills for future use."
+        },
+        {
+          "Skill": "cpp-coding-standards",
+          "Description": "C++ coding standards based on the C++ Core Guidelines (isocpp.github.io). Use when writing, reviewing, or refactoring C+"
+        },
+        {
+          "Skill": "cpp-testing",
+          "Description": "Use only when writing/updating/fixing C++ tests, configuring GoogleTest/CTest, diagnosing failing or flaky tests, or add"
+        },
+        {
+          "Skill": "django-patterns",
+          "Description": "Django architecture patterns, REST API design with DRF, ORM best practices, caching, signals, middleware, and production"
+        },
+        {
+          "Skill": "django-tdd",
+          "Description": "Django testing strategies with pytest-django, TDD methodology, factory_boy, mocking, coverage, and testing Django REST F"
+        },
+        {
+          "Skill": "django-verification",
+          "Description": "Verification loop for Django projects: migrations, linting, tests with coverage, security scans, and deployment readines"
+        },
+        {
+          "Skill": "e2e-testing",
+          "Description": "Playwright E2E testing patterns, Page Object Model, configuration, CI/CD integration, artifact management, and flaky tes"
+        },
+        {
+          "Skill": "eval-harness",
+          "Description": "Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles"
+        },
+        {
+          "Skill": "frontend-patterns",
+          "Description": "Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices."
+        },
+        {
+          "Skill": "frontend-slides",
+          "Description": "Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wan"
+        },
+        {
+          "Skill": "golang-patterns",
+          "Description": "Idiomatic Go patterns, best practices, and conventions for building robust, efficient, and maintainable Go applications."
+        },
+        {
+          "Skill": "golang-testing",
+          "Description": "Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and test coverage. Follows TDD methodol"
+        },
+        {
+          "Skill": "iterative-retrieval",
+          "Description": "Pattern for progressively refining context retrieval to solve the subagent context problem"
+        },
+        {
+          "Skill": "java-coding-standards",
+          "Description": "Java coding standards for Spring Boot services: naming, immutability, Optional usage, streams, exceptions, generics, and"
+        },
+        {
+          "Skill": "kotlin-coroutines-flows",
+          "Description": "Kotlin Coroutines and Flow patterns for Android and KMP — structured concurrency, Flow operators, StateFlow, error han"
+        },
+        {
+          "Skill": "kotlin-exposed-patterns",
+          "Description": "JetBrains Exposed ORM patterns including DSL queries, DAO pattern, transactions, HikariCP connection pooling, Flyway mig"
+        },
+        {
+          "Skill": "kotlin-ktor-patterns",
+          "Description": "Ktor server patterns including routing DSL, plugins, authentication, Koin DI, kotlinx.serialization, WebSockets, and tes"
+        },
+        {
+          "Skill": "kotlin-patterns",
+          "Description": "Idiomatic Kotlin patterns, best practices, and conventions for building robust, efficient, and maintainable Kotlin appli"
+        },
+        {
+          "Skill": "kotlin-testing",
+          "Description": "Kotlin testing patterns with Kotest, MockK, coroutine testing, property-based testing, and Kover coverage. Follows TDD m"
+        },
+        {
+          "Skill": "laravel-patterns",
+          "Description": "Laravel architecture patterns, routing/controllers, Eloquent ORM, service layers, queues, events, caching, and API resou"
+        },
+        {
+          "Skill": "laravel-tdd",
+          "Description": "Test-driven development for Laravel with PHPUnit and Pest, factories, database testing, fakes, and coverage targets."
+        },
+        {
+          "Skill": "laravel-verification",
+          "Description": "Verification loop for Laravel projects: env checks, linting, static analysis, tests with coverage, security scans, and d"
+        },
+        {
+          "Skill": "mcp-server-patterns",
+          "Description": "Build MCP servers with Node/TypeScript SDK — tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use"
+        },
+        {
+          "Skill": "perl-patterns",
+          "Description": "Modern Perl 5.36+ idioms, best practices, and conventions for building robust, maintainable Perl applications."
+        },
+        {
+          "Skill": "perl-testing",
+          "Description": "Perl testing patterns using Test2::V0, Test::More, prove runner, mocking, coverage with Devel::Cover, and TDD methodolog"
+        },
+        {
+          "Skill": "plankton-code-quality",
+          "Description": "Write-time code quality enforcement using Plankton — auto-formatting, linting, and Claude-powered fixes on every file"
+        },
+        {
+          "Skill": "project-guidelines-example",
+          "Description": "Example project-specific skill template based on a real production application."
+        },
+        {
+          "Skill": "python-patterns",
+          "Description": "Pythonic idioms, PEP 8 standards, type hints, and best practices for building robust, efficient, and maintainable Python"
+        },
+        {
+          "Skill": "python-testing",
+          "Description": "Python testing strategies using pytest, TDD methodology, fixtures, mocking, parametrization, and coverage requirements."
+        },
+        {
+          "Skill": "rust-patterns",
+          "Description": "Idiomatic Rust patterns, ownership, error handling, traits, concurrency, and best practices for building safe, performan"
+        },
+        {
+          "Skill": "rust-testing",
+          "Description": "Rust testing patterns including unit tests, integration tests, async testing, property-based testing, mocking, and cover"
+        },
+        {
+          "Skill": "skill-stocktake",
+          "Description": "Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake m"
+        },
+        {
+          "Skill": "springboot-patterns",
+          "Description": "Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and loggin"
+        },
+        {
+          "Skill": "springboot-tdd",
+          "Description": "Test-driven development for Spring Boot using JUnit 5, Mockito, MockMvc, Testcontainers, and JaCoCo. Use when adding fea"
+        },
+        {
+          "Skill": "springboot-verification",
+          "Description": "Verification loop for Spring Boot projects: build, static analysis, tests with coverage, security scans, and diff review"
+        },
+        {
+          "Skill": "strategic-compact",
+          "Description": "Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary au"
+        },
+        {
+          "Skill": "tdd-workflow",
+          "Description": "Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ c"
+        },
+        {
+          "Skill": "verification-loop",
+          "Description": "A comprehensive verification system for Claude Code sessions."
+        }
+      ]
+    }
+  ]
+}

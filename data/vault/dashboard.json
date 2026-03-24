@@ -1,0 +1,61 @@
+{
+  "source": "Dashboard.md",
+  "lastSynced": "2026-03-24",
+  "count": 67,
+  "tables": [
+    {
+      "headers": [
+        "Area",
+        "Count",
+        "Link"
+      ],
+      "rows": [
+        {
+          "Area": "Rules",
+          "Count": "67 files",
+          "Link": "[[rules/Rules Index]]"
+        },
+        {
+          "Area": "Commands",
+          "Count": "60 commands",
+          "Link": "[[commands/Commands Index]]"
+        },
+        {
+          "Area": "Agents",
+          "Count": "28 ECC agents",
+          "Link": "[[agents/Agents Index]]"
+        },
+        {
+          "Area": "Skills",
+          "Count": "91 skills",
+          "Link": "[[skills/Skills Index]]"
+        },
+        {
+          "Area": "Hooks",
+          "Count": "—",
+          "Link": "[[hooks/Hooks Overview]]"
+        },
+        {
+          "Area": "MCP Servers",
+          "Count": "25 configured",
+          "Link": "[[MCPs]]"
+        },
+        {
+          "Area": "CLI Tools",
+          "Count": "—",
+          "Link": "[[CLIs]]"
+        },
+        {
+          "Area": "Terminal",
+          "Count": "Starship + Zsh",
+          "Link": "[[terminal/Terminal Setup]]"
+        },
+        {
+          "Area": "Settings",
+          "Count": "Permissions & config",
+          "Link": "[[Settings]]"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "source": "CLIs.md",
+  "lastSynced": "2026-03-24",
+  "count": 14,
+  "tables": [
+    {
+      "headers": [
+        "CLI",
+        "Path",
+        "Installed"
+      ],
+      "rows": [
+        {
+          "CLI": "`starship`",
+          "Path": "/opt/homebrew/bin/starship",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`eza`",
+          "Path": "/opt/homebrew/bin/eza",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`bat`",
+          "Path": "/opt/homebrew/bin/bat",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`fnm`",
+          "Path": "/opt/homebrew/bin/fnm",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`pyenv`",
+          "Path": "/opt/homebrew/bin/pyenv",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`node`",
+          "Path": "/opt/homebrew/bin/node",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`npm`",
+          "Path": "/opt/homebrew/bin/npm",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`npx`",
+          "Path": "/opt/homebrew/bin/npx",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`gh`",
+          "Path": "/opt/homebrew/bin/gh",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`git`",
+          "Path": "/usr/bin/git",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`brew`",
+          "Path": "/opt/homebrew/bin/brew",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`vercel`",
+          "Path": "/opt/homebrew/bin/vercel",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`claude`",
+          "Path": "/opt/homebrew/bin/claude",
+          "Installed": "yes"
+        },
+        {
+          "CLI": "`python3`",
+          "Path": "/usr/bin/python3",
+          "Installed": "yes"
+        }
+      ]
+    },
+    {
+      "headers": [
+        "Alias",
+        "Command"
+      ],
+      "rows": [
+        {
+          "Alias": "`ls`",
+          "Command": "``eza --icons --group-directories-first`"
+        },
+        {
+          "Alias": "`ll`",
+          "Command": "``eza --icons --group-directories-first -la`"
+        },
+        {
+          "Alias": "`lt`",
+          "Command": "``eza --icons --tree --level=2`"
+        },
+        {
+          "Alias": "`cat`",
+          "Command": "``bat --style=auto`"
+        }
+      ]
+    }
+  ]
+}
