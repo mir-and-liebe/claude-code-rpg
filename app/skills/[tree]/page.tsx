@@ -1,6 +1,5 @@
 import type { SkillTree } from "@/lib/types";
 import skillTreesData from "@/data/skills.json";
-import progressData from "@/data/progress.json";
 import { SkillTreeDetail } from "@/components/SkillTreeDetail";
 import Link from "next/link";
 
@@ -24,7 +23,7 @@ export default async function SkillTreePage({
         <p className="text-text-muted">Skill tree not found</p>
         <Link
           href="/skills"
-          className="text-accent-glow hover:underline text-sm mt-2 inline-block"
+          className="text-gold hover:underline text-sm mt-2 inline-block"
         >
           Back to Skill Trees
         </Link>
@@ -32,10 +31,5 @@ export default async function SkillTreePage({
     );
   }
 
-  return (
-    <SkillTreeDetail
-      initialTree={rawTree}
-      completedIds={progressData.completedSkills as string[]}
-    />
-  );
+  return <SkillTreeDetail initialTree={rawTree} />;
 }

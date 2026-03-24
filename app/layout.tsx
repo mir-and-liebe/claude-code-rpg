@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
+import { ProgressProvider } from "@/lib/use-progress";
 
 export const metadata: Metadata = {
   title: "CC RPG — Vibecoder Mastery Dashboard",
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <Sidebar />
-        <main className="ml-56 min-h-screen p-8">{children}</main>
+        <ProgressProvider>
+          <Sidebar />
+          <main className="ml-56 min-h-screen p-8">{children}</main>
+        </ProgressProvider>
       </body>
     </html>
   );

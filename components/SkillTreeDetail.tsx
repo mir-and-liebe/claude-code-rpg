@@ -1,23 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import type { SkillTree } from "@/lib/types";
 import { getTreeProgress } from "@/lib/rpg";
 import { treeIconMap } from "@/lib/icons";
+import { useProgress } from "@/lib/use-progress";
 import { SkillNode } from "@/components/SkillNode";
 import { XPBar } from "@/components/XPBar";
 import Link from "next/link";
 
 interface Props {
   initialTree: SkillTree;
-  completedIds: string[];
 }
 
-export function SkillTreeDetail({ initialTree, completedIds }: Props) {
-  const [completedSkills, setCompletedSkills] = useState<Set<string>>(
-    new Set(completedIds)
-  );
+export function SkillTreeDetail({ initialTree }: Props) {
+  const { completedSkills, loading, toggleSkill } = useProgress();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Loader2 className="w-5 h-5 animate-spin text-text-muted" />
+      </div>
+    );
+  }
 
   const tree: SkillTree = {
     ...initialTree,
@@ -29,18 +34,6 @@ export function SkillTreeDetail({ initialTree, completedIds }: Props) {
 
   const progress = getTreeProgress(tree);
   const Icon = treeIconMap[tree.icon];
-
-  function handleToggle(nodeId: string) {
-    setCompletedSkills((prev) => {
-      const next = new Set(prev);
-      if (next.has(nodeId)) {
-        next.delete(nodeId);
-      } else {
-        next.add(nodeId);
-      }
-      return next;
-    });
-  }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -87,7 +80,7 @@ export function SkillTreeDetail({ initialTree, completedIds }: Props) {
             <SkillNode
               node={node}
               color={tree.color}
-              onToggle={handleToggle}
+              onToggle={toggleSkill}
             />
           </div>
         ))}

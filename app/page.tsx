@@ -1,10 +1,14 @@
-import {
-  getCharacterProfile,
-  loadSkillTrees,
-} from "@/lib/rpg";
+"use client";
+
+import { useProgress } from "@/lib/use-progress";
+import { getTreeProgress, levelFromXp, getRank, xpForLevel, totalXpForLevel } from "@/lib/rpg";
+import type { SkillTree, Badge } from "@/lib/types";
 import { CharacterCard } from "@/components/CharacterCard";
 import { SkillTreeCard } from "@/components/SkillTreeCard";
 import { BadgeGrid } from "@/components/BadgeGrid";
+import { checkBadgeUnlock } from "@/lib/rpg";
+import skillTreesData from "@/data/skills.json";
+import badgesData from "@/data/badges.json";
 import {
   FileText,
   TerminalSquare,
@@ -12,6 +16,7 @@ import {
   Sparkles,
   Plug,
   Wrench,
+  Loader2,
 } from "lucide-react";
 
 const vaultStats = [
@@ -24,14 +29,44 @@ const vaultStats = [
 ];
 
 export default function DashboardPage() {
-  const profile = getCharacterProfile();
-  const trees = loadSkillTrees();
+  const { completedSkills, loading } = useProgress();
 
-  const totalSkills = trees.reduce((s, t) => s + t.nodes.length, 0);
-  const completedSkills = trees.reduce(
-    (s, t) => s + t.nodes.filter((n) => n.completed).length,
-    0
-  );
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Loader2 className="w-5 h-5 animate-spin text-text-muted" />
+      </div>
+    );
+  }
+
+  const trees: SkillTree[] = (skillTreesData as SkillTree[]).map((t) => ({
+    ...t,
+    nodes: t.nodes.map((n) => ({ ...n, completed: completedSkills.has(n.id) })),
+  }));
+
+  const totalXp = trees.reduce((s, t) => s + getTreeProgress(t).xpEarned, 0);
+  const level = levelFromXp(totalXp);
+  const currentLevelXp = totalXpForLevel(level);
+  const nextLevelXp = xpForLevel(level);
+
+  const badges: Badge[] = (badgesData as Badge[]).map((b) => ({
+    ...b,
+    unlocked: checkBadgeUnlock(b, trees),
+  }));
+
+  const profile = {
+    name: "Vibecoder",
+    title: "Product Manager turned Vibecoder",
+    level,
+    totalXp,
+    xpToNextLevel: nextLevelXp - (totalXp - currentLevelXp),
+    rank: getRank(level),
+    badges,
+    skillTrees: trees,
+  };
+
+  const totalSkillCount = trees.reduce((s, t) => s + t.nodes.length, 0);
+  const completedCount = completedSkills.size;
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -47,7 +82,7 @@ export default function DashboardPage() {
             Overall Progress
           </p>
           <p className="text-xl text-gold font-mono mt-0.5">
-            {completedSkills}/{totalSkills}
+            {completedCount}/{totalSkillCount}
           </p>
         </div>
       </div>
@@ -65,7 +100,7 @@ export default function DashboardPage() {
 
       <section>
         <h2 className="text-xl mb-4">Badges</h2>
-        <BadgeGrid badges={profile.badges} />
+        <BadgeGrid badges={badges} />
       </section>
 
       <section className="card p-6">
