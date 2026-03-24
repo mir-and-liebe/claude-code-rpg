@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useProgress } from "@/lib/use-progress";
-import { Swords, Cpu, Rocket, Loader2, Save, User, Shield } from "lucide-react";
+import { Swords, Cpu, Rocket, Loader2, Save, User, Shield, Wand2, Terminal, Plug, Bot, BookOpen, RotateCcw } from "lucide-react";
 import type { CharacterClass } from "@/lib/types";
 
 const classes: {
@@ -42,12 +42,14 @@ export default function CharacterPage() {
   const [selectedClass, setSelectedClass] = useState<CharacterClass>("");
   const [saved, setSaved] = useState(false);
   const [initialized, setInitialized] = useState(false);
+  const [selectedAvatar, setSelectedAvatar] = useState("swords");
 
   useEffect(() => {
     if (!loading && progress && !initialized) {
       setName(progress.character_name);
       setTitle(progress.character_title);
       setSelectedClass((progress.character_class || "") as CharacterClass);
+      setSelectedAvatar(progress.avatar || "swords");
       setInitialized(true);
     }
   }, [loading, progress, initialized]);
@@ -65,6 +67,7 @@ export default function CharacterPage() {
       character_name: name || "Vibecoder",
       character_title: title || "",
       character_class: selectedClass,
+      avatar: selectedAvatar,
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
@@ -140,12 +143,55 @@ export default function CharacterPage() {
         </div>
       </div>
 
+      {/* Avatar Picker */}
+      <div className="card p-6">
+        <h2 className="text-xl mb-4">Avatar</h2>
+        <div className="grid grid-cols-6 gap-3">
+          {[
+            { id: "swords", Icon: Swords },
+            { id: "wand", Icon: Wand2 },
+            { id: "terminal", Icon: Terminal },
+            { id: "plug", Icon: Plug },
+            { id: "bot", Icon: Bot },
+            { id: "rocket", Icon: Rocket },
+          ].map((av) => (
+            <button
+              key={av.id}
+              onClick={() => setSelectedAvatar(av.id)}
+              className={`p-3 rounded-xl border flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                selectedAvatar === av.id
+                  ? "border-gold/30 bg-gold/[0.05]"
+                  : "border-border bg-surface hover:border-border-subtle"
+              }`}
+            >
+              <av.Icon
+                className={`w-6 h-6 ${
+                  selectedAvatar === av.id ? "text-gold" : "text-text-muted"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
       <button
         onClick={handleSave}
         className="w-full py-3 rounded-xl bg-gold/10 border border-gold/20 text-gold text-sm font-semibold hover:bg-gold/15 transition-colors cursor-pointer flex items-center justify-center gap-2"
       >
         <Save className="w-4 h-4" />
         {saved ? "Saved!" : "Save Character"}
+      </button>
+
+      {/* Tutorial replay */}
+      <button
+        onClick={() => {
+          localStorage.removeItem("cc-rpg-welcome-seen");
+          window.location.reload();
+        }}
+        className="w-full py-2.5 rounded-xl border border-border text-text-muted text-sm hover:text-text transition-colors cursor-pointer flex items-center justify-center gap-2"
+      >
+        <RotateCcw className="w-3.5 h-3.5" />
+        Replay Welcome Tutorial
       </button>
     </div>
   );

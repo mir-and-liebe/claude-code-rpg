@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { RotateCcw, Check, Brain, Loader2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { calculateNextReview, qualityFromRating } from "@/lib/spaced-repetition";
+import { calculateNextReview, qualityFromRating, type ReviewState } from "@/lib/spaced-repetition";
 import Link from "next/link";
 import skillTreesData from "@/data/skills.json";
 import type { SkillTree, SkillNode } from "@/lib/types";
@@ -29,6 +29,23 @@ export default function ReviewPage() {
   const [flipped, setFlipped] = useState(false);
   const [loading, setLoading] = useState(true);
   const [done, setDone] = useState(false);
+
+  // Keyboard shortcuts for rating
+  useEffect(() => {
+    if (!flipped) return;
+    const ratings = ["forgot", "hard", "good", "easy"] as const;
+    function handleKey(e: KeyboardEvent) {
+      const num = parseInt(e.key);
+      if (num >= 1 && num <= 4) {
+        handleRate(ratings[num - 1]);
+      }
+      if (e.key === " " || e.key === "Enter") {
+        if (!flipped) setFlipped(true);
+      }
+    }
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [flipped, current]);
 
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
@@ -169,42 +186,45 @@ export default function ReviewPage() {
         )}
       </div>
 
-      {/* Rating buttons */}
+      {/* Rating buttons with keyboard shortcuts */}
       {flipped && (
-        <div className="grid grid-cols-4 gap-2">
-          {(["forgot", "hard", "good", "easy"] as const).map((rating) => {
-            const styles = {
-              forgot: "border-fire/20 text-fire hover:bg-fire/5",
-              hard: "border-border text-text-muted hover:bg-surface-hover",
-              good: "border-gold/20 text-gold hover:bg-gold/5",
-              easy: "border-health/20 text-health hover:bg-health/5",
-            };
-            const labels = {
-              forgot: "Forgot",
-              hard: "Hard",
-              good: "Good",
-              easy: "Easy",
-            };
-            const intervals = {
-              forgot: "1d",
-              hard: `${Math.max(1, Math.round(item.interval_days * 0.5))}d`,
-              good: `${item.interval_days}d`,
-              easy: `${Math.round(item.interval_days * item.ease_factor)}d`,
-            };
-            return (
-              <button
-                key={rating}
-                onClick={() => handleRate(rating)}
-                className={`py-3 rounded-lg border text-sm font-semibold transition-colors cursor-pointer ${styles[rating]}`}
-              >
-                <div>{labels[rating]}</div>
-                <div className="text-[10px] font-mono opacity-60 mt-0.5">
-                  {intervals[rating]}
-                </div>
-              </button>
-            );
-          })}
-        </div>
+        <>
+          <div className="grid grid-cols-4 gap-2">
+            {(["forgot", "hard", "good", "easy"] as const).map((rating, idx) => {
+              const styles = {
+                forgot: "border-fire/20 text-fire hover:bg-fire/5",
+                hard: "border-border text-text-muted hover:bg-surface-hover",
+                good: "border-gold/20 text-gold hover:bg-gold/5",
+                easy: "border-health/20 text-health hover:bg-health/5",
+              };
+              const labels = { forgot: "Forgot", hard: "Hard", good: "Good", easy: "Easy" };
+              const currentState: ReviewState = {
+                easeFactor: item.ease_factor,
+                intervalDays: item.interval_days,
+                repetitions: item.repetitions,
+              };
+              const preview = calculateNextReview(qualityFromRating(rating), currentState);
+              return (
+                <button
+                  key={rating}
+                  onClick={() => handleRate(rating)}
+                  className={`py-3 rounded-lg border text-sm font-semibold transition-colors cursor-pointer ${styles[rating]}`}
+                >
+                  <div>
+                    <span className="text-[9px] font-mono opacity-40 mr-1">{idx + 1}</span>
+                    {labels[rating]}
+                  </div>
+                  <div className="text-[10px] font-mono opacity-60 mt-0.5">
+                    {preview.intervalDays}d
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-[9px] text-text-muted text-center mt-2 font-mono">
+            Keys: 1 forgot &middot; 2 hard &middot; 3 good &middot; 4 easy
+          </p>
+        </>
       )}
     </div>
   );

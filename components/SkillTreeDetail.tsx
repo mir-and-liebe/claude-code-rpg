@@ -1,6 +1,8 @@
 "use client";
 
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, Zap } from "lucide-react";
+import combosData from "@/data/combos.json";
+import type { SkillCombo } from "@/lib/types";
 import type { SkillTree } from "@/lib/types";
 import { getTreeProgress, isSkillRevealed } from "@/lib/rpg";
 import { treeIconMap } from "@/lib/icons";
@@ -70,6 +72,38 @@ export function SkillTreeDetail({ initialTree }: Props) {
           label={`${progress.completed}/${progress.total} skills complete`}
           color={tree.color}
         />
+        {/* Combos involving this tree */}
+        {(() => {
+          const treeCombos = (combosData as SkillCombo[]).filter((c) =>
+            c.skills.some((s) => tree.nodes.some((n) => n.id === s))
+          );
+          if (treeCombos.length === 0) return null;
+          return (
+            <div className="mt-4 pt-4 border-t border-border">
+              <p className="text-[10px] text-text-muted tracking-widest uppercase font-mono mb-2 flex items-center gap-1.5">
+                <Zap className="w-3 h-3" />
+                Combos in this tree
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {treeCombos.map((c) => {
+                  const unlocked = c.skills.every((s) => completedSkills.has(s));
+                  return (
+                    <span
+                      key={c.id}
+                      className={`text-[10px] px-2 py-1 rounded-lg border font-mono ${
+                        unlocked
+                          ? "border-gold/20 bg-gold/5 text-gold"
+                          : "border-border text-text-muted"
+                      }`}
+                    >
+                      {c.name} (+{c.bonusXp} XP)
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
       </div>
 
       <div className="space-y-3">
@@ -85,6 +119,7 @@ export function SkillTreeDetail({ initialTree }: Props) {
               onChallenge={challengeSkill}
               revealed={isSkillRevealed(node, tree, completedSkills)}
               verified={verifiedSkills.has(node.id)}
+              step={`Step ${i + 1} of ${tree.nodes.length}`}
             />
           </div>
         ))}

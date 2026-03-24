@@ -16,6 +16,8 @@ import { XPBar } from "@/components/XPBar";
 import { XPChart } from "@/components/XPChart";
 import { CollectionCard } from "@/components/CollectionCard";
 import { ExportProgress } from "@/components/ExportProgress";
+import combosData from "@/data/combos.json";
+import type { SkillCombo } from "@/lib/types";
 import skillTreesData from "@/data/skills.json";
 import collectionsData from "@/data/collections.json";
 import {
@@ -147,6 +149,37 @@ export default function ProgressPage() {
           ))}
         </div>
       </div>
+
+      {/* Combos close to unlocking */}
+      {(() => {
+        const allCombos = combosData as SkillCombo[];
+        const nearCombos = allCombos.filter((c) => {
+          const done = c.skills.filter((s) => completedSkills.has(s)).length;
+          return done > 0 && done < c.skills.length;
+        });
+        if (nearCombos.length === 0) return null;
+        return (
+          <div className="card p-6">
+            <h2 className="text-xl mb-4">Almost There</h2>
+            <div className="space-y-2">
+              {nearCombos.map((combo) => {
+                const done = combo.skills.filter((s) => completedSkills.has(s)).length;
+                return (
+                  <div key={combo.id} className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-bg border border-border">
+                    <div>
+                      <p className="text-sm font-semibold">{combo.name}</p>
+                      <p className="text-[11px] text-text-muted">{combo.description}</p>
+                    </div>
+                    <span className="text-[11px] text-gold font-mono whitespace-nowrap ml-3">
+                      {done}/{combo.skills.length} skills
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="card p-6">
         <h2 className="text-xl mb-5">Rank Progression</h2>

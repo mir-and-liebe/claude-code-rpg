@@ -11,9 +11,10 @@ interface Props {
   onChallenge?: (id: string, name: string) => void;
   revealed: boolean;
   verified?: boolean;
+  step?: string;
 }
 
-export function SkillNode({ node, color, onToggle, onChallenge, revealed, verified }: Props) {
+export function SkillNode({ node, color, onToggle, onChallenge, revealed, verified, step }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [confirmUncomplete, setConfirmUncomplete] = useState(false);
 
@@ -81,6 +82,11 @@ export function SkillNode({ node, color, onToggle, onChallenge, revealed, verifi
             >
               {node.xpRequired} XP
             </span>
+            {step && (
+              <span className="text-[10px] text-text-muted font-mono">
+                {step}
+              </span>
+            )}
           </div>
           <p className="text-[13px] text-text-secondary mb-3 leading-relaxed">
             {node.description}

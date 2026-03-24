@@ -29,6 +29,7 @@ export default function PlaygroundPage() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);
+  const [triedCommands, setTriedCommands] = useState<Set<string>>(new Set());
   const [historyIdx, setHistoryIdx] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -54,6 +55,7 @@ export default function PlaygroundPage() {
         ...prev,
         { input: cmd, output: response.output, relatedSkill: response.relatedSkill },
       ]);
+      setTriedCommands((prev) => new Set(prev).add(cmd));
     } else {
       const closest = allCommands.find((c) => c.startsWith(cmd));
       setHistory((prev) => [
@@ -217,10 +219,16 @@ export default function PlaygroundPage() {
         </div>
       </div>
 
-      <p className="text-[11px] text-text-muted text-center">
-        <TerminalSquare className="w-3 h-3 inline mr-1" />
-        {allCommands.length} commands available &middot; Tab to autocomplete &middot; ↑↓ for history
-      </p>
+      <div className="flex items-center justify-center gap-3 text-[11px] text-text-muted">
+        <span className="flex items-center gap-1">
+          <TerminalSquare className="w-3 h-3" />
+          {triedCommands.size}/{allCommands.length} tried
+        </span>
+        <span>&middot;</span>
+        <span>Tab to autocomplete</span>
+        <span>&middot;</span>
+        <span>↑↓ history</span>
+      </div>
     </div>
   );
 }

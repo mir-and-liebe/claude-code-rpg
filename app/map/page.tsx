@@ -15,6 +15,8 @@ interface ComboData {
   id: string;
   name: string;
   skills: string[];
+  bonusXp: number;
+  description: string;
 }
 
 const TREE_X: Record<string, number> = {
@@ -108,7 +110,7 @@ export default function MapPage() {
             })
           )}
 
-          {/* Combo connections (dashed cross-tree lines) */}
+          {/* Combo connections — always show (faint when incomplete) */}
           {combos.map((combo) => {
             const p1 = nodePositions[combo.skills[0]];
             const p2 = nodePositions[combo.skills[1]];
@@ -117,17 +119,22 @@ export default function MapPage() {
               completedSkills.has(combo.skills[0]) &&
               completedSkills.has(combo.skills[1]);
             return (
-              <line
+              <g
                 key={combo.id}
-                x1={p1.x}
-                y1={p1.y}
-                x2={p2.x}
-                y2={p2.y}
-                stroke={bothComplete ? "#CA8A04" : "#3F3F46"}
-                strokeWidth={1}
-                strokeDasharray="6 4"
-                strokeOpacity={bothComplete ? 0.6 : 0.15}
-              />
+                onMouseEnter={() =>
+                  setTooltip({ name: `${combo.name} (+${combo.bonusXp} XP)`, tree: "Combo", x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 })
+                }
+                onMouseLeave={() => setTooltip(null)}
+                className="cursor-pointer"
+              >
+                <line
+                  x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
+                  stroke={bothComplete ? "#CA8A04" : "#3F3F46"}
+                  strokeWidth={bothComplete ? 1.5 : 1}
+                  strokeDasharray="6 4"
+                  strokeOpacity={bothComplete ? 0.6 : 0.12}
+                />
+              </g>
             );
           })}
 
@@ -168,19 +175,19 @@ export default function MapPage() {
                   className="cursor-pointer"
                   onClick={() => router.push(`/skills/${tree.id}`)}
                   onMouseEnter={() =>
-                    setTooltip({
-                      name: node.name,
-                      tree: tree.name,
-                      x: pos.x,
-                      y: pos.y,
-                    })
+                    setTooltip({ name: node.name, tree: tree.name, x: pos.x, y: pos.y })
                   }
                   onMouseLeave={() => setTooltip(null)}
+                  onTouchStart={() =>
+                    setTooltip((prev) =>
+                      prev?.name === node.name ? null : { name: node.name, tree: tree.name, x: pos.x, y: pos.y }
+                    )
+                  }
                 >
                   <circle
                     cx={pos.x}
                     cy={pos.y}
-                    r={14}
+                    r={node.completed ? 16 : 13}
                     fill={node.completed ? `${tree.color}20` : "#18181B"}
                     stroke={node.completed ? tree.color : "#3F3F46"}
                     strokeWidth={node.completed ? 2 : 1.5}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -13,7 +14,11 @@ interface Props {
   data: { date: string; xp: number }[];
 }
 
+type Range = "7d" | "30d" | "all";
+
 export function XPChart({ data }: Props) {
+  const [range, setRange] = useState<Range>("all");
+
   if (data.length < 2) {
     return (
       <div className="card p-5">
@@ -25,20 +30,49 @@ export function XPChart({ data }: Props) {
     );
   }
 
+  const now = new Date();
+  const filtered =
+    range === "all"
+      ? data
+      : data.filter((d) => {
+          const date = new Date(d.date);
+          const diff = (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
+          return diff <= (range === "7d" ? 7 : 30);
+        });
+
+  const displayData = filtered.length >= 2 ? filtered : data;
+
   return (
     <div className="card p-5">
-      <h2 className="text-xl mb-4">XP Over Time</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl">XP Over Time</h2>
+        <div className="flex gap-1">
+          {(["7d", "30d", "all"] as Range[]).map((r) => (
+            <button
+              key={r}
+              onClick={() => setRange(r)}
+              className={`text-[10px] px-2.5 py-1 rounded-lg border transition-colors cursor-pointer font-mono ${
+                range === r
+                  ? "bg-gold/10 border-gold/20 text-gold"
+                  : "border-border text-text-muted hover:text-text"
+              }`}
+            >
+              {r === "all" ? "All" : r}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="h-48">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
+          <LineChart data={displayData}>
             <XAxis
               dataKey="date"
-              tick={{ fill: "#71717A", fontSize: 10 }}
+              tick={{ fill: "#8C8C9E", fontSize: 10 }}
               tickLine={false}
               axisLine={{ stroke: "#27272A" }}
             />
             <YAxis
-              tick={{ fill: "#71717A", fontSize: 10 }}
+              tick={{ fill: "#8C8C9E", fontSize: 10 }}
               tickLine={false}
               axisLine={{ stroke: "#27272A" }}
               width={40}
