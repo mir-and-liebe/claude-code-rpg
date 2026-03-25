@@ -1,7 +1,7 @@
 {
   "source": "MCPs.md",
-  "lastSynced": "2026-03-24",
-  "count": 25,
+  "lastSynced": "2026-03-26",
+  "count": 8,
   "tables": [
     {
       "headers": [
@@ -9,133 +9,7 @@
         "Description",
         "Type"
       ],
-      "rows": [
-        {
-          "MCP": "github",
-          "Description": "GitHub operations - PRs, issues, repos",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "firecrawl",
-          "Description": "Web scraping and crawling",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "supabase",
-          "Description": "Supabase database operations",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "memory",
-          "Description": "Persistent memory across sessions",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "sequential-thinking",
-          "Description": "Chain-of-thought reasoning",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "vercel",
-          "Description": "Vercel deployments and projects",
-          "Type": "http"
-        },
-        {
-          "MCP": "railway",
-          "Description": "Railway deployments",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "cloudflare-docs",
-          "Description": "Cloudflare documentation search",
-          "Type": "http"
-        },
-        {
-          "MCP": "cloudflare-workers-builds",
-          "Description": "Cloudflare Workers builds",
-          "Type": "http"
-        },
-        {
-          "MCP": "cloudflare-workers-bindings",
-          "Description": "Cloudflare Workers bindings",
-          "Type": "http"
-        },
-        {
-          "MCP": "cloudflare-observability",
-          "Description": "Cloudflare observability/logs",
-          "Type": "http"
-        },
-        {
-          "MCP": "clickhouse",
-          "Description": "ClickHouse analytics queries",
-          "Type": "http"
-        },
-        {
-          "MCP": "exa-web-search",
-          "Description": "Web search, research, and data ingestion via Exa API — prefer task-scoped use for broader research after GitHub search a",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "context7",
-          "Description": "Live documentation lookup — use with /docs command and documentation-lookup skill (resolve-library-id, query-docs).",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "magic",
-          "Description": "Magic UI components",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "filesystem",
-          "Description": "Filesystem operations (set your path)",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "insaits",
-          "Description": "AI-to-AI security monitoring — anomaly detection, credential exposure, hallucination checks, forensic tracing. 23 anomal",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "playwright",
-          "Description": "Browser automation and testing via Playwright",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "fal-ai",
-          "Description": "AI image/video/audio generation via fal.ai models",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "browserbase",
-          "Description": "Cloud browser sessions via Browserbase",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "browser-use",
-          "Description": "AI browser agent for web tasks",
-          "Type": "http"
-        },
-        {
-          "MCP": "devfleet",
-          "Description": "Multi-agent orchestration — dispatch parallel Claude Code agents in isolated worktrees. Plan projects, auto-chain missio",
-          "Type": "http"
-        },
-        {
-          "MCP": "token-optimizer",
-          "Description": "Token optimization for 95%+ context reduction via content deduplication and compression",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "confluence",
-          "Description": "Confluence Cloud integration — search pages, retrieve content, explore spaces",
-          "Type": "stdio"
-        },
-        {
-          "MCP": "claude-context",
-          "Description": "Semantic code search across entire codebases via Zilliz vector DB — reduces token usage by finding relevant code intelli",
-          "Type": "stdio"
-        }
-      ]
+      "rows": []
     }
   ]
 }

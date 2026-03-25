@@ -1,7 +1,7 @@
 {
   "source": "commands/Commands Index.md",
-  "lastSynced": "2026-03-24",
-  "count": 60,
+  "lastSynced": "2026-03-26",
+  "count": 39,
   "tables": [
     {
       "headers": [
@@ -10,40 +10,28 @@
       ],
       "rows": [
         {
+          "Command": "`/api-route`",
+          "Description": "Scaffold a Next.js App Router API route with Supabase"
+        },
+        {
           "Command": "`/aside`",
           "Description": "Answer a quick side question without interrupting or losing context from the current task. Resume work automatically aft"
         },
         {
           "Command": "`/build-fix`",
-          "Description": "—"
+          "Description": "Incrementally fix build and type errors with minimal, safe changes"
         },
         {
           "Command": "`/checkpoint`",
-          "Description": "—"
-        },
-        {
-          "Command": "`/claw`",
-          "Description": "Start NanoClaw v2 — ECC's persistent, zero-dependency REPL with model routing, skill hot-load, branching, compaction,"
-        },
-        {
-          "Command": "`/code-review`",
-          "Description": "—"
+          "Description": "Create or verify a checkpoint in your workflow"
         },
         {
           "Command": "`/context-budget`",
           "Description": "Analyze context window usage across agents, skills, MCP servers, and rules to find optimization opportunities. Helps red"
         },
         {
-          "Command": "`/cpp-build`",
-          "Description": "Fix C++ build errors, CMake issues, and linker problems incrementally. Invokes the cpp-build-resolver agent for minimal,"
-        },
-        {
-          "Command": "`/cpp-review`",
-          "Description": "Comprehensive C++ code review for memory safety, modern C++ idioms, concurrency, and security. Invokes the cpp-reviewer"
-        },
-        {
-          "Command": "`/cpp-test`",
-          "Description": "Enforce TDD workflow for C++. Write GoogleTest tests first, then implement. Verify coverage with gcov/lcov."
+          "Command": "`/delegate`",
+          "Description": "Delegate a junior-level task to Codex CLI. Claude reviews the result. Use for docs, test data, scaffolding, recon, and m"
         },
         {
           "Command": "`/devfleet`",
@@ -54,40 +42,36 @@
           "Description": "Look up current documentation for a library or topic via Context7."
         },
         {
-          "Command": "`/e2e`",
-          "Description": "Generate and run end-to-end tests with Playwright. Creates test journeys, runs tests, captures screenshots/videos/traces"
-        },
-        {
-          "Command": "`/eval`",
-          "Description": "—"
+          "Command": "`/end-session`",
+          "Description": "Run the end-session protocol to wrap up and persist state before session ends"
         },
         {
           "Command": "`/evolve`",
           "Description": "Analyze instincts and suggest or generate evolved structures"
         },
         {
-          "Command": "`/go-build`",
-          "Description": "Fix Go build errors, go vet warnings, and linter issues incrementally. Invokes the go-build-resolver agent for minimal,"
+          "Command": "`/flywheel-health`",
+          "Description": "Check learning flywheel health — scores each stage, identifies broken links, suggests fixes"
         },
         {
-          "Command": "`/go-review`",
-          "Description": "Comprehensive Go code review for idiomatic patterns, concurrency safety, error handling, and security. Invokes the go-re"
-        },
-        {
-          "Command": "`/go-test`",
-          "Description": "Enforce TDD workflow for Go. Write table-driven tests first, then implement. Verify 80%+ coverage with go test -cover."
-        },
-        {
-          "Command": "`/gradle-build`",
-          "Description": "Fix Gradle build errors for Android and KMP projects"
+          "Command": "`/handoff`",
+          "Description": "Hand off a task to another pane with structured context and notification"
         },
         {
           "Command": "`/harness-audit`",
-          "Description": "—"
+          "Description": "Run a deterministic repository harness audit and return a prioritized scorecard"
+        },
+        {
+          "Command": "`/hotfix`",
+          "Description": "Emergency fix workflow for production issues with hotfix branch and deploy"
         },
         {
           "Command": "`/instinct-export`",
           "Description": "Export instincts from project/global scope to a file"
+        },
+        {
+          "Command": "`/instinct-graduate`",
+          "Description": "Review high-confidence instincts and graduate them to skills or rules"
         },
         {
           "Command": "`/instinct-import`",
@@ -98,67 +82,19 @@
           "Description": "Show learned instincts (project + global) with confidence"
         },
         {
-          "Command": "`/kotlin-build`",
-          "Description": "Fix Kotlin/Gradle build errors, compiler warnings, and dependency issues incrementally. Invokes the kotlin-build-resolve"
-        },
-        {
-          "Command": "`/kotlin-review`",
-          "Description": "Comprehensive Kotlin code review for idiomatic patterns, null safety, coroutine safety, and security. Invokes the kotlin"
-        },
-        {
-          "Command": "`/kotlin-test`",
-          "Description": "Enforce TDD workflow for Kotlin. Write Kotest tests first, then implement. Verify 80%+ coverage with Kover."
-        },
-        {
           "Command": "`/learn-eval`",
           "Description": "\"Extract reusable patterns from the session, self-evaluate quality before saving, and determine the right save location"
         },
         {
-          "Command": "`/learn`",
-          "Description": "—"
-        },
-        {
-          "Command": "`/loop-start`",
-          "Description": "—"
-        },
-        {
-          "Command": "`/loop-status`",
-          "Description": "—"
+          "Command": "`/migrate`",
+          "Description": "Supabase migration workflow — generate, validate, and apply schema changes"
         },
         {
           "Command": "`/model-route`",
-          "Description": "—"
+          "Description": "Recommend the best model tier for the current task by complexity and budget"
         },
         {
-          "Command": "`/multi-backend`",
-          "Description": "\"Brief description\""
-        },
-        {
-          "Command": "`/multi-execute`",
-          "Description": "\"Brief description\""
-        },
-        {
-          "Command": "`/multi-frontend`",
-          "Description": "\"Brief description\""
-        },
-        {
-          "Command": "`/multi-plan`",
-          "Description": "\"Brief description\""
-        },
-        {
-          "Command": "`/multi-workflow`",
-          "Description": "\"Brief description\""
-        },
-        {
-          "Command": "`/orchestrate`",
-          "Description": "Sequential and tmux/worktree orchestration guidance for multi-agent workflows."
-        },
-        {
-          "Command": "`/plan`",
-          "Description": "Restate requirements, assess risks, and create step-by-step implementation plan. WAIT for user CONFIRM before touching a"
-        },
-        {
-          "Command": "`/pm2`",
+          "Command": "`/morning`",
           "Description": "—"
         },
         {
@@ -178,16 +114,12 @@
           "Description": "Delete pending instincts older than 30 days that were never promoted"
         },
         {
-          "Command": "`/python-review`",
-          "Description": "Comprehensive Python code review for PEP 8 compliance, type hints, security, and Pythonic idioms. Invokes the python-rev"
-        },
-        {
           "Command": "`/quality-gate`",
-          "Description": "—"
+          "Description": "Run the ECC quality pipeline on demand for a file or project scope"
         },
         {
           "Command": "`/refactor-clean`",
-          "Description": "—"
+          "Description": "Safely identify and remove dead code with test verification at every step"
         },
         {
           "Command": "`/resume-session`",
@@ -198,28 +130,12 @@
           "Description": "\"Scan skills to extract cross-cutting principles and distill them into rules\""
         },
         {
-          "Command": "`/rust-build`",
-          "Description": "Fix Rust build errors, borrow checker issues, and dependency problems incrementally. Invokes the rust-build-resolver age"
-        },
-        {
-          "Command": "`/rust-review`",
-          "Description": "Comprehensive Rust code review for ownership, lifetimes, error handling, unsafe usage, and idiomatic patterns. Invokes t"
-        },
-        {
-          "Command": "`/rust-test`",
-          "Description": "Enforce TDD workflow for Rust. Write tests first, then implement. Verify 80%+ coverage with cargo-llvm-cov."
-        },
-        {
           "Command": "`/save-session`",
           "Description": "Save current session state to a dated file in ~/.claude/sessions/ so work can be resumed in a future session with full c"
         },
         {
           "Command": "`/sessions`",
           "Description": "Manage Claude Code session history, aliases, and session metadata."
-        },
-        {
-          "Command": "`/setup-pm`",
-          "Description": "Configure your preferred package manager (npm/pnpm/yarn/bun)"
         },
         {
           "Command": "`/skill-create`",
@@ -230,23 +146,23 @@
           "Description": "Show skill portfolio health dashboard with charts and analytics"
         },
         {
-          "Command": "`/tdd`",
-          "Description": "Enforce test-driven development workflow. Scaffold interfaces, generate tests FIRST, then implement minimal code to pass"
-        },
-        {
           "Command": "`/test-coverage`",
-          "Description": "—"
+          "Description": "Analyze test coverage, identify gaps, and generate missing tests to reach 80%+"
         },
         {
           "Command": "`/update-codemaps`",
-          "Description": "—"
+          "Description": "Analyze codebase structure and generate token-lean architecture documentation"
         },
         {
           "Command": "`/update-docs`",
-          "Description": "—"
+          "Description": "Sync documentation with the codebase, generating from source-of-truth files"
         },
         {
           "Command": "`/verify`",
+          "Description": "Run comprehensive verification on current codebase (build, lint, types, tests)"
+        },
+        {
+          "Command": "`/weekly`",
           "Description": "—"
         }
       ]

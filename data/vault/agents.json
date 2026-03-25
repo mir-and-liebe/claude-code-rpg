@@ -1,7 +1,7 @@
 {
   "source": "agents/Agents Index.md",
-  "lastSynced": "2026-03-24",
-  "count": 16,
+  "lastSynced": "2026-03-26",
+  "count": 24,
   "tables": [
     {
       "headers": [
@@ -9,6 +9,34 @@
         "File"
       ],
       "rows": [
+        {
+          "Agent": "0 - Bell - dedicated senior agent",
+          "File": "`~/.claude/agents/0 - Bell - dedicated senior agent.md`"
+        },
+        {
+          "Agent": "0 - Kaizen - self-improvement reinforcer",
+          "File": "`~/.claude/agents/0 - Kaizen - self-improvement reinforcer.md`"
+        },
+        {
+          "Agent": "0 - Lens - R&D",
+          "File": "`~/.claude/agents/0 - Lens - R&D.md`"
+        },
+        {
+          "Agent": "0 - Runner - quick helper",
+          "File": "`~/.claude/agents/0 - Runner - quick helper.md`"
+        },
+        {
+          "Agent": "0 - Shared Agent Protocol",
+          "File": "`~/.claude/agents/0 - Shared Agent Protocol.md`"
+        },
+        {
+          "Agent": "0 - Soulkeeper - memory warden",
+          "File": "`~/.claude/agents/0 - Soulkeeper - memory warden.md`"
+        },
+        {
+          "Agent": "Agents Index",
+          "File": "`~/.claude/agents/Agents Index.md`"
+        },
         {
           "Agent": "architect",
           "File": "`~/.claude/agents/architect.md`"
@@ -18,12 +46,12 @@
           "File": "`~/.claude/agents/build-error-resolver.md`"
         },
         {
-          "Agent": "chief-of-staff",
-          "File": "`~/.claude/agents/chief-of-staff.md`"
-        },
-        {
           "Agent": "code-reviewer",
           "File": "`~/.claude/agents/code-reviewer.md`"
+        },
+        {
+          "Agent": "codex-worker",
+          "File": "`~/.claude/agents/codex-worker.md`"
         },
         {
           "Agent": "database-reviewer",
@@ -46,6 +74,10 @@
           "File": "`~/.claude/agents/harness-optimizer.md`"
         },
         {
+          "Agent": "lens",
+          "File": "`~/.claude/agents/lens.md`"
+        },
+        {
           "Agent": "loop-operator",
           "File": "`~/.claude/agents/loop-operator.md`"
         },
@@ -54,16 +86,16 @@
           "File": "`~/.claude/agents/planner.md`"
         },
         {
-          "Agent": "python-reviewer",
-          "File": "`~/.claude/agents/python-reviewer.md`"
-        },
-        {
           "Agent": "refactor-cleaner",
           "File": "`~/.claude/agents/refactor-cleaner.md`"
         },
         {
           "Agent": "security-reviewer",
           "File": "`~/.claude/agents/security-reviewer.md`"
+        },
+        {
+          "Agent": "soulkeeper",
+          "File": "`~/.claude/agents/soulkeeper.md`"
         },
         {
           "Agent": "tdd-guide",

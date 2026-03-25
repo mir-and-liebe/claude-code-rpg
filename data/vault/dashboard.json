@@ -1,7 +1,7 @@
 {
   "source": "Dashboard.md",
-  "lastSynced": "2026-03-24",
-  "count": 67,
+  "lastSynced": "2026-03-26",
+  "count": 21,
   "tables": [
     {
       "headers": [
@@ -12,22 +12,22 @@
       "rows": [
         {
           "Area": "Rules",
-          "Count": "67 files",
+          "Count": "21 files",
           "Link": "[[rules/Rules Index]]"
         },
         {
           "Area": "Commands",
-          "Count": "60 commands",
+          "Count": "39 commands",
           "Link": "[[commands/Commands Index]]"
         },
         {
           "Area": "Agents",
-          "Count": "16 ECC agents",
+          "Count": "24 ECC agents",
           "Link": "[[agents/Agents Index]]"
         },
         {
           "Area": "Skills",
-          "Count": "71 skills",
+          "Count": "44 skills",
           "Link": "[[skills/Skills Index]]"
         },
         {
@@ -37,7 +37,7 @@
         },
         {
           "Area": "MCP Servers",
-          "Count": "25 configured",
+          "Count": "8 configured",
           "Link": "[[MCPs]]"
         },
         {

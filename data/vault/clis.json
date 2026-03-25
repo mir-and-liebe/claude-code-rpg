@@ -1,6 +1,6 @@
 {
   "source": "CLIs.md",
-  "lastSynced": "2026-03-24",
+  "lastSynced": "2026-03-26",
   "count": 19,
   "tables": [
     {
@@ -102,7 +102,7 @@
         },
         {
           "CLI": "`python3`",
-          "Path": "/usr/bin/python3",
+          "Path": "/opt/homebrew/bin/python3",
           "Installed": "yes"
         }
       ]
@@ -112,24 +112,7 @@
         "Alias",
         "Command"
       ],
-      "rows": [
-        {
-          "Alias": "`ls`",
-          "Command": "``eza --icons --group-directories-first`"
-        },
-        {
-          "Alias": "`ll`",
-          "Command": "``eza --icons --group-directories-first -la`"
-        },
-        {
-          "Alias": "`lt`",
-          "Command": "``eza --icons --tree --level=2`"
-        },
-        {
-          "Alias": "`cat`",
-          "Command": "``bat --style=auto`"
-        }
-      ]
+      "rows": []
     }
   ]
 }
