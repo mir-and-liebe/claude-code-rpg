@@ -1,78 +1,51 @@
 # Skills Index
 
-> Source: `~/.claude/skills/` — 71 skills
-> Last synced: 2026-03-24
+> Source: `~/.claude/skills/` — 44 skills
+> Last synced: 2026-03-26
 
 | Skill | Description |
 |-------|-------------|
-| ai-regression-testing | Regression testing strategies for AI-assisted development. Sandbox-mode API testing without database dependencies, autom |
-| api-design | REST API design patterns including resource naming, status codes, pagination, filtering, error responses, versioning, an |
-| backend-patterns | Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, a |
-| bmad-advanced-elicitation | 'Push the LLM to reconsider, refine, and improve its recent output.' |
-| bmad-analyst | analyst agent |
-| bmad-architect | architect agent |
-| bmad-brainstorming | 'Facilitate interactive brainstorming sessions using diverse creative techniques and ideation methods. Use when the user |
-| bmad-check-implementation-readiness | 'Validate PRD, UX, Architecture and Epics specs are complete. Use when the user says "check implementation readiness".' |
-| bmad-code-review | 'Review code changes adversarially using parallel review layers (Blind Hunter, Edge Case Hunter, Acceptance Auditor) wit |
-| bmad-correct-course | 'Manage significant changes during sprint execution. Use when the user says "correct course" or "propose sprint change"' |
-| bmad-create-architecture | 'Create architecture solution design decisions for AI agent consistency. Use when the user says "lets create architectur |
-| bmad-create-epics-and-stories | 'Break requirements into epics and user stories. Use when the user says "create the epics and stories list"' |
-| bmad-create-prd | 'Create a PRD from scratch. Use when the user says "lets create a product requirements document" or "I want to create a  |
-| bmad-create-product-brief | 'Create product brief through collaborative discovery. Use when the user says "lets create a product brief" or "help me  |
-| bmad-create-story | 'Creates a dedicated story file with all the context the agent will need to implement it later. Use when the user says " |
-| bmad-create-ux-design | 'Plan UX patterns and design specifications. Use when the user says "lets create UX design" or "create UX specifications |
-| bmad-dev-story | 'Execute story implementation following a context filled story spec file. Use when the user says "dev this story [story  |
-| bmad-dev | dev agent |
-| bmad-distillator | Lossless LLM-optimized compression of source documents. Use when the user requests to 'distill documents' or 'create a d |
-| bmad-document-project | 'Document brownfield projects for AI context. Use when the user says "document this project" or "generate project docs"' |
-| bmad-domain-research | 'Conduct domain and industry research. Use when the user says "lets create a research report on [domain or industry]"' |
-| bmad-edit-prd | 'Edit an existing PRD. Use when the user says "edit this PRD".' |
-| bmad-editorial-review-prose | 'Clinical copy-editor that reviews text for communication issues. Use when user says review for prose or improve the pro |
-| bmad-editorial-review-structure | 'Structural editor that proposes cuts, reorganization, and simplification while preserving comprehension. Use when user  |
-| bmad-generate-project-context | 'Create project-context.md with AI rules. Use when the user says "generate project context" or "create project context"' |
-| bmad-help | 'Analyzes current state and user query to answer BMad questions or recommend the next workflow or agent. Use when user s |
-| bmad-index-docs | 'Generates or updates an index.md to reference all docs in the folder. Use if user requests to create or update an index |
-| bmad-market-research | 'Conduct market research on competition and customers. Use when the user says "create a market research report about [bu |
-| bmad-party-mode | 'Orchestrates group discussions between all installed BMAD agents, enabling natural multi-agent conversations. Use when  |
-| bmad-pm | pm agent |
-| bmad-product-brief-preview | Create or update product briefs through guided or autonomous discovery. Use when the user requests to 'create a product  |
-| bmad-qa-generate-e2e-tests | 'Generate end to end automated tests for existing features. Use when the user says "create qa automated tests for [featu |
-| bmad-qa | qa agent |
-| bmad-quick-dev-new-preview | 'Implements any user intent, requirement, story, bug fix or change request by producing clean working code artifacts tha |
-| bmad-quick-dev | 'Implement a Quick Tech Spec for small changes or features. Use when the user provides a quick tech spec and says "imple |
-| bmad-quick-flow-solo-dev | quick-flow-solo-dev agent |
-| bmad-quick-spec | 'Very quick process to create implementation-ready quick specs for small changes or features. Use when the user says "cr |
-| bmad-retrospective | 'Post-epic review to extract lessons and assess success. Use when the user says "run a retrospective" or "lets retro the |
-| bmad-review-adversarial-general | 'Perform a Cynical Review and produce a findings report. Use when the user requests a critical review of something' |
-| bmad-review-edge-case-hunter | 'Walk every branching path and boundary condition in content, report only unhandled edge cases. Orthogonal to adversaria |
-| bmad-shard-doc | 'Splits large markdown documents into smaller, organized files based on level 2 (default) sections. Use if the user says |
-| bmad-sm | sm agent |
-| bmad-sprint-planning | 'Generate sprint status tracking from epics. Use when the user says "run sprint planning" or "generate sprint plan"' |
-| bmad-sprint-status | 'Summarize sprint status and surface risks. Use when the user says "check sprint status" or "show sprint status"' |
-| bmad-tech-writer | tech-writer agent |
-| bmad-technical-research | 'Conduct technical research on technologies and architecture. Use when the user says "create a technical research report |
-| bmad-ux-designer | ux-designer agent |
-| bmad-validate-prd | 'Validate a PRD against standards. Use when the user says "validate this PRD" or "run PRD validation"' |
+| _archived | — |
+| autoplan | | |
+| autoresearch | Set up autonomous experiment loops that continuously improve any measurable output — prompts, configs, performance, UI |
+| benchmark | | |
+| browse | | |
+| canary | | |
+| careful | | |
+| codex | | |
 | coding-standards | Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development. |
-| configure-ecc | Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to u |
 | continuous-learning-v2 | Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and e |
-| continuous-learning | Automatically extract reusable patterns from Claude Code sessions and save them as learned skills for future use. |
-| deploy-checklist | Pre-deployment verification checklist for Vercel + Supabase apps covering env vars, migrations, RLS, build checks, and m |
-| e2e-testing | Playwright E2E testing patterns, Page Object Model, configuration, CI/CD integration, artifact management, and flaky tes |
-| eval-harness | Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles |
-| frontend-patterns | Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices. |
-| frontend-slides | Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wan |
-| iterative-retrieval | Pattern for progressively refining context retrieval to solve the subagent context problem |
-| mcp-server-patterns | Build MCP servers with Node/TypeScript SDK — tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use  |
-| next-app-router | Next.js App Router conventions including server components, server actions, route handlers, layouts, loading/error state |
-| obsidian-sync | On-demand trigger for syncing Claude Code configuration to the Obsidian vault at self-mastery/cc/. |
-| plankton-code-quality | Write-time code quality enforcement using Plankton — auto-formatting, linting, and Claude-powered fixes on every file  |
-| project-guidelines-example | Example project-specific skill template based on a real production application. |
-| python-patterns | Pythonic idioms, PEP 8 standards, type hints, and best practices for building robust, efficient, and maintainable Python |
-| python-testing | Python testing strategies using pytest, TDD methodology, fixtures, mocking, parametrization, and coverage requirements. |
+| cso | | |
+| deploy-checklist | Pre-deployment verification checklist for Vercel + Supabase apps. Use when deploying, shipping to production, or running |
+| design-consultation | | |
+| design-review | | |
+| document-release | | |
+| end-session | End-of-session protocol — updates memory, logs tasks, and ensures continuity across sessions. Run before closing a Cla |
+| freeze | | |
+| gstack-upgrade | | |
+| gstack | | |
+| guard | | |
+| investigate | | |
+| land-and-deploy | | |
+| mission-control-patterns | Project-specific architecture and patterns for mission-control. Covers dual database (SQLite + Supabase), WebSocket (ws) |
+| next-app-router | Next.js App Router conventions and patterns. Use when working with server/client components, server actions, route handl |
+| obsidian-sync | Sync ~/.claude/ config files to the Obsidian vault (liebe/config/ directory). Use when syncing config, mirroring to vaul |
+| office-hours | | |
+| plan-ceo-review | | |
+| plan-design-review | | |
+| plan-eng-review | | |
+| python-patterns | MANUAL TRIGGER ONLY: Pythonic idioms, PEP 8 standards, type hints, and best practices. Only invoke when explicitly worki |
+| python-testing | MANUAL TRIGGER ONLY: Python testing with pytest, TDD, fixtures, mocking, parametrization. Only invoke when explicitly te |
+| qa-only | | |
+| qa | | |
+| retro-to-instincts | Post-retro bridge — extracts lessons learned into continuous-learning instincts. Use after /retro or when extracting i |
+| retro | | |
+| review | | |
+| setup-browser-cookies | | |
+| setup-deploy | | |
+| ship | | |
 | skill-stocktake | Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake m |
-| strategic-compact | Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary au |
-| supabase-patterns | Supabase patterns for RLS policies, Edge Functions, Realtime subscriptions, database migrations, and TypeScript client u |
-| tdd-workflow | Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ c |
-| ui-ux-pro-max | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte,  |
-| verification-loop | A comprehensive verification system for Claude Code sessions. |
+| supabase-patterns | Supabase patterns for RLS policies, Edge Functions, Realtime, migrations, and TypeScript client. Use when working with S |
+| taste-redesign | | |
+| ui-ux-pro-max | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks. Use for any UI design, compon |
+| unfreeze | | |

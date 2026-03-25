@@ -1,18 +1,18 @@
 # Claude Code Configuration Dashboard
 
-> Last synced: 2026-03-24
+> Last synced: 2026-03-26
 > Auto-sync: daily at 5:00 AM via LaunchAgent
 
 ## Quick Links
 
 | Area | Count | Link |
 |------|-------|------|
-| Rules | 67 files | [[rules/Rules Index]] |
-| Commands | 60 commands | [[commands/Commands Index]] |
-| Agents | 16 ECC agents | [[agents/Agents Index]] |
-| Skills | 71 skills | [[skills/Skills Index]] |
+| Rules | 21 files | [[rules/Rules Index]] |
+| Commands | 39 commands | [[commands/Commands Index]] |
+| Agents | 24 ECC agents | [[agents/Agents Index]] |
+| Skills | 44 skills | [[skills/Skills Index]] |
 | Hooks | — | [[hooks/Hooks Overview]] |
-| MCP Servers | 25 configured | [[MCPs]] |
+| MCP Servers | 8 configured | [[MCPs]] |
 | CLI Tools | — | [[CLIs]] |
 | Terminal | Starship + Zsh | [[terminal/Terminal Setup]] |
 | Settings | Permissions & config | [[Settings]] |

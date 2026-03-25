@@ -1,6 +1,6 @@
 # CLI Tools
 
-> Last synced: 2026-03-24
+> Last synced: 2026-03-26
 
 | CLI | Path | Installed |
 |-----|------|-----------|
@@ -22,13 +22,10 @@
 | `brew` | /opt/homebrew/bin/brew | yes |
 | `vercel` | /opt/homebrew/bin/vercel | yes |
 | `claude` | /opt/homebrew/bin/claude | yes |
-| `python3` | /usr/bin/python3 | yes |
+| `python3` | /opt/homebrew/bin/python3 | yes |
 
 ## Aliases (from ~/.zshrc)
 
 | Alias | Command |
 |-------|---------|
-| `ls` | ``eza --icons --group-directories-first` |
-| `ll` | ``eza --icons --group-directories-first -la` |
-| `lt` | ``eza --icons --tree --level=2` |
-| `cat` | ``bat --style=auto` |
+
