@@ -133,3 +133,31 @@ export type RankTitle =
   | "Senior Vibecoder"
   | "Staff Vibecoder"
   | "Vibecoding Architect";
+
+// Quest system (Academy merge)
+export interface QuestConcept {
+  title: string;
+  content: string;
+  tips?: string[];
+}
+
+export interface Quest {
+  id: string;
+  title: string;
+  prompt: string;
+  xpReward: number;
+  order: number;
+}
+
+export interface QuestChain {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  skillTreeId: string;
+  skillNodeId: string;
+  quests: Quest[];
+  chainBonusXp: number;
+  concepts: QuestConcept[];
+  takeaways: string[];
+}

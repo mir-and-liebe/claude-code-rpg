@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronDown, ChevronUp, Lightbulb, Briefcase, Zap, Lock, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { Check, ChevronDown, ChevronUp, Lightbulb, Briefcase, Zap, Lock, Sparkles, Scroll } from "lucide-react";
 import type { SkillNode as SkillNodeType } from "@/lib/types";
 
 interface Props {
@@ -12,9 +13,10 @@ interface Props {
   revealed: boolean;
   verified?: boolean;
   step?: string;
+  linkedQuest?: { chainId: string; chainName: string };
 }
 
-export function SkillNode({ node, color, onToggle, onChallenge, revealed, verified, step }: Props) {
+export function SkillNode({ node, color, onToggle, onChallenge, revealed, verified, step, linkedQuest }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [confirmUncomplete, setConfirmUncomplete] = useState(false);
 
@@ -91,6 +93,16 @@ export function SkillNode({ node, color, onToggle, onChallenge, revealed, verifi
           <p className="text-[13px] text-text-secondary mb-3 leading-relaxed">
             {node.description}
           </p>
+          {linkedQuest && !node.completed && (
+            <Link
+              href={`/quests/${linkedQuest.chainId}`}
+              className="inline-flex items-center gap-1.5 text-[11px] text-gold/70 hover:text-gold transition-colors mb-3"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Scroll className="w-3 h-3" />
+              Complete &ldquo;{linkedQuest.chainName}&rdquo; to unlock
+            </Link>
+          )}
           {/* Impact statement (CD1 — Humanity Hero) */}
           {node.completed && node.impact && (
             <div className="flex items-start gap-1.5 mb-3 p-2.5 rounded-lg bg-gold/[0.03] border border-gold/10">

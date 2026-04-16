@@ -16,12 +16,14 @@ import {
   Map,
   TerminalSquare,
   Brain,
+  Scroll,
   BookOpen as BookOpenIcon,
 } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Dashboard", Icon: Swords },
   { href: "/skills", label: "Skill Trees", Icon: TreePine },
+  { href: "/quests", label: "Quests", Icon: Scroll },
   { href: "/map", label: "Map", Icon: Map },
   { href: "/playground", label: "Playground", Icon: TerminalSquare },
   { href: "/review", label: "Review", Icon: Brain },

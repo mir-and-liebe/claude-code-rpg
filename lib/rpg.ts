@@ -196,6 +196,12 @@ export function isSkillRevealed(
 
 // --- Quest System (CD6+CD7) ---
 
+const QUEST_CHAIN_NAMES = [
+  "The Awakening", "The Scout's Eye", "The Blade's Edge", "The Chronicle",
+  "The Bug Hunter", "The Forge", "The Proving Ground", "The Alchemist",
+  "The Arcane Arts", "The Final Trial",
+];
+
 export function generateDailyQuest(dateStr: string): {
   questType: string;
   questTarget: string;
@@ -205,10 +211,13 @@ export function generateDailyQuest(dateStr: string): {
   // Deterministic seed from date
   const seed = dateStr.split("-").reduce((a, b) => a + parseInt(b), 0);
   const treeIndex = seed % trees.length;
+  const chainIndex = seed % QUEST_CHAIN_NAMES.length;
   const questTypes = [
     { type: "complete_skill", label: `Complete any skill in ${trees[treeIndex].name}`, xp: 50 },
     { type: "explore_practice", label: "Read any best practice's 'Why' section", xp: 25 },
     { type: "revisit_skill", label: "Expand a completed skill's details", xp: 25 },
+    { type: "complete_quest", label: `Complete any quest in ${QUEST_CHAIN_NAMES[chainIndex]}`, xp: 50 },
+    { type: "complete_3_quests", label: "Complete 3 quests today", xp: 75 },
   ];
   const questIndex = Math.floor(seed / trees.length) % questTypes.length;
   const quest = questTypes[questIndex];
