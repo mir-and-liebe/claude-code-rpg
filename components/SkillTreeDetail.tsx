@@ -2,6 +2,7 @@
 
 import { ArrowLeft, Loader2, Zap } from "lucide-react";
 import combosData from "@/data/combos.json";
+import { questChains } from "@/data/quests";
 import type { SkillCombo } from "@/lib/types";
 import type { SkillTree } from "@/lib/types";
 import { getTreeProgress, isSkillRevealed } from "@/lib/rpg";
@@ -37,6 +38,12 @@ export function SkillTreeDetail({ initialTree }: Props) {
 
   const progress = getTreeProgress(tree);
   const Icon = treeIconMap[tree.icon];
+
+  // Map skill node IDs to their linked quest chains
+  const questLinkMap = new Map<string, { chainId: string; chainName: string }>();
+  for (const chain of questChains) {
+    questLinkMap.set(chain.skillNodeId, { chainId: chain.id, chainName: chain.name });
+  }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -120,6 +127,7 @@ export function SkillTreeDetail({ initialTree }: Props) {
               revealed={isSkillRevealed(node, tree, completedSkills)}
               verified={verifiedSkills.has(node.id)}
               step={`Step ${i + 1} of ${tree.nodes.length}`}
+              linkedQuest={questLinkMap.get(node.id)}
             />
           </div>
         ))}

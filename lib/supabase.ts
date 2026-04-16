@@ -26,6 +26,8 @@ export interface ProgressRow {
   anki_xp: number;
   anki_streak: number;
   anki_last_date: string | null;
+  completed_quests: string[];
+  quest_xp: number;
 }
 
 const DEFAULT_PROGRESS: ProgressRow = {
@@ -47,6 +49,8 @@ const DEFAULT_PROGRESS: ProgressRow = {
   anki_xp: 0,
   anki_streak: 0,
   anki_last_date: null,
+  completed_quests: [],
+  quest_xp: 0,
 };
 
 export async function loadProgress(): Promise<ProgressRow> {
@@ -120,6 +124,47 @@ export async function saveEasterEgg(eggId: string): Promise<void> {
     .from("rpg_progress")
     .update({
       discovered_easter_eggs: [...current.discovered_easter_eggs, eggId],
+    })
+    .eq("id", "default");
+}
+
+export async function saveQuestCompletion(
+  questId: string,
+  xpAwarded: number
+): Promise<void> {
+  const current = await loadProgress();
+  if (current.completed_quests.includes(questId)) return;
+
+  const newQuests = [...current.completed_quests, questId];
+  const newQuestXp = current.quest_xp + xpAwarded;
+  const today = new Date().toISOString().split("T")[0];
+  const streakData = updateStreak(current, today);
+
+  // Update XP history
+  const history = [...current.xp_history];
+  const currentTotalXp =
+    calculateTotalXp(
+      current.completed_skills,
+      current.character_class as CharacterClass
+    ) +
+    newQuestXp +
+    current.anki_xp;
+
+  const todayIdx = history.findIndex((h) => h.date === today);
+  if (todayIdx >= 0) {
+    history[todayIdx] = { ...history[todayIdx], xp: currentTotalXp };
+  } else {
+    history.push({ date: today, xp: currentTotalXp });
+  }
+
+  await supabase
+    .from("rpg_progress")
+    .update({
+      completed_quests: newQuests,
+      quest_xp: newQuestXp,
+      xp_history: history,
+      updated_at: new Date().toISOString(),
+      ...streakData,
     })
     .eq("id", "default");
 }

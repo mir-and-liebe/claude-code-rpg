@@ -14,6 +14,7 @@ import {
   saveCharacter,
   saveChapterSeen,
   saveEasterEgg,
+  saveQuestCompletion,
   supabase,
   type ProgressRow,
 } from "./supabase";
@@ -43,6 +44,9 @@ interface ProgressContext {
   discoverEasterEgg: (eggId: string) => void;
   lastToggledSkillXp: number | null;
   reviewDueCount: number;
+  completedQuests: Set<string>;
+  questXp: number;
+  completeQuest: (questId: string, xpReward: number, chainId: string) => void;
 }
 
 const ProgressCtx = createContext<ProgressContext>({
@@ -59,6 +63,9 @@ const ProgressCtx = createContext<ProgressContext>({
   discoverEasterEgg: () => {},
   lastToggledSkillXp: null,
   reviewDueCount: 0,
+  completedQuests: new Set(),
+  questXp: 0,
+  completeQuest: () => {},
 });
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
@@ -68,10 +75,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const [lastToggledSkillXp, setLastToggledSkillXp] = useState<number | null>(null);
   const [pendingChallenge, setPendingChallenge] = useState<PendingChallenge | null>(null);
   const [reviewDueCount, setReviewDueCount] = useState(0);
+  const [completedQuests, setCompletedQuests] = useState<Set<string>>(new Set());
+  const [questXp, setQuestXp] = useState(0);
 
   useEffect(() => {
     loadProgress().then((data) => {
       setCompletedSkills(new Set(data.completed_skills));
+      setCompletedQuests(new Set(data.completed_quests));
+      setQuestXp(data.quest_xp);
       setProgress(data);
       setLoading(false);
     });
@@ -197,6 +208,58 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
+  const completeQuest = useCallback(
+    (questId: string, xpReward: number, chainId: string) => {
+      if (completedQuests.has(questId)) return;
+
+      setCompletedQuests((prev) => {
+        const next = new Set(prev);
+        next.add(questId);
+        return next;
+      });
+      setQuestXp((prev) => prev + xpReward);
+      setLastToggledSkillXp(xpReward);
+      setTimeout(() => setLastToggledSkillXp(null), 2000);
+
+      // Check if entire chain is now complete → auto-complete linked skill node
+      import("@/data/quests").then(({ questChains }) => {
+        const chain = questChains.find((c) => c.id === chainId);
+        if (!chain) return;
+
+        const allQuestIds = chain.quests.map((q) => q.id);
+        const newCompleted = new Set(completedQuests);
+        newCompleted.add(questId);
+        const chainComplete = allQuestIds.every((qid) => newCompleted.has(qid));
+
+        let totalXpForThis = xpReward;
+        if (chainComplete) {
+          totalXpForThis += chain.chainBonusXp;
+          // Auto-complete the linked skill node
+          setCompletedSkills((prev) => {
+            if (prev.has(chain.skillNodeId)) return prev;
+            const next = new Set(prev);
+            next.add(chain.skillNodeId);
+            const charClass = (progress?.character_class || "") as CharacterClass;
+            saveCompletedSkills(Array.from(next), charClass);
+            return next;
+          });
+        }
+
+        saveQuestCompletion(questId, totalXpForThis);
+        setProgress((prev) =>
+          prev
+            ? {
+                ...prev,
+                completed_quests: [...prev.completed_quests, questId],
+                quest_xp: prev.quest_xp + totalXpForThis,
+              }
+            : prev
+        );
+      });
+    },
+    [completedQuests, progress?.character_class]
+  );
+
   return (
     <ProgressCtx.Provider
       value={{
@@ -213,6 +276,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         discoverEasterEgg,
         lastToggledSkillXp,
         reviewDueCount,
+        completedQuests,
+        questXp,
+        completeQuest,
       }}
     >
       {children}
