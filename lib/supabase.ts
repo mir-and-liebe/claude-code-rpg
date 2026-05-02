@@ -1,11 +1,9 @@
-import { createClient } from "@supabase/supabase-js";
 import skillTreesData from "@/data/skills.json";
-import type { SkillTree, CharacterClass } from "./types";
+import type { CharacterClass, SkillTree } from "./types";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const PROGRESS_KEY = "vibecoding-rpg-progress";
+const REVIEWS_KEY = "vibecoding-rpg-skill-reviews";
+const DAILY_KEY = "vibecoding-rpg-daily-quests";
 
 export interface ProgressRow {
   id: string;
@@ -30,10 +28,28 @@ export interface ProgressRow {
   quest_xp: number;
 }
 
+export interface SkillReviewRow {
+  skill_id: string;
+  ease_factor: number;
+  interval_days: number;
+  repetitions: number;
+  next_review: string;
+  last_review: string;
+}
+
+export interface DailyQuestRow {
+  id: string;
+  date: string;
+  quest_type: string;
+  quest_target: string;
+  bonus_xp: number;
+  completed: boolean;
+}
+
 const DEFAULT_PROGRESS: ProgressRow = {
   id: "default",
   character_name: "Vibecoder",
-  character_title: "Product Manager turned Vibecoder",
+  character_title: "Solo Shipper turned Vibecoder",
   completed_skills: [],
   xp_history: [{ date: new Date().toISOString().split("T")[0], xp: 0 }],
   updated_at: new Date().toISOString(),
@@ -53,49 +69,63 @@ const DEFAULT_PROGRESS: ProgressRow = {
   quest_xp: 0,
 };
 
-export async function loadProgress(): Promise<ProgressRow> {
-  const { data, error } = await supabase
-    .from("rpg_progress")
-    .select("*")
-    .eq("id", "default")
-    .single();
+function hasStorage(): boolean {
+  return typeof window !== "undefined" && Boolean(window.localStorage);
+}
 
-  if (error || !data) {
-    return { ...DEFAULT_PROGRESS };
+function todayString(): string {
+  return new Date().toISOString().split("T")[0];
+}
+
+function readJson<T>(key: string, fallback: T): T {
+  if (!hasStorage()) return fallback;
+  const raw = window.localStorage.getItem(key);
+  if (!raw) return fallback;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    return fallback;
   }
+}
 
-  return { ...DEFAULT_PROGRESS, ...data } as ProgressRow;
+function writeJson<T>(key: string, value: T): void {
+  if (!hasStorage()) return;
+  window.localStorage.setItem(key, JSON.stringify(value));
+}
+
+async function saveProgress(progress: ProgressRow): Promise<void> {
+  writeJson(PROGRESS_KEY, progress);
+}
+
+async function updateProgress(
+  updater: (current: ProgressRow) => ProgressRow
+): Promise<ProgressRow> {
+  const next = updater(await loadProgress());
+  await saveProgress(next);
+  return next;
+}
+
+export async function loadProgress(): Promise<ProgressRow> {
+  const stored = readJson<Partial<ProgressRow>>(PROGRESS_KEY, {});
+  return { ...DEFAULT_PROGRESS, ...stored };
 }
 
 export async function saveCompletedSkills(
   skills: string[],
   characterClass: CharacterClass = ""
 ): Promise<void> {
-  const totalXp = calculateTotalXp(skills, characterClass);
-  const today = new Date().toISOString().split("T")[0];
-
-  const current = await loadProgress();
-  const history = [...current.xp_history];
-
-  const todayIdx = history.findIndex((h) => h.date === today);
-  if (todayIdx >= 0) {
-    history[todayIdx] = { ...history[todayIdx], xp: totalXp };
-  } else {
-    history.push({ date: today, xp: totalXp });
-  }
-
-  // Update streak
-  const streakData = updateStreak(current, today);
-
-  await supabase
-    .from("rpg_progress")
-    .update({
+  const today = todayString();
+  await updateProgress((current) => {
+    const totalXp = calculateTotalXp(skills, characterClass);
+    const history = updateHistory(current.xp_history, today, totalXp + current.quest_xp + current.anki_xp);
+    return {
+      ...current,
       completed_skills: skills,
       xp_history: history,
       updated_at: new Date().toISOString(),
-      ...streakData,
-    })
-    .eq("id", "default");
+      ...updateStreak(current, today),
+    };
+  });
 }
 
 export async function saveCharacter(fields: {
@@ -104,72 +134,113 @@ export async function saveCharacter(fields: {
   character_class?: string;
   avatar?: string;
 }): Promise<void> {
-  await supabase
-    .from("rpg_progress")
-    .update({ ...fields, updated_at: new Date().toISOString() })
-    .eq("id", "default");
+  await updateProgress((current) => ({
+    ...current,
+    ...fields,
+    updated_at: new Date().toISOString(),
+  }));
 }
 
 export async function saveChapterSeen(chapterId: string): Promise<void> {
-  await supabase
-    .from("rpg_progress")
-    .update({ last_seen_chapter: chapterId })
-    .eq("id", "default");
+  await updateProgress((current) => ({ ...current, last_seen_chapter: chapterId }));
 }
 
 export async function saveEasterEgg(eggId: string): Promise<void> {
-  const current = await loadProgress();
-  if (current.discovered_easter_eggs.includes(eggId)) return;
-  await supabase
-    .from("rpg_progress")
-    .update({
+  await updateProgress((current) => {
+    if (current.discovered_easter_eggs.includes(eggId)) return current;
+    return {
+      ...current,
       discovered_easter_eggs: [...current.discovered_easter_eggs, eggId],
-    })
-    .eq("id", "default");
+    };
+  });
 }
 
 export async function saveQuestCompletion(
   questId: string,
   xpAwarded: number
 ): Promise<void> {
-  const current = await loadProgress();
-  if (current.completed_quests.includes(questId)) return;
-
-  const newQuests = [...current.completed_quests, questId];
-  const newQuestXp = current.quest_xp + xpAwarded;
-  const today = new Date().toISOString().split("T")[0];
-  const streakData = updateStreak(current, today);
-
-  // Update XP history
-  const history = [...current.xp_history];
-  const currentTotalXp =
-    calculateTotalXp(
-      current.completed_skills,
-      current.character_class as CharacterClass
-    ) +
-    newQuestXp +
-    current.anki_xp;
-
-  const todayIdx = history.findIndex((h) => h.date === today);
-  if (todayIdx >= 0) {
-    history[todayIdx] = { ...history[todayIdx], xp: currentTotalXp };
-  } else {
-    history.push({ date: today, xp: currentTotalXp });
-  }
-
-  await supabase
-    .from("rpg_progress")
-    .update({
-      completed_quests: newQuests,
-      quest_xp: newQuestXp,
-      xp_history: history,
+  const today = todayString();
+  await updateProgress((current) => {
+    if (current.completed_quests.includes(questId)) return current;
+    const completed_quests = [...current.completed_quests, questId];
+    const quest_xp = current.quest_xp + xpAwarded;
+    const currentTotalXp =
+      calculateTotalXp(current.completed_skills, current.character_class as CharacterClass) +
+      quest_xp +
+      current.anki_xp;
+    return {
+      ...current,
+      completed_quests,
+      quest_xp,
+      xp_history: updateHistory(current.xp_history, today, currentTotalXp),
       updated_at: new Date().toISOString(),
-      ...streakData,
-    })
-    .eq("id", "default");
+      ...updateStreak(current, today),
+    };
+  });
 }
 
-// Class bonuses: +25% XP for bonus trees
+export async function saveVerifiedSkill(skillId: string): Promise<void> {
+  await updateProgress((current) => {
+    if (current.verified_skills.includes(skillId)) return current;
+    return { ...current, verified_skills: [...current.verified_skills, skillId] };
+  });
+}
+
+export async function addAnkiXp(xp: number): Promise<void> {
+  if (xp <= 0) return;
+  const today = todayString();
+  await updateProgress((current) => {
+    const anki_xp = current.anki_xp + xp;
+    const currentTotalXp =
+      calculateTotalXp(current.completed_skills, current.character_class as CharacterClass) +
+      current.quest_xp +
+      anki_xp;
+    return {
+      ...current,
+      anki_xp,
+      anki_last_date: today,
+      xp_history: updateHistory(current.xp_history, today, currentTotalXp),
+      updated_at: new Date().toISOString(),
+    };
+  });
+}
+
+export async function countDueSkillReviews(): Promise<number> {
+  const today = todayString();
+  return readReviews().filter((review) => review.next_review <= today).length;
+}
+
+export async function loadDueSkillReviews(): Promise<SkillReviewRow[]> {
+  const today = todayString();
+  return readReviews().filter((review) => review.next_review <= today);
+}
+
+export async function saveSkillReview(review: SkillReviewRow): Promise<void> {
+  const reviews = readReviews();
+  const index = reviews.findIndex((item) => item.skill_id === review.skill_id);
+  if (index >= 0) {
+    reviews[index] = review;
+  } else {
+    reviews.push(review);
+  }
+  writeJson(REVIEWS_KEY, reviews);
+}
+
+export async function loadDailyQuest(id: string): Promise<DailyQuestRow | null> {
+  return readDailyQuests().find((quest) => quest.id === id) ?? null;
+}
+
+export async function saveDailyQuest(quest: DailyQuestRow): Promise<void> {
+  const quests = readDailyQuests();
+  const index = quests.findIndex((item) => item.id === quest.id);
+  if (index >= 0) {
+    quests[index] = quest;
+  } else {
+    quests.push(quest);
+  }
+  writeJson(DAILY_KEY, quests);
+}
+
 const CLASS_BONUS_TREES: Record<string, string[]> = {
   architect: ["prompt-architect", "agent-craft"],
   operator: ["cli-dominance", "mcp-mastery"],
@@ -194,6 +265,29 @@ export function calculateTotalXp(
   return total;
 }
 
+function readReviews(): SkillReviewRow[] {
+  return readJson<SkillReviewRow[]>(REVIEWS_KEY, []);
+}
+
+function readDailyQuests(): DailyQuestRow[] {
+  return readJson<DailyQuestRow[]>(DAILY_KEY, []);
+}
+
+function updateHistory(
+  history: { date: string; xp: number }[],
+  date: string,
+  xp: number
+): { date: string; xp: number }[] {
+  const next = [...history];
+  const todayIdx = next.findIndex((item) => item.date === date);
+  if (todayIdx >= 0) {
+    next[todayIdx] = { ...next[todayIdx], xp };
+  } else {
+    next.push({ date, xp });
+  }
+  return next;
+}
+
 function updateStreak(
   current: ProgressRow,
   today: string
@@ -201,7 +295,6 @@ function updateStreak(
   const lastDate = current.streak_last_date;
 
   if (lastDate === today) {
-    // Already active today
     return {
       streak_current: current.streak_current,
       streak_best: current.streak_best,
@@ -214,16 +307,14 @@ function updateStreak(
   const yesterdayStr = yesterday.toISOString().split("T")[0];
 
   if (lastDate === yesterdayStr) {
-    // Consecutive day
-    const newStreak = current.streak_current + 1;
+    const streak_current = current.streak_current + 1;
     return {
-      streak_current: newStreak,
-      streak_best: Math.max(newStreak, current.streak_best),
+      streak_current,
+      streak_best: Math.max(streak_current, current.streak_best),
       streak_last_date: today,
     };
   }
 
-  // Streak broken — start fresh
   return {
     streak_current: 1,
     streak_best: Math.max(1, current.streak_best),

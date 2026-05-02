@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { RotateCcw, Check, Brain, Loader2 } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import { Check, Brain, Loader2, RefreshCw } from "lucide-react";
+import { loadDueSkillReviews, saveSkillReview } from "@/lib/supabase";
 import { calculateNextReview, qualityFromRating, type ReviewState } from "@/lib/spaced-repetition";
 import Link from "next/link";
 import skillTreesData from "@/data/skills.json";
@@ -48,15 +48,11 @@ export default function ReviewPage() {
   }, [flipped, current]);
 
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0];
-    supabase
-      .from("skill_reviews")
-      .select("*")
-      .lte("next_review", today)
-      .then(({ data }) => {
-        setQueue((data || []) as ReviewItem[]);
+    loadDueSkillReviews()
+      .then((data) => {
+        setQueue(data as ReviewItem[]);
         setLoading(false);
-        if (!data || data.length === 0) setDone(true);
+        if (data.length === 0) setDone(true);
       });
   }, []);
 
@@ -74,16 +70,14 @@ export default function ReviewPage() {
     const nextDate = new Date();
     nextDate.setDate(nextDate.getDate() + next.intervalDays);
 
-    await supabase
-      .from("skill_reviews")
-      .update({
-        ease_factor: next.easeFactor,
-        interval_days: next.intervalDays,
-        repetitions: next.repetitions,
-        next_review: nextDate.toISOString().split("T")[0],
-        last_review: new Date().toISOString().split("T")[0],
-      })
-      .eq("skill_id", item.skill_id);
+    await saveSkillReview({
+      skill_id: item.skill_id,
+      ease_factor: next.easeFactor,
+      interval_days: next.intervalDays,
+      repetitions: next.repetitions,
+      next_review: nextDate.toISOString().split("T")[0],
+      last_review: new Date().toISOString().split("T")[0],
+    });
 
     setFlipped(false);
     if (current + 1 >= queue.length) {
@@ -103,10 +97,11 @@ export default function ReviewPage() {
 
   if (done) {
     return (
-      <div className="max-w-lg mx-auto text-center py-20">
-        <Check className="w-10 h-10 text-gold mx-auto mb-4" />
-        <h1 className="text-2xl mb-2">All Caught Up</h1>
-        <p className="text-text-muted mb-4">
+      <div className="mx-auto max-w-2xl py-10">
+        <div className="panel p-8 text-center">
+        <Check className="mx-auto mb-4 h-10 w-10 text-signal" />
+        <h1 className="text-3xl font-black text-ink">All caught up.</h1>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-soft">
           {queue.length === 0
             ? "No skills due for review. Complete some skill challenges first — they'll appear here for review the next day."
             : `Reviewed ${queue.length} skill${queue.length !== 1 ? "s" : ""}. Nice work. Come back tomorrow.`}
@@ -114,11 +109,12 @@ export default function ReviewPage() {
         {queue.length === 0 && (
           <Link
             href="/skills"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gold/10 border border-gold/20 text-gold text-sm hover:bg-gold/15 transition-colors"
+            className="mt-5 inline-flex items-center gap-2 rounded-md border border-signal/30 bg-signal/10 px-4 py-2.5 text-sm font-semibold text-signal transition-colors hover:bg-signal/15"
           >
-            Go to Skill Trees
+            Go to Arsenal
           </Link>
         )}
+        </div>
       </div>
     );
   }
@@ -128,26 +124,32 @@ export default function ReviewPage() {
   if (!skill) return null;
 
   return (
-    <div className="max-w-lg mx-auto space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl">Review</h1>
-          <p className="text-sm text-text-muted mt-1">
-            Spaced repetition — strengthen what you've learned
-          </p>
-        </div>
-        <div className="flex items-center gap-1.5 text-text-muted">
-          <Brain className="w-4 h-4" />
-          <span className="text-sm font-mono">
-            {current + 1}/{queue.length}
-          </span>
+    <div className="mx-auto max-w-2xl space-y-6">
+      <div className="signal-band px-5 py-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-3 py-1 text-xs font-semibold text-soft">
+              <RefreshCw className="h-4 w-4 text-signal" />
+              Review
+            </div>
+            <h1 className="text-4xl font-black text-ink">Reinforce the moves that matter.</h1>
+            <p className="mt-3 text-sm leading-6 text-soft">
+              A quiet review loop for skills you have already touched.
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center gap-1.5 rounded-md border border-line bg-void/40 px-3 py-2 text-muted">
+            <Brain className="w-4 h-4" />
+            <span className="text-sm font-mono">
+              {current + 1}/{queue.length}
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Card */}
       <div
         onClick={() => !flipped && setFlipped(true)}
-        className={`card p-8 min-h-[280px] flex flex-col justify-center cursor-pointer transition-all duration-500 ${
+        className={`panel p-8 min-h-[280px] flex flex-col justify-center cursor-pointer transition-all duration-500 ${
           !flipped ? "hover:border-gold/20" : ""
         }`}
       >

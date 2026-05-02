@@ -1,146 +1,169 @@
 import {
-  FileText,
-  Settings,
-  Terminal,
-  Plug,
   Bot,
-  TerminalSquare,
   BookOpen,
-  Sparkles,
+  Braces,
+  CircuitBoard,
+  FileText,
   GitBranch,
-  Monitor,
-  Clock,
-  RefreshCw,
-  ExternalLink,
+  Plug,
+  RadioTower,
+  Sparkles,
+  Terminal,
+  TerminalSquare,
 } from "lucide-react";
+import agents from "@/data/vault/agents.json";
+import clis from "@/data/vault/clis.json";
+import commands from "@/data/vault/commands.json";
+import mcps from "@/data/vault/mcps.json";
+import rules from "@/data/vault/rules.json";
+import skills from "@/data/vault/skills.json";
 
-const vaultFiles = [
-  { name: "Dashboard.md", desc: "Master overview and sync status", Icon: Monitor },
-  { name: "Settings.md", desc: "JSON config and permissions", Icon: Settings },
-  { name: "CLIs.md", desc: "14 installed CLI tools and aliases", Icon: Terminal },
-  { name: "MCPs.md", desc: "24 configured MCP servers", Icon: Plug },
-  { name: "agents/Agents Index.md", desc: "28 ECC + 8 BMAD agents", Icon: Bot },
-  { name: "commands/Commands Index.md", desc: "60 slash commands", Icon: TerminalSquare },
-  { name: "rules/Rules Index.md", desc: "66 rule files", Icon: BookOpen },
-  { name: "skills/Skills Index.md", desc: "91 skills", Icon: Sparkles },
-  { name: "hooks/Hooks Overview.md", desc: "Hook configurations", Icon: GitBranch },
-  { name: "terminal/Terminal Setup.md", desc: "Zsh + Starship config", Icon: Terminal },
+const systems = [
+  {
+    title: "Context Rules",
+    count: rules.count,
+    Icon: FileText,
+    keeper: "Keep",
+    use: "Persistent standards: style, testing, security, and project conventions.",
+  },
+  {
+    title: "Workflow Commands",
+    count: commands.count,
+    Icon: TerminalSquare,
+    keeper: "Keep",
+    use: "Repeatable moves for planning, testing, reviewing, committing, and docs lookup.",
+  },
+  {
+    title: "Specialist Agents",
+    count: agents.count,
+    Icon: Bot,
+    keeper: "Keep with restraint",
+    use: "Delegate bounded work when parallel focus is worth the overhead.",
+  },
+  {
+    title: "MCP Integrations",
+    count: mcps.count,
+    Icon: Plug,
+    keeper: "Keep",
+    use: "Connect AI work to GitHub, docs, data, browsers, deploys, and research.",
+  },
+  {
+    title: "Reusable Skills",
+    count: skills.count,
+    Icon: Sparkles,
+    keeper: "Curate",
+    use: "Load deeper patterns only when a task needs a specific workflow.",
+  },
+  {
+    title: "CLI Tools",
+    count: clis.count,
+    Icon: Terminal,
+    keeper: "Keep",
+    use: "Make terminal work legible, fast, and reviewable.",
+  },
+];
+
+const playbooks = [
+  {
+    title: "Solo Slice",
+    loop: "Brief → plan → patch → test → diff → commit",
+    Icon: GitBranch,
+  },
+  {
+    title: "Unknown Codebase",
+    loop: "Map files → trace flow → identify risk → patch the smallest path",
+    Icon: CircuitBoard,
+  },
+  {
+    title: "Quality Pass",
+    loop: "Run tests → inspect failures → review edge cases → document proof",
+    Icon: Braces,
+  },
 ];
 
 export default function VaultPage() {
+  const total = systems.reduce((sum, system) => sum + system.count, 0);
+
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl">Vault Mirror</h1>
-        <p className="text-sm text-text-muted mt-1">
-          Your Obsidian cc/ vault synced via GitHub Actions
-        </p>
-      </div>
+    <div className="space-y-6">
+      <section className="signal-band px-5 py-6 sm:px-7">
+        <div className="grid gap-5 lg:grid-cols-[1fr_260px] lg:items-end">
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-3 py-1 text-xs font-semibold text-soft">
+              <BookOpen className="h-4 w-4 text-signal" />
+              Codex
+            </div>
+            <h1 className="text-4xl font-black text-ink">Keep the systems. Lose the clutter.</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-soft">
+              A field codex for the reusable context, workflow macros, agents, MCPs,
+              and tools that make AI-assisted shipping calmer, faster, and easier to
+              review.
+            </p>
+          </div>
+          <div className="panel-strong p-4">
+            <p className="hud-label">Reusable Assets</p>
+            <p className="mt-2 text-3xl font-black text-ink">{total}</p>
+            <p className="text-xs text-muted">signals indexed from the vault</p>
+          </div>
+        </div>
+      </section>
 
-      <div className="card p-6">
-        <h2 className="text-xl mb-4">Setup Overview</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-            {
-              title: "Everything Claude Code (ECC)",
-              source: "github.com/affaan-m/everything-claude-code",
-              location: "~/.claude/everything-claude-code/",
-              status: "Auto-loaded",
-            },
-            {
-              title: "BMAD Method",
-              source: "github.com/bmad-code-org/BMAD-METHOD",
-              location: "~/_bmad/",
-              status: "Auto-loaded via rules",
-            },
-          ].map((system) => (
-            <div
-              key={system.title}
-              className="p-4 rounded-lg bg-bg border border-border"
-            >
-              <h3 className="text-sm font-semibold mb-3">{system.title}</h3>
-              <div className="space-y-2 text-[13px] text-text-secondary">
-                <p className="flex items-center gap-2">
-                  <ExternalLink className="w-3 h-3 text-text-muted shrink-0" />
-                  <span className="font-mono text-[12px]">{system.source}</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <FileText className="w-3 h-3 text-text-muted shrink-0" />
-                  <span className="font-mono text-[12px]">{system.location}</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-health shrink-0" />
-                  <span>{system.status}</span>
-                </p>
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {systems.map((system) => (
+          <article key={system.title} className="panel p-4">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 place-items-center rounded-md border border-line bg-void/50">
+                  <system.Icon className="h-5 w-5 text-signal" />
+                </div>
+                <div>
+                  <h2 className="text-lg text-ink">{system.title}</h2>
+                  <p className="text-xs text-muted">{system.keeper}</p>
+                </div>
               </div>
+              <p className="font-mono text-2xl font-black text-ink">{system.count}</p>
             </div>
-          ))}
-        </div>
-      </div>
+            <p className="text-sm leading-6 text-soft">{system.use}</p>
+          </article>
+        ))}
+      </section>
 
-      <div className="card p-6">
-        <h2 className="text-xl mb-4">Vault Contents</h2>
-        <div className="space-y-1">
-          {vaultFiles.map((file) => (
-            <div
-              key={file.name}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-hover transition-colors duration-300"
-            >
-              <file.Icon className="w-4 h-4 text-text-muted shrink-0" />
-              <span className="text-[13px] font-mono text-text">
-                {file.name}
-              </span>
-              <span className="text-[12px] text-text-muted ml-auto">
-                {file.desc}
-              </span>
-            </div>
-          ))}
+      <section className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="panel p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <RadioTower className="h-5 w-5 text-cyan" />
+            <h2 className="text-2xl">Permanent loadout</h2>
+          </div>
+          <div className="space-y-3">
+            {[
+              "Context packs that explain intent, constraints, taste, and acceptance criteria.",
+              "Workflow macros for planning, building, testing, reviewing, and iterating.",
+              "Flashcards for habits that should become automatic under pressure.",
+              "A campaign map that turns shipping moves into practical missions.",
+            ].map((item) => (
+              <p key={item} className="rounded-md border border-line bg-void/40 px-3 py-2 text-sm text-soft">
+                {item}
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="card p-6">
-        <h2 className="text-xl mb-4">Supported Languages</h2>
-        <div className="flex flex-wrap gap-2">
-          {[
-            "TypeScript", "Python", "Go", "Rust", "Java", "Kotlin",
-            "Swift", "C++", "C#", "PHP", "Perl", "JavaScript",
-          ].map((lang) => (
-            <span
-              key={lang}
-              className="text-[12px] px-3 py-1.5 rounded-lg bg-surface-hover text-text-secondary font-mono cursor-default hover:text-text transition-colors duration-300"
-            >
-              {lang}
-            </span>
-          ))}
+        <div className="panel p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <GitBranch className="h-5 w-5 text-green" />
+            <h2 className="text-2xl">Playbooks worth practicing</h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {playbooks.map((playbook) => (
+              <article key={playbook.title} className="rounded-md border border-line bg-void/40 p-4">
+                <playbook.Icon className="mb-3 h-5 w-5 text-signal" />
+                <h3 className="text-sm font-bold text-ink">{playbook.title}</h3>
+                <p className="mt-2 text-xs leading-5 text-muted">{playbook.loop}</p>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div className="card p-6">
-        <h2 className="text-xl mb-4">Sync Configuration</h2>
-        <div className="space-y-3 text-[13px]">
-          <p className="flex items-center gap-3">
-            <FileText className="w-4 h-4 text-text-muted shrink-0" />
-            <span className="text-text-muted w-16">Source</span>
-            <span className="font-mono text-text-secondary">
-              ~/Library/Mobile Documents/.../Obsidian/self-mastery/cc/
-            </span>
-          </p>
-          <p className="flex items-center gap-3">
-            <Clock className="w-4 h-4 text-text-muted shrink-0" />
-            <span className="text-text-muted w-16">Schedule</span>
-            <span className="font-mono text-text-secondary">
-              Daily at 5:00 AM via LaunchAgent
-            </span>
-          </p>
-          <p className="flex items-center gap-3">
-            <RefreshCw className="w-4 h-4 text-text-muted shrink-0" />
-            <span className="text-text-muted w-16">Method</span>
-            <span className="font-mono text-text-secondary">
-              GitHub Action cron &mdash; vault MD &rarr; JSON
-            </span>
-          </p>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

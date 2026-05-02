@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Sparkles, Clock, Check } from "lucide-react";
 import { generateDailyQuest } from "@/lib/rpg";
-import { supabase } from "@/lib/supabase";
+import { loadDailyQuest, saveDailyQuest } from "@/lib/supabase";
 
 export function DailyQuest() {
   const today = new Date().toISOString().split("T")[0];
@@ -12,12 +12,8 @@ export function DailyQuest() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase
-      .from("daily_quests")
-      .select("completed")
-      .eq("id", today)
-      .maybeSingle()
-      .then(({ data }) => {
+    loadDailyQuest(today)
+      .then((data) => {
         if (data?.completed) setCompleted(true);
         setLoading(false);
       });
@@ -25,7 +21,7 @@ export function DailyQuest() {
 
   async function handleComplete() {
     setCompleted(true);
-    await supabase.from("daily_quests").upsert({
+    await saveDailyQuest({
       id: today,
       date: today,
       quest_type: quest.questType,

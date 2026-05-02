@@ -1,11 +1,12 @@
 {
   "name": "claude-code-rpg",
   "version": "1.0.0",
-  "description": "Vibecoder Mastery Dashboard — RPG-style skill tracker for Claude Code",
+  "description": "Vibecoding RPG — Solo Shipping Mastery",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "test": "node scripts/validate-content.mjs",
     "sync-vault": "npx tsx scripts/sync-vault.ts",
     "sync-anki": "npx tsx scripts/sync-anki-cards.ts"
   },

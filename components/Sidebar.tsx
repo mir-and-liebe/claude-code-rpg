@@ -14,7 +14,6 @@ import {
   Menu,
   X,
   Map,
-  TerminalSquare,
   Brain,
   Scroll,
   BookOpen as BookOpenIcon,
@@ -25,7 +24,6 @@ const navItems = [
   { href: "/skills", label: "Skill Trees", Icon: TreePine },
   { href: "/quests", label: "Quests", Icon: Scroll },
   { href: "/map", label: "Map", Icon: Map },
-  { href: "/playground", label: "Playground", Icon: TerminalSquare },
   { href: "/review", label: "Review", Icon: Brain },
   { href: "/anki", label: "Anki Deck", Icon: BookOpenIcon },
   { href: "/bestpractices", label: "Best Practices", Icon: BookOpen },
@@ -67,9 +65,9 @@ export function Sidebar() {
       >
         <div className="px-5 py-6 border-b border-border flex items-center justify-between">
           <div>
-            <h1 className="text-xl tracking-tight text-text">CC RPG</h1>
+            <h1 className="text-xl tracking-tight text-text">Vibecoding RPG</h1>
             <p className="text-xs text-text-muted mt-1 tracking-wide uppercase">
-              Vibecoder Mastery
+              Solo Shipping Mastery
             </p>
           </div>
           <button
@@ -105,7 +103,7 @@ export function Sidebar() {
         </nav>
         <div className="px-5 py-4 border-t border-border">
           <p className="text-[10px] text-text-muted tracking-widest uppercase">
-            ECC + BMAD
+            Discover + Ship + Iterate
           </p>
         </div>
       </aside>

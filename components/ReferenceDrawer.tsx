@@ -18,7 +18,7 @@ const commands: RefItem[] = [
   { name: "/checkpoint", desc: "Save progress snapshot during long sessions", category: "Workflow" },
   { name: "/save-session", desc: "Save session state for later resume", category: "Workflow" },
   { name: "/resume-session", desc: "Reload session context from where you left off", category: "Workflow" },
-  { name: "/devfleet", desc: "Orchestrate parallel Claude agents via DevFleet MCP", category: "Workflow" },
+  { name: "/devfleet", desc: "Orchestrate parallel AI agents via DevFleet MCP", category: "Workflow" },
   { name: "/orchestrate", desc: "Sequential and tmux/worktree multi-agent orchestration", category: "Workflow" },
   // Learning
   { name: "/learn", desc: "Extract reusable patterns from current session", category: "Learning" },
@@ -30,7 +30,7 @@ const commands: RefItem[] = [
   { name: "/skill-health", desc: "Show skill portfolio health dashboard", category: "Learning" },
   // Tools
   { name: "/docs", desc: "Live documentation lookup via Context7", category: "Tools" },
-  { name: "/prompt-optimize", desc: "Analyze and enrich a draft prompt (ECC-optimized)", category: "Tools" },
+  { name: "/prompt-optimize", desc: "Analyze and enrich a draft prompt (workflow-optimized)", category: "Tools" },
   { name: "/context-budget", desc: "Analyze context window usage for optimization", category: "Tools" },
   { name: "/loop-start", desc: "Start a recurring task loop", category: "Tools" },
   // Language-specific

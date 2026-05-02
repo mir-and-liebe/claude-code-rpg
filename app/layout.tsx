@@ -1,28 +1,25 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
+import { GameShell } from "@/components/GameShell";
 import { ProgressProvider } from "@/lib/use-progress";
 import { XPToast } from "@/components/XPToast";
-import { NarrativeModal } from "@/components/NarrativeModal";
 import { ChallengeGate } from "@/components/ChallengeGate";
-import { ReferenceDrawer } from "@/components/ReferenceDrawer";
-import { WelcomeFlow } from "@/components/WelcomeFlow";
 
 export const metadata: Metadata = {
-  title: "CC RPG — Vibecoder Mastery Dashboard",
+  title: "Vibecoding RPG — Solo Shipping Mastery",
   description:
-    "RPG-style skill tracker for mastering Claude Code vibecoding",
+    "RPG-style skill tracker for mastering AI-assisted solo product shipping",
   openGraph: {
-    title: "CC RPG — Vibecoder Mastery Dashboard",
+    title: "Vibecoding RPG — Solo Shipping Mastery",
     description:
-      "RPG-style skill tracker for mastering Claude Code. 6 skill trees, tiered badges, daily quests, and the Octalysis gamification framework.",
+      "RPG-style skill tracker for mastering vibecoding. 6 skill trees, tiered badges, daily quests, and a solo shipping curriculum.",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "CC RPG — Vibecoder Mastery Dashboard",
+    title: "Vibecoding RPG — Solo Shipping Mastery",
     description:
-      "RPG-style skill tracker for mastering Claude Code vibecoding",
+      "RPG-style skill tracker for mastering AI-assisted solo product shipping",
   },
 };
 
@@ -46,17 +43,13 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-60 focus:z-50 focus:px-4 focus:py-2 focus:bg-gold focus:text-bg focus:rounded-lg">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 rounded-md bg-signal px-4 py-2 text-void">
           Skip to content
         </a>
         <ProgressProvider>
-          <Sidebar />
-          <main id="main-content" className="md:ml-56 min-h-screen p-4 pt-16 md:p-8">{children}</main>
+          <GameShell>{children}</GameShell>
           <XPToast />
-          <NarrativeModal />
           <ChallengeGate />
-          <ReferenceDrawer />
-          <WelcomeFlow />
         </ProgressProvider>
       </body>
     </html>

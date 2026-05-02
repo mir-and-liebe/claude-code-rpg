@@ -1,12 +1,20 @@
 "use client";
 
 import { use } from "react";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Check, Scroll, Trophy, Lightbulb } from "lucide-react";
+import { notFound } from "next/navigation";
+import {
+  ArrowLeft,
+  Check,
+  CheckCircle2,
+  Lightbulb,
+  RadioTower,
+  ScrollText,
+  Trophy,
+} from "lucide-react";
+import { CopyButton } from "@/components/CopyButton";
 import { getQuestChain } from "@/data/quests";
 import { useProgress } from "@/lib/use-progress";
-import { CopyButton } from "@/components/CopyButton";
 
 export default function QuestChainPage({
   params,
@@ -19,154 +27,150 @@ export default function QuestChainPage({
 
   if (!chain) return notFound();
 
-  const completed = chain.quests.filter((q) => completedQuests.has(q.id)).length;
-  const total = chain.quests.length;
-  const isChainComplete = completed === total;
-  const isBossChain = chain.id === "real-world";
-
   if (loading) {
     return (
-      <div className="p-6">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 w-48 bg-surface rounded" />
-          <div className="h-32 bg-surface rounded-xl" />
-          <div className="h-24 bg-surface rounded-xl" />
-        </div>
+      <div className="grid min-h-[60vh] place-items-center text-sm text-muted">
+        Loading mission brief...
       </div>
     );
   }
 
+  const completed = chain.quests.filter((quest) => completedQuests.has(quest.id)).length;
+  const total = chain.quests.length;
+  const percentage = Math.round((completed / total) * 100);
+  const isChainComplete = completed === total;
+  const isBossChain = chain.id === "real-world";
+
   return (
-    <div className="p-6 max-w-3xl">
-      {/* Header */}
+    <div className="space-y-6">
       <Link
         href="/quests"
-        className="inline-flex items-center gap-1.5 text-xs text-text-muted hover:text-gold transition-colors mb-4"
+        className="inline-flex items-center gap-2 text-sm font-semibold text-soft transition hover:text-ink"
       >
-        <ArrowLeft className="w-3 h-3" />
-        All Quests
+        <ArrowLeft className="h-4 w-4" />
+        Back to campaign
       </Link>
 
-      <div className="flex items-center gap-3 mb-2">
-        <Scroll className="w-5 h-5 text-gold" />
-        <h1 className="text-xl font-semibold text-text">{chain.name}</h1>
-        {isChainComplete && <Check className="w-5 h-5 text-gold" />}
-      </div>
-      <p className="text-sm text-text-muted mb-1">{chain.description}</p>
-      <p className="text-[11px] text-text-muted font-mono mb-6">
-        {completed}/{total} quests &middot; Unlocks{" "}
-        <span className="text-gold">{chain.skillNodeId}</span> &middot;{" "}
-        Chain bonus: {chain.chainBonusXp} XP
-      </p>
-
-      {/* Concepts */}
-      {chain.concepts.map((concept, i) => (
-        <div key={i} className="card p-5 mb-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Lightbulb className="w-4 h-4 text-gold/60" />
-            <h2 className="text-sm font-semibold text-text">{concept.title}</h2>
+      <section className="signal-band px-5 py-6 sm:px-7">
+        <div className="grid gap-5 lg:grid-cols-[1fr_260px] lg:items-end">
+          <div>
+            <div className="mb-3 flex flex-wrap gap-2">
+              <span className="status-pill">
+                <ScrollText className="h-4 w-4 text-signal" />
+                {isBossChain ? "Boss chain" : "Quest chain"}
+              </span>
+              <span className="status-pill">Unlocks {chain.skillNodeId}</span>
+            </div>
+            <h1 className="text-4xl font-black text-ink">{chain.name}</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-soft">{chain.description}</p>
           </div>
-          <p className="text-sm text-text-muted leading-relaxed mb-3">
-            {concept.content}
-          </p>
-          {concept.tips && (
-            <ul className="space-y-1">
-              {concept.tips.map((tip, j) => (
-                <li
-                  key={j}
-                  className="text-xs text-text-muted pl-3 border-l-2 border-border"
-                >
-                  {tip}
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="panel-strong p-4">
+            <div className="mb-2 flex items-center justify-between text-xs text-muted">
+              <span>{completed}/{total} missions</span>
+              <span>{percentage}%</span>
+            </div>
+            <div className="h-3 overflow-hidden rounded-full bg-void">
+              <div className="xp-bar-fill h-full" style={{ width: `${percentage}%` }} />
+            </div>
+            <p className="mt-3 text-xs text-muted">Chain bonus: {chain.chainBonusXp} XP</p>
+          </div>
         </div>
-      ))}
+      </section>
 
-      {/* Quests */}
-      <h2 className="text-sm font-semibold text-text mb-3 mt-6">
-        {isBossChain ? "Boss Quest" : "Quests"}
-      </h2>
-      <div className="space-y-3">
-        {chain.quests.map((quest) => {
-          const done = completedQuests.has(quest.id);
-          const isBoss = quest.id.includes("boss");
-          return (
-            <div
-              key={quest.id}
-              className={`card p-4 ${isBoss ? "border-gold/30" : ""}`}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-start gap-3 flex-1">
+      <section className="grid gap-4 lg:grid-cols-[0.78fr_1.22fr]">
+        <div className="space-y-4">
+          {chain.concepts.map((concept) => (
+            <article key={concept.title} className="panel p-5">
+              <div className="mb-3 flex items-center gap-2">
+                <Lightbulb className="h-4 w-4 text-signal" />
+                <h2 className="text-lg text-ink">{concept.title}</h2>
+              </div>
+              <p className="text-sm leading-6 text-soft">{concept.content}</p>
+              {concept.tips && (
+                <div className="mt-4 space-y-2">
+                  {concept.tips.map((tip) => (
+                    <p key={tip} className="rounded-md border border-line bg-void/40 px-3 py-2 text-xs text-muted">
+                      {tip}
+                    </p>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))}
+
+          <article className="panel p-5">
+            <div className="mb-3 flex items-center gap-2">
+              <RadioTower className="h-4 w-4 text-cyan" />
+              <h2 className="text-lg text-ink">Field Notes</h2>
+            </div>
+            <div className="space-y-2">
+              {chain.takeaways.map((item) => (
+                <p key={item} className="flex gap-2 text-sm text-soft">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green" />
+                  <span>{item}</span>
+                </p>
+              ))}
+            </div>
+          </article>
+        </div>
+
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl">{isBossChain ? "Boss Objective" : "Mission Queue"}</h2>
+            {isChainComplete && (
+              <span className="status-pill text-signal">
+                <Trophy className="h-4 w-4" />
+                Chain clear
+              </span>
+            )}
+          </div>
+
+          {chain.quests.map((quest, index) => {
+            const done = completedQuests.has(quest.id);
+            const isBoss = quest.id.includes("boss");
+
+            return (
+              <article
+                key={quest.id}
+                className={`rounded-lg border p-4 ${done ? "border-green/30 bg-green/5" : isBoss ? "border-signal/50 bg-signal/5" : "border-line bg-panel"}`}
+              >
+                <div className="flex gap-4">
                   <button
                     onClick={() => {
                       if (!done) completeQuest(quest.id, quest.xpReward, chain.id);
                     }}
-                    className={`mt-0.5 w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-all duration-200 cursor-pointer ${
+                    className={`mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-md border transition ${
                       done
-                        ? "border-gold/40 bg-gold/10"
-                        : "border-border hover:border-gold/40"
+                        ? "border-green/50 bg-green/10 text-green"
+                        : "border-line bg-void/60 text-muted hover:border-signal hover:text-signal"
                     }`}
+                    aria-label={done ? "Mission complete" : "Mark mission complete"}
                   >
-                    {done && <Check className="w-3 h-3 text-gold" />}
+                    {done ? <Check className="h-4 w-4" /> : <span className="font-mono text-xs">{index + 1}</span>}
                   </button>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span
-                        className={`text-sm font-medium ${
-                          done ? "text-text-muted line-through" : "text-text"
-                        }`}
-                      >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className={`text-base font-bold ${done ? "text-soft line-through" : "text-ink"}`}>
                         {quest.title}
-                      </span>
-                      {isBoss && (
-                        <Trophy className="w-3.5 h-3.5 text-gold" />
-                      )}
-                      <span className="text-[10px] font-mono text-gold/70 bg-gold/5 px-1.5 py-0.5 rounded">
+                      </h3>
+                      <span className="rounded-md border border-signal/30 bg-signal/10 px-2 py-0.5 text-xs font-bold text-signal">
                         +{quest.xpReward} XP
                       </span>
+                      {isBoss && <Trophy className="h-4 w-4 text-signal" />}
                     </div>
-                    <div className="flex items-center gap-2">
-                      <code className="text-xs text-text-muted bg-bg px-2 py-1 rounded border border-border flex-1 block">
+                    <div className="mt-3 flex gap-2">
+                      <code className="min-w-0 flex-1 whitespace-pre-wrap rounded-md border border-line bg-void/50 px-3 py-2 text-xs leading-5 text-soft">
                         {quest.prompt}
                       </code>
                       <CopyButton text={quest.prompt} />
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Chain complete banner */}
-      {isChainComplete && (
-        <div className="card p-4 mt-6 border-gold/30 bg-gold/5 text-center">
-          <Trophy className="w-6 h-6 text-gold mx-auto mb-2" />
-          <p className="text-sm font-semibold text-gold">Chain Complete!</p>
-          <p className="text-xs text-text-muted mt-1">
-            +{chain.chainBonusXp} XP bonus &middot; Skill node{" "}
-            <span className="font-mono">{chain.skillNodeId}</span> unlocked
-          </p>
+              </article>
+            );
+          })}
         </div>
-      )}
-
-      {/* Takeaways */}
-      {chain.takeaways.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-sm font-semibold text-text mb-3">Key Takeaways</h2>
-          <ul className="space-y-1.5">
-            {chain.takeaways.map((item, i) => (
-              <li key={i} className="text-xs text-text-muted flex items-start gap-2">
-                <span className="text-gold/50 mt-0.5">&#x2022;</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      </section>
     </div>
   );
 }

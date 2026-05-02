@@ -99,16 +99,21 @@ export default function AnkiPage() {
   // Stats overview
   if (done) {
     return (
-      <div className="max-w-lg mx-auto space-y-6">
-        <div>
-          <h1 className="text-3xl">Anki Deck</h1>
-          <p className="text-sm text-text-muted mt-1">
-            Spaced repetition flashcards for Claude Code mastery
+      <div className="mx-auto max-w-2xl space-y-6">
+        <div className="signal-band px-5 py-6">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-3 py-1 text-xs font-semibold text-soft">
+            <Brain className="h-4 w-4 text-signal" />
+            Deck
+          </div>
+          <h1 className="text-4xl font-black text-ink">Keep the good moves close.</h1>
+          <p className="mt-3 text-sm leading-6 text-soft">
+            Spaced repetition for the workflow habits you want available when the
+            build gets messy.
           </p>
         </div>
 
         {sessionCount > 0 && (
-          <div className="card p-6 text-center">
+          <div className="panel p-6 text-center">
             <GraduationCap className="w-8 h-8 text-gold mx-auto mb-3" />
             <h2 className="text-xl mb-1">Session Complete</h2>
             <p className="text-text-muted mb-3">
@@ -121,7 +126,7 @@ export default function AnkiPage() {
         )}
 
         {stats && (
-          <div className="card p-6">
+          <div className="panel p-6">
             <h2 className="text-lg mb-4">Card Status</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {(["new", "learning", "reviewing", "mature"] as const).map((s) => (
@@ -155,13 +160,13 @@ export default function AnkiPage() {
         <div className="flex gap-3">
           <Link
             href="/skills"
-            className="flex-1 text-center py-2.5 rounded-lg border border-border text-text-muted text-sm hover:text-text transition-colors"
+            className="flex-1 rounded-md border border-line py-2.5 text-center text-sm text-soft transition-colors hover:border-line-strong hover:text-ink"
           >
-            Skill Trees
+            Arsenal
           </Link>
           <button
             onClick={() => window.location.reload()}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-gold/10 border border-gold/20 text-gold text-sm hover:bg-gold/15 cursor-pointer"
+            className="flex-1 flex items-center justify-center gap-2 rounded-md border border-signal/30 bg-signal/10 py-2.5 text-sm text-signal hover:bg-signal/15 cursor-pointer"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             Study More
@@ -175,12 +180,17 @@ export default function AnkiPage() {
   const card = queue[current];
 
   return (
-    <div className="max-w-lg mx-auto space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="mx-auto max-w-2xl space-y-6">
+      <div className="signal-band px-5 py-6">
+        <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl">Anki Deck</h1>
-          <p className="text-sm text-text-muted mt-1">
-            Flashcards for permanent knowledge
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-3 py-1 text-xs font-semibold text-soft">
+            <BookOpen className="h-4 w-4 text-signal" />
+            Deck
+          </div>
+          <h1 className="text-4xl font-black text-ink">Train one card at a time.</h1>
+          <p className="mt-3 text-sm leading-6 text-soft">
+            Short reviews, real recall, less forgetting between builds.
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -197,12 +207,13 @@ export default function AnkiPage() {
             </span>
           </div>
         </div>
+        </div>
       </div>
 
       {/* Card */}
       <div
         onClick={() => !flipped && setFlipped(true)}
-        className={`card p-8 min-h-[300px] flex flex-col justify-center cursor-pointer transition-all duration-500 ${
+        className={`panel p-8 min-h-[300px] flex flex-col justify-center cursor-pointer transition-all duration-500 ${
           !flipped ? "hover:border-gold/20" : ""
         }`}
       >

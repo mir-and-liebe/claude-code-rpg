@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Check, Lock } from "lucide-react";
-import type { SkillTree } from "@/lib/types";
+import { ArrowRight, Check, LockKeyhole } from "lucide-react";
 import { getTreeProgress, isSkillRevealed } from "@/lib/rpg";
 import { treeIconMap } from "@/lib/icons";
-import { XPBar } from "./XPBar";
+import type { SkillTree } from "@/lib/types";
 
 interface Props {
   tree: SkillTree;
@@ -15,61 +14,59 @@ export function SkillTreeCard({ tree, completedSkills }: Props) {
   const Icon = treeIconMap[tree.icon];
 
   return (
-    <Link href={`/skills/${tree.id}`}>
-      <div className="card card-interactive p-5 cursor-pointer group">
-        <div className="flex items-center gap-3 mb-3">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center"
-            style={{ backgroundColor: `${tree.color}10` }}
-          >
-            {Icon && (
-              <Icon className="w-4 h-4" style={{ color: tree.color }} />
-            )}
+    <Link href={`/skills/${tree.id}`} className="group block">
+      <article className="interactive h-full rounded-lg border border-line bg-panel p-4">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div
+              className="grid h-11 w-11 place-items-center rounded-md border border-line bg-void/50"
+              style={{ color: tree.color }}
+            >
+              {Icon && <Icon className="h-5 w-5" />}
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-ink transition group-hover:text-signal">
+                {tree.name}
+              </h2>
+              <p className="text-xs text-muted">{tree.tagline}</p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-sm font-semibold text-text group-hover:text-gold transition-colors duration-300" style={{ fontFamily: "Inter, sans-serif" }}>
-              {tree.name}
-            </h3>
-            <p className="text-[11px] text-text-muted">{tree.tagline}</p>
-          </div>
+          <ArrowRight className="mt-1 h-4 w-4 text-muted transition group-hover:translate-x-1 group-hover:text-signal" />
         </div>
-        <p className="text-[11px] text-text-muted italic mb-4 leading-relaxed">
-          {tree.pmSuperpower}
-        </p>
-        <div className="flex items-center gap-2 mb-3">
+
+        <p className="min-h-[3rem] text-sm leading-6 text-soft">{tree.pmSuperpower}</p>
+
+        <div className="mt-5 flex items-center gap-2">
           {tree.nodes.map((node) => {
             const revealed = isSkillRevealed(node, tree, completedSkills);
             return (
               <div
                 key={node.id}
-                className={`w-6 h-6 rounded-full border flex items-center justify-center text-[9px] font-mono transition-all duration-300 ${
+                className={`grid h-8 w-8 place-items-center rounded-md border text-xs font-bold ${
                   node.completed
-                    ? "border-gold/40 bg-gold/10 text-gold"
+                    ? "border-green/40 bg-green/10 text-green"
                     : revealed
-                      ? "border-border bg-bg text-text-muted"
-                      : "border-border bg-bg"
+                      ? "border-line bg-void/50 text-soft"
+                      : "border-line bg-void/30 text-muted"
                 }`}
+                title={node.name}
               >
-                {node.completed ? (
-                  <Check className="w-2.5 h-2.5" />
-                ) : revealed ? (
-                  node.level
-                ) : (
-                  <Lock className="w-2 h-2 text-text-muted" />
-                )}
+                {node.completed ? <Check className="h-4 w-4" /> : revealed ? node.level : <LockKeyhole className="h-3.5 w-3.5" />}
               </div>
             );
           })}
         </div>
-        <XPBar
-          current={progress.xpEarned}
-          max={progress.xpTotal}
-          color={tree.color}
-        />
-        <p className="text-[11px] text-text-muted mt-2 text-right font-mono">
-          {progress.completed}/{progress.total} ({progress.percentage}%)
-        </p>
-      </div>
+
+        <div className="mt-5">
+          <div className="mb-2 flex items-center justify-between text-xs text-muted">
+            <span>{progress.completed}/{progress.total} skills</span>
+            <span>{progress.percentage}%</span>
+          </div>
+          <div className="h-2 overflow-hidden rounded-full bg-void">
+            <div className="h-full" style={{ width: `${progress.percentage}%`, backgroundColor: tree.color }} />
+          </div>
+        </div>
+      </article>
     </Link>
   );
 }
