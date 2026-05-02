@@ -30,7 +30,7 @@ export default function BestPracticesPage() {
       <div>
         <h1 className="text-3xl">Best Practices</h1>
         <p className="text-sm text-text-muted mt-1">
-          Every best practice from your Claude Code setup, explained with
+          Every best practice from your AI coding setup, explained with
           what it does and why it matters.
         </p>
       </div>

@@ -15,7 +15,9 @@ import {
   saveChapterSeen,
   saveEasterEgg,
   saveQuestCompletion,
-  supabase,
+  countDueSkillReviews,
+  saveSkillReview,
+  saveVerifiedSkill,
   type ProgressRow,
 } from "./supabase";
 import type { CharacterClass } from "./types";
@@ -86,13 +88,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       setProgress(data);
       setLoading(false);
     });
-    // Check review count
-    const today = new Date().toISOString().split("T")[0];
-    supabase
-      .from("skill_reviews")
-      .select("skill_id", { count: "exact" })
-      .lte("next_review", today)
-      .then(({ count }) => setReviewDueCount(count || 0));
+    countDueSkillReviews().then(setReviewDueCount);
   }, []);
 
   // Direct toggle (for uncompleting skills)
@@ -136,10 +132,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         // Save verified status
         if (verified && progress) {
           const verifiedSkills = [...(progress.verified_skills || []), id];
-          supabase
-            .from("rpg_progress")
-            .update({ verified_skills: verifiedSkills })
-            .eq("id", "default");
+          saveVerifiedSkill(id);
           setProgress((p) => p ? { ...p, verified_skills: verifiedSkills } : p);
         }
 
@@ -147,7 +140,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         const today = new Date().toISOString().split("T")[0];
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        supabase.from("skill_reviews").upsert({
+        saveSkillReview({
           skill_id: id,
           ease_factor: 2.5,
           interval_days: 1,
@@ -217,7 +210,6 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         next.add(questId);
         return next;
       });
-      setQuestXp((prev) => prev + xpReward);
       setLastToggledSkillXp(xpReward);
       setTimeout(() => setLastToggledSkillXp(null), 2000);
 
@@ -245,6 +237,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
           });
         }
 
+        setQuestXp((prev) => prev + totalXpForThis);
         saveQuestCompletion(questId, totalXpForThis);
         setProgress((prev) =>
           prev

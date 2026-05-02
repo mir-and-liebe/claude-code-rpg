@@ -11,23 +11,23 @@ interface Props {
 const steps = [
   {
     Icon: Swords,
-    title: "Welcome to CC RPG",
-    text: "This is your personal mastery dashboard for Claude Code. Every skill you complete here maps to a real Claude Code capability — commands, agents, MCPs, and workflows.",
+    title: "Welcome to Vibecoding RPG",
+    text: "This is your personal mastery dashboard for shipping products with AI. Every skill you complete maps to a real workflow: discover, plan, build, test, review, ship, and iterate.",
   },
   {
     Icon: Terminal,
     title: "What is Vibecoding?",
-    text: "Vibecoding means building software by directing AI instead of writing every line yourself. You describe what you want, AI writes the code. Your job is to prompt, review, and ship — like a PM who codes.",
+    text: "Vibecoding means building software by directing AI instead of writing every line yourself. You state outcomes, load context, inspect the result, and make the shipping call.",
   },
   {
     Icon: Bot,
     title: "How It Works",
-    text: "Complete skill challenges to earn XP and level up. Each challenge tests your knowledge of Claude Code. Pass the challenge, earn the skill. Skip if you already know it. Review daily to retain what you've learned.",
+    text: "Complete skill challenges to earn XP and level up. Each challenge tests a practical solo-shipping capability. Pass the challenge, earn the skill. Skip if you already know it. Review daily to retain what you've learned.",
   },
   {
     Icon: Rocket,
     title: "Start Your Journey",
-    text: "Head to the Skill Trees and pick your first challenge. The Recommended Next card on your dashboard always shows what to do next. Use Cmd+K anytime to look up commands, agents, or MCPs.",
+    text: "Head to Campaign for your next mission, then use the Codex and Deck to turn good workflow habits into muscle memory.",
   },
 ];
 

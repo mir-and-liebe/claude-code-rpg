@@ -1,7 +1,7 @@
 // Exercise 1: Your first file to explore and modify
 
 function greet(name) {
-  const greeting = `Hello from Claude Code Academy!`;
+  const greeting = `Hello from Vibecoding RPG!`;
   console.log(greeting);
   return greeting;
 }

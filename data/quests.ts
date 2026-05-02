@@ -4,35 +4,36 @@ export const questChains: QuestChain[] = [
   {
     id: "basics",
     name: "The Awakening",
-    description: "Your first commands — learn to speak the language of Claude Code",
+    description: "Your first loop — state outcomes, load context, inspect, and review",
     icon: "Rocket",
     skillTreeId: "prompt-architect",
     skillNodeId: "pa-1",
     chainBonusXp: 50,
     concepts: [
       {
-        title: "Claude Code is Your Pair Programmer",
+        title: "AI Is Your Pair Builder",
         content:
-          "Claude Code lives in your terminal. It can read files, write code, run commands, and help you build anything. The key skill is learning how to ask.",
+          "Vibecoding starts when you stop asking for vague help and start directing an AI collaborator toward a concrete product outcome. The key skill is clear intent plus enough context to act.",
         tips: [
-          "Be specific: 'fix the TypeError in server.js line 42' beats 'fix this'",
-          "'the login form doesn't submit, debug it' beats 'make it work'",
-          "'add unit tests for calculateTotal' beats 'add tests'",
+          "State the outcome: 'make onboarding collect timezone before the dashboard loads'",
+          "Provide context: mention files, errors, screenshots, constraints, and acceptance criteria",
+          "Ask for inspection first when the codebase is unfamiliar",
+          "Review the diff before you accept the work",
         ],
       },
     ],
     takeaways: [
-      "Be specific in your requests",
-      "Claude Code can read, write, and run code",
-      "You can ask questions about code and get explanations",
+      "State the product outcome before the implementation",
+      "Load enough context for the AI to act responsibly",
+      "Inspect first, then change",
       "The playground/ folder is your safe space to experiment",
     ],
     quests: [
-      { id: "quest-1-1", title: "Explore a file", prompt: "Read the file exercises/01-hello.js and explain what it does", xpReward: 25, order: 1 },
-      { id: "quest-1-2", title: "Make a change", prompt: "Change the greeting in exercises/01-hello.js to say 'Hello from Claude Code Academy!'", xpReward: 25, order: 2 },
+      { id: "quest-1-1", title: "Inspect before acting", prompt: "Read exercises/01-hello.js and explain what it does before making any changes", xpReward: 25, order: 1 },
+      { id: "quest-1-2", title: "State a tiny outcome", prompt: "Change the greeting in exercises/01-hello.js to say 'Hello from Vibecoding RPG!'", xpReward: 25, order: 2 },
       { id: "quest-1-3", title: "Run code", prompt: "Run exercises/01-hello.js with Node", xpReward: 25, order: 3 },
-      { id: "quest-1-4", title: "Create something new", prompt: "Create a file in playground/ called my-first-script.js that prints the current date and time, then run it", xpReward: 30, order: 4 },
-      { id: "quest-1-5", title: "Ask a question", prompt: "What files are in this project?", xpReward: 25, order: 5 },
+      { id: "quest-1-4", title: "Create a safe experiment", prompt: "Create a file in playground/ called my-first-script.js that prints the current date and time, then run it", xpReward: 30, order: 4 },
+      { id: "quest-1-5", title: "Review the diff", prompt: "Show me what changed in this project and summarize whether the changes match the requested outcome", xpReward: 25, order: 5 },
     ],
   },
   {
@@ -47,19 +48,19 @@ export const questChains: QuestChain[] = [
       {
         title: "Explore Before You Change",
         content:
-          "The best developers read code before writing it. Claude Code is exceptional at helping you understand existing code fast.",
+          "The best vibecoders read systems before changing them. AI can search, summarize, and trace code quickly, but you still decide whether the map is trustworthy.",
         tips: [
-          '"What does this project do?"',
+          '"What does this project do, based on the code?"',
           '"Find all files that handle authentication"',
-          '"Search for where userId is used"',
-          '"Explain the function processOrder in detail"',
-          '"What\'s the architecture of this app?"',
+          '"Trace where userId enters and leaves the system"',
+          '"Explain processOrder for a product manager and an engineer"',
+          '"What are the risky areas to inspect before changing this?"',
         ],
       },
     ],
     takeaways: [
       "Always read before you edit",
-      "Ask Claude to explain code at whatever level you need",
+      "Ask the AI to explain code at whatever level you need",
       "Use search to find relevant code across a project",
       "Tracing request flows helps you understand systems",
     ],
@@ -68,7 +69,7 @@ export const questChains: QuestChain[] = [
       { id: "quest-2-2", title: "Search for patterns", prompt: "Find all functions in exercises/02-webapp.js that handle errors", xpReward: 25, order: 2 },
       { id: "quest-2-3", title: "Trace the flow", prompt: "Trace what happens when a request hits the /users endpoint in exercises/02-webapp.js", xpReward: 30, order: 3 },
       { id: "quest-2-4", title: "Find dependencies", prompt: "What external modules would exercises/02-webapp.js need to run?", xpReward: 25, order: 4 },
-      { id: "quest-2-5", title: "Summarize", prompt: "Give me a one-paragraph summary of what exercises/02-webapp.js does, suitable for a README", xpReward: 25, order: 5 },
+      { id: "quest-2-5", title: "Summarize for shipping", prompt: "Give me a one-paragraph summary of what exercises/02-webapp.js does, suitable for a README and for deciding the next product slice", xpReward: 25, order: 5 },
     ],
   },
   {
@@ -83,58 +84,57 @@ export const questChains: QuestChain[] = [
       {
         title: "Be Specific About What You Want",
         content:
-          "The more precise your request, the better the result. Tell Claude Code what to change, where to change it, and why.",
+          "The more precise your request, the better the result. Tell the AI what behavior should change, where to look, why it matters, and how you will judge success.",
         tips: [
-          '"Add input validation to the createUser function"',
-          '"Rename the greet function to welcome"',
-          '"Add a DELETE /users/:id endpoint"',
+          '"Add input validation to createUser and preserve existing response shapes"',
+          '"Rename greet to welcome and update all call sites"',
+          '"Add DELETE /users/:id with a 404 for missing users"',
         ],
       },
     ],
     takeaways: [
       "Review changes before accepting them",
-      "If a change isn't right, say 'undo that' or be more specific",
-      "You can say 'show me the diff' to see what changed",
+      "If a change isn't right, ask for a smaller patch or a revert",
+      "Always inspect the diff before moving to the next step",
     ],
     quests: [
       { id: "quest-3-1", title: "Fix a bug", prompt: "There's a bug in exercises/03-buggy.js — the calculateTotal function doesn't handle discounts correctly. Find and fix it.", xpReward: 30, order: 1 },
       { id: "quest-3-2", title: "Add a feature", prompt: "Add a search function to exercises/03-buggy.js that finds products by name (case-insensitive)", xpReward: 30, order: 2 },
       { id: "quest-3-3", title: "Refactor", prompt: "The formatReport function in exercises/03-buggy.js has repetitive code. Clean it up.", xpReward: 30, order: 3 },
-      { id: "quest-3-4", title: "Multi-step edit", prompt: "In exercises/03-buggy.js, add a currency parameter to both calculateTotal and formatReport, defaulting to 'USD'", xpReward: 35, order: 4 },
+      { id: "quest-3-4", title: "Multi-step edit", prompt: "In exercises/03-buggy.js, add a currency parameter to both calculateTotal and formatReport, defaulting to 'USD', then show the diff and explain the behavioral change", xpReward: 35, order: 4 },
     ],
   },
   {
     id: "git-workflow",
     name: "The Chronicle",
-    description: "Commits, branches, diffs, and pull requests through conversation",
+    description: "Use branches, diffs, commits, and PRs as your shipping safety rails",
     icon: "GitBranch",
     skillTreeId: "cli-dominance",
     skillNodeId: "cli-2",
     chainBonusXp: 50,
     concepts: [
       {
-        title: "Claude Code is Git-Aware",
+        title: "Git Is Your Shipping Ledger",
         content:
-          "Claude Code understands your git state. It can commit, branch, diff, and even create GitHub pull requests — all through natural language.",
+          "Git turns AI-assisted work into controlled checkpoints. Whether you use Claude Code, Codex, Cursor, or a plain terminal, the rhythm is the same: branch, change, inspect, commit, and open a reviewable PR.",
         tips: [
-          '"Initialize a git repo"',
+          '"Create a branch for this product slice"',
+          '"Show me what changed and group it by intent"',
           '"Commit my changes with a good message"',
-          '"Create a new branch called feature/add-search"',
-          '"Show me what changed since the last commit"',
-          '"Create a pull request"',
+          '"Create a pull request with test notes"',
+          '"Summarize risks before merge"',
         ],
       },
     ],
     takeaways: [
-      "Claude Code handles git commands through natural language",
       "Always commit before starting new work",
       "Use branches to keep experiments separate",
-      "Claude writes good commit messages automatically",
+      "A good commit message explains the product intent, not just the files",
     ],
     quests: [
-      { id: "quest-4-1", title: "Initialize", prompt: "Initialize a git repo in this project and make an initial commit with all files", xpReward: 25, order: 1 },
-      { id: "quest-4-2", title: "Branch & change", prompt: "Create a branch called lesson-4-practice, then add a comment to exercises/01-hello.js", xpReward: 30, order: 2 },
-      { id: "quest-4-3", title: "Commit", prompt: "Commit the changes with a descriptive message", xpReward: 25, order: 3 },
+      { id: "quest-4-1", title: "Baseline", prompt: "Inspect the current git status and explain whether it is safe to start a new product slice", xpReward: 25, order: 1 },
+      { id: "quest-4-2", title: "Branch & change", prompt: "Create a branch called lesson-4-practice, then add a short product-intent comment to exercises/01-hello.js", xpReward: 30, order: 2 },
+      { id: "quest-4-3", title: "Commit", prompt: "Show the diff, then commit the changes with a descriptive message that explains the intent", xpReward: 25, order: 3 },
       { id: "quest-4-4", title: "View history", prompt: "Show me the git log", xpReward: 25, order: 4 },
       { id: "quest-4-5", title: "Switch back", prompt: "Switch back to the main branch", xpReward: 25, order: 5 },
     ],
@@ -149,9 +149,9 @@ export const questChains: QuestChain[] = [
     chainBonusXp: 50,
     concepts: [
       {
-        title: "Show Claude the Error",
+        title: "Show the AI the Error",
         content:
-          "The fastest way to fix a bug is to show Claude Code: the error message, the file where it happens, and what you expected instead.",
+          "The fastest way to fix a bug is to give the AI three things: the error message, the file or flow where it happens, and the expected behavior.",
         tips: [
           '"I\'m getting this error: [paste error]. Fix it."',
           '"This function returns undefined when it should return a number"',
@@ -162,21 +162,21 @@ export const questChains: QuestChain[] = [
     ],
     takeaways: [
       "Always include the error message",
-      "Claude can run code, see errors, and fix them in a loop",
+      "AI can run code, see errors, and fix them in a loop",
       "Ask about edge cases to catch hidden bugs",
-      "Claude can spot performance issues too",
+      "AI can spot performance issues too",
     ],
     quests: [
       { id: "quest-5-1", title: "Runtime error", prompt: "Run exercises/05-bugs.js and fix all the errors", xpReward: 30, order: 1 },
       { id: "quest-5-2", title: "Logic error", prompt: "The isPalindrome function in exercises/05-bugs.js says 'racecar' is not a palindrome. Fix it.", xpReward: 30, order: 2 },
       { id: "quest-5-3", title: "Edge cases", prompt: "Test the safeDivide function in exercises/05-bugs.js with edge cases and fix any issues", xpReward: 30, order: 3 },
-      { id: "quest-5-4", title: "Performance", prompt: "The findDuplicates function in exercises/05-bugs.js is inefficient. Make it faster.", xpReward: 35, order: 4 },
+      { id: "quest-5-4", title: "Performance", prompt: "The findDuplicates function in exercises/05-bugs.js is inefficient. Make it faster, then explain the complexity before and after.", xpReward: 35, order: 4 },
     ],
   },
   {
     id: "building-features",
     name: "The Forge",
-    description: "Describe features clearly and watch them come to life",
+    description: "Slice product ideas into buildable, testable increments",
     icon: "Sparkles",
     skillTreeId: "product-shipper",
     skillNodeId: "ps-1",
@@ -185,7 +185,7 @@ export const questChains: QuestChain[] = [
       {
         title: "Think Product, Talk Code",
         content:
-          "Describe what you want the feature to do, not just the code you want written. Use the formula: 'Build a [thing] that [does what] so that [why/who benefits]'.",
+          "Describe what the feature should let a user do, why it matters, and what counts as done. Vibecoding works best when the product slice is small enough to build and verify in one loop.",
         tips: [
           '"Build a todo list CLI that lets users add, list, complete, and delete tasks"',
           '"Add a search endpoint that filters users by name"',
@@ -197,13 +197,13 @@ export const questChains: QuestChain[] = [
       "Describe features in terms of user actions and outcomes",
       "Build incrementally — start simple, then enhance",
       "Test as you go",
-      "Claude can build complete features from a description",
+      "AI can build complete features from a clear, testable description",
     ],
     quests: [
-      { id: "quest-6-1", title: "Build from scratch", prompt: "Create exercises/06-todo.js — a command-line todo app that stores tasks in exercises/06-todos.json. Support: add, list, complete, and delete.", xpReward: 40, order: 1 },
+      { id: "quest-6-1", title: "Build from scratch", prompt: "Create exercises/06-todo.js — a command-line todo app for a solo founder that stores tasks in exercises/06-todos.json. Support: add, list, complete, and delete.", xpReward: 40, order: 1 },
       { id: "quest-6-2", title: "Test your feature", prompt: "Run exercises/06-todo.js with different commands to test it: add a task, list tasks, complete one, delete one", xpReward: 25, order: 2 },
       { id: "quest-6-3", title: "Enhance it", prompt: "Add a 'priority' field (high/medium/low) to the todo app, and a way to filter by priority", xpReward: 35, order: 3 },
-      { id: "quest-6-4", title: "Polish", prompt: "Add colorful terminal output and a help command to the todo app", xpReward: 30, order: 4 },
+      { id: "quest-6-4", title: "Polish", prompt: "Add clear terminal output, a help command, and a short usage note so the feature feels shippable", xpReward: 30, order: 4 },
     ],
   },
   {
@@ -218,7 +218,7 @@ export const questChains: QuestChain[] = [
       {
         title: "Tests Are Your Safety Net",
         content:
-          "Claude Code can both write and run tests. Use this to verify your code works, catch regressions, and document expected behavior.",
+          "Tests are executable acceptance criteria. Use AI to draft them, but make sure they prove the product behavior you actually promised.",
         tips: [
           '"Write tests for the calculateTotal function"',
           '"Run the tests and fix any failures"',
@@ -228,8 +228,8 @@ export const questChains: QuestChain[] = [
       },
     ],
     takeaways: [
-      "Claude can set up test frameworks and write comprehensive tests",
-      "TDD works great with Claude — describe the behavior, write tests, then implement",
+      "AI can set up test frameworks and write comprehensive tests",
+      "TDD works well with vibecoding — describe behavior, write tests, then implement",
       "Always run tests after making changes",
       "Edge case tests catch the bugs that matter most",
     ],
@@ -252,7 +252,7 @@ export const questChains: QuestChain[] = [
       {
         title: "Same Behavior, Better Code",
         content:
-          "Claude Code excels at refactoring because it can understand the intent of existing code, apply known patterns, and make changes consistently.",
+          "AI is strong at refactoring when you set the guardrails: preserve behavior, reduce duplication, improve naming, and run tests afterward.",
         tips: [
           '"This code is hard to read, simplify it"',
           '"Extract the validation logic into its own function"',
@@ -263,7 +263,7 @@ export const questChains: QuestChain[] = [
     ],
     takeaways: [
       "Refactoring is safe when you have tests",
-      "Claude understands patterns like DRY, SOLID, and separation of concerns",
+      "AI understands patterns like DRY, SOLID, and separation of concerns",
       "Use /simplify as a code review tool",
       "Modernizing syntax improves readability and maintainability",
     ],
@@ -271,13 +271,13 @@ export const questChains: QuestChain[] = [
       { id: "quest-8-1", title: "Simplify messy code", prompt: "Read exercises/08-messy.js and refactor it to be clean, readable, and well-structured", xpReward: 35, order: 1 },
       { id: "quest-8-2", title: "Extract patterns", prompt: "The handler functions in exercises/08-messy.js share a lot of logic. Extract the common patterns.", xpReward: 35, order: 2 },
       { id: "quest-8-3", title: "Modernize", prompt: "Convert the callback-based code in exercises/08-messy.js to use modern async/await", xpReward: 35, order: 3 },
-      { id: "quest-8-4", title: "Use /simplify", prompt: "Type /simplify in Claude Code to review your recent changes for quality", xpReward: 25, order: 4 },
+      { id: "quest-8-4", title: "Use /simplify", prompt: "Type /simplify or ask for a focused refactor review of your recent changes", xpReward: 25, order: 4 },
     ],
   },
   {
     id: "advanced",
     name: "The Arcane Arts",
-    description: "Agents, MCP servers, CLAUDE.md, and automation workflows",
+    description: "Agents, MCP servers, project instructions, and automation workflows",
     icon: "Cpu",
     skillTreeId: "mcp-mastery",
     skillNodeId: "mcp-1",
@@ -286,23 +286,23 @@ export const questChains: QuestChain[] = [
       {
         title: "Level Up Your Workflow",
         content:
-          "Claude Code has powerful features beyond basic editing: CLAUDE.md for project memory, slash commands for common actions, subagents for parallel work, and MCP for external tools.",
+          "Advanced vibecoding is about leverage: project instructions for persistent context, workflow commands for repeatable moves, agents for delegated work, and MCPs for external tools.",
         tips: [
-          "CLAUDE.md — Project conventions loaded automatically",
-          "Slash commands — /simplify, /commit, and more",
-          "Subagents — Parallel focused work",
-          "MCP — Connect to databases, APIs, and services",
+          "Project instructions — conventions loaded automatically",
+          "Workflow commands — repeatable planning, testing, review, and commit moves",
+          "Agents — parallel focused work",
+          "MCPs — connect to databases, APIs, docs, browsers, and deploys",
         ],
       },
     ],
     takeaways: [
-      "CLAUDE.md is your project's instruction manual for Claude",
-      "Slash commands speed up common workflows",
-      "Subagents let Claude do multiple things at once",
-      "MCP extends Claude's reach to external systems",
+      "Project instructions keep AI aligned with your conventions",
+      "Workflow commands speed up common moves",
+      "Agents let you delegate focused work",
+      "MCPs extend AI tools to external systems",
     ],
     quests: [
-      { id: "quest-9-1", title: "Enhance CLAUDE.md", prompt: "Update CLAUDE.md to include coding conventions: use const/let (never var), prefer arrow functions, always handle errors", xpReward: 30, order: 1 },
+      { id: "quest-9-1", title: "Enhance project instructions", prompt: "Create or update project instructions to include coding conventions: use const/let (never var), prefer arrow functions, always handle errors", xpReward: 30, order: 1 },
       { id: "quest-9-2", title: "Multi-step automation", prompt: "Create a script that initializes a new Node.js project with TypeScript, ESLint, and Prettier configured", xpReward: 40, order: 2 },
       { id: "quest-9-3", title: "Slash commands", prompt: "Try /commit after making some changes", xpReward: 25, order: 3 },
       { id: "quest-9-4", title: "Parallel work", prompt: "Search all exercise files for functions that don't handle errors, AND create a summary of all functions", xpReward: 35, order: 4 },
@@ -320,33 +320,33 @@ export const questChains: QuestChain[] = [
       {
         title: "The Full Workflow",
         content:
-          "Here's how experienced developers use Claude Code daily: Explore → Plan → Build → Test → Review → Commit → PR. This quest chain combines everything you've learned.",
+          "Here is the solo shipping loop: Discover → Plan → Build → Test → Review → Ship → Iterate. This quest chain combines everything you have learned.",
         tips: [
-          '1. Explore — "What does this codebase do?"',
-          '2. Plan — "I need to add X. What\'s the best approach?"',
+          '1. Discover — "What does this codebase do and where is the risk?"',
+          '2. Plan — "I need to add X. What is the smallest shippable slice?"',
           '3. Build — "Implement the plan we discussed"',
           '4. Test — "Write tests and run them"',
           "5. Review — /simplify",
-          "6. Commit — /commit",
-          '7. PR — "Create a pull request"',
+          "6. Ship — commit and prepare a PR or deploy note",
+          '7. Iterate — "What should we improve next based on what changed?"',
         ],
       },
     ],
     takeaways: [
       "Navigate any codebase quickly",
       "Describe features clearly and get good implementations",
-      "Debug issues by showing Claude the error",
+      "Debug issues by showing the AI the error and expected behavior",
       "Use git workflow naturally through conversation",
       "Write and run tests efficiently",
       "Refactor code with confidence",
-      "Use CLAUDE.md to set project context",
+      "Use project instructions to set persistent context",
       "Combine multiple skills in a single workflow",
     ],
     quests: [
       {
         id: "quest-10-boss",
-        title: "Boss Quest: Build a Bookmark Manager API",
-        prompt: "Build a complete REST API in exercises/10-bookmarks.js with: bookmarks (url, title, tags, createdAt), CRUD endpoints + search by tag, input validation and error handling, tests for all endpoints, then commit the result with a good message",
+        title: "Boss Quest: Ship a Bookmark Manager API",
+        prompt: "Ship a complete REST API in exercises/10-bookmarks.js with: bookmarks (url, title, tags, createdAt), CRUD endpoints + search by tag, input validation and error handling, tests for all endpoints, a README usage note, then commit the result with a message that explains the product slice",
         xpReward: 150,
         order: 1,
       },

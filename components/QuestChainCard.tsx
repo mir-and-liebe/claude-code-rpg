@@ -1,62 +1,74 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Scroll } from "lucide-react";
+import { ArrowRight, CheckCircle2, LockKeyhole, ScrollText } from "lucide-react";
 import type { QuestChain } from "@/lib/types";
-import { XPBar } from "./XPBar";
 
 interface Props {
   chain: QuestChain;
   completedQuests: Set<string>;
   isNext?: boolean;
+  index?: number;
 }
 
-export function QuestChainCard({ chain, completedQuests, isNext }: Props) {
-  const completed = chain.quests.filter((q) => completedQuests.has(q.id)).length;
+export function QuestChainCard({ chain, completedQuests, isNext, index = 0 }: Props) {
+  const completed = chain.quests.filter((quest) => completedQuests.has(quest.id)).length;
   const total = chain.quests.length;
   const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
-  const xpEarned = chain.quests
-    .filter((q) => completedQuests.has(q.id))
-    .reduce((s, q) => s + q.xpReward, 0);
-  const xpTotal = chain.quests.reduce((s, q) => s + q.xpReward, 0) + chain.chainBonusXp;
   const isComplete = completed === total;
+  const nextQuest = chain.quests.find((quest) => !completedQuests.has(quest.id)) ?? chain.quests[0];
 
   return (
-    <Link href={`/quests/${chain.id}`}>
-      <div className={`card card-interactive p-5 cursor-pointer group relative ${isNext ? "border-gold/30" : ""}`}>
-        <div className="flex items-center gap-3 mb-3">
+    <Link href={`/quests/${chain.id}`} className="group block">
+      <article className={`interactive h-full rounded-lg border p-4 ${isNext ? "border-signal/60 bg-signal/5" : "border-line bg-panel"}`}>
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-md border border-line bg-void/50">
+              {isComplete ? (
+                <CheckCircle2 className="h-5 w-5 text-green" />
+              ) : isNext ? (
+                <ScrollText className="h-5 w-5 text-signal" />
+              ) : (
+                <LockKeyhole className="h-5 w-5 text-muted" />
+              )}
+            </div>
+            <div>
+              <p className="font-mono text-xs text-muted">Chain {String(index + 1).padStart(2, "0")}</p>
+              <h2 className="text-lg font-bold text-ink transition group-hover:text-signal">
+                {chain.name}
+              </h2>
+            </div>
+          </div>
           {isNext && (
-            <span className="absolute -top-2 -right-2 text-[9px] font-mono tracking-wider uppercase bg-gold text-bg px-2 py-0.5 rounded-full">
-              Start Here
+            <span className="rounded-full bg-signal px-2 py-1 text-[10px] font-black uppercase tracking-widest text-void">
+              Next
             </span>
           )}
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-gold/10">
-            {isComplete ? (
-              <Check className="w-4 h-4 text-gold" />
-            ) : (
-              <Scroll className="w-4 h-4 text-gold/60" />
-            )}
+        </div>
+
+        <p className="min-h-[3.75rem] text-sm leading-6 text-soft">{chain.description}</p>
+
+        <div className="mt-5 rounded-md border border-line bg-void/35 p-3">
+          <p className="hud-label">Next objective</p>
+          <p className="mt-2 text-sm font-semibold text-ink">{nextQuest.title}</p>
+          <p className="mt-1 text-xs text-muted">Unlocks {chain.skillNodeId} · +{chain.chainBonusXp} bonus XP</p>
+        </div>
+
+        <div className="mt-5">
+          <div className="mb-2 flex items-center justify-between text-xs text-muted">
+            <span>{completed}/{total} missions</span>
+            <span>{percentage}%</span>
           </div>
-          <div>
-            <h3 className="text-sm font-semibold text-text group-hover:text-gold transition-colors duration-300">
-              {chain.name}
-            </h3>
-            <p className="text-[11px] text-text-muted">{chain.skillTreeId.replace(/-/g, " ")}</p>
+          <div className="h-2 overflow-hidden rounded-full bg-void">
+            <div className="xp-bar-fill h-full" style={{ width: `${percentage}%` }} />
           </div>
         </div>
-        <p className="text-[11px] text-text-muted italic mb-4 leading-relaxed">
-          {chain.description}
-        </p>
-        <XPBar current={xpEarned} max={xpTotal} color="#d4a853" />
-        <div className="flex justify-between mt-2">
-          <p className="text-[11px] text-text-muted font-mono">
-            {completed}/{total} quests
-          </p>
-          <p className="text-[11px] text-text-muted font-mono">
-            {percentage}%
-          </p>
+
+        <div className="mt-5 flex items-center justify-between text-sm font-semibold text-signal">
+          <span>{isComplete ? "Review chain" : "Enter chain"}</span>
+          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
         </div>
-      </div>
+      </article>
     </Link>
   );
 }

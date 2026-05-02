@@ -29,7 +29,7 @@ export function ExportProgress({
       t.nodes.filter((n) => n.completed).map((n) => `${t.name}: ${n.name}`)
     );
 
-    const md = `# CC RPG — Progress Export
+    const md = `# Vibecoding RPG — Progress Export
 > Generated ${new Date().toISOString().split("T")[0]}
 
 ## Character
@@ -66,7 +66,7 @@ ${completedSkills.map((s) => `- ${s}`).join("\n") || "None yet"}
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `cc-rpg-progress-${new Date().toISOString().split("T")[0]}.md`;
+    a.download = `vibecoding-rpg-progress-${new Date().toISOString().split("T")[0]}.md`;
     a.click();
     URL.revokeObjectURL(url);
   }

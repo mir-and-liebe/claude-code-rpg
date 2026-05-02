@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useProgress } from "@/lib/use-progress";
-import { getTreeProgress } from "@/lib/rpg";
-import type { SkillTree, CharacterClass } from "@/lib/types";
-import skillTreesData from "@/data/skills.json";
+import { ArrowDownAZ, Boxes, Filter, Sparkles } from "lucide-react";
 import { SkillTreeCard } from "@/components/SkillTreeCard";
-import { Loader2, ArrowDownAZ, TrendingUp, Sparkles } from "lucide-react";
+import skillTreesData from "@/data/skills.json";
+import { getTreeProgress } from "@/lib/rpg";
+import type { CharacterClass, SkillTree } from "@/lib/types";
+import { useProgress } from "@/lib/use-progress";
 
 const CLASS_BONUS_TREES: Record<string, string[]> = {
   architect: ["prompt-architect", "agent-craft"],
@@ -23,42 +23,36 @@ export default function SkillsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-5 h-5 animate-spin text-text-muted" />
+      <div className="grid min-h-[60vh] place-items-center text-sm text-muted">
+        Loading arsenal...
       </div>
     );
   }
 
   const charClass = (progress?.character_class || "") as CharacterClass;
   const bonusTrees = CLASS_BONUS_TREES[charClass] || [];
+  const allTrees = skillTreesData as SkillTree[];
+  const totalSkills = allTrees.reduce((sum, tree) => sum + tree.nodes.length, 0);
 
-  let trees: SkillTree[] = (skillTreesData as SkillTree[]).map((t) => ({
-    ...t,
-    nodes: t.nodes.map((n) => ({ ...n, completed: completedSkills.has(n.id) })),
+  let trees = allTrees.map((tree) => ({
+    ...tree,
+    nodes: tree.nodes.map((node) => ({ ...node, completed: completedSkills.has(node.id) })),
   }));
 
   if (showIncompleteOnly) {
-    trees = trees.filter((t) => !t.nodes.every((n) => n.completed));
+    trees = trees.filter((tree) => !tree.nodes.every((node) => node.completed));
   }
 
   if (sort === "completion") {
-    trees.sort((a, b) => {
-      const pa = getTreeProgress(a).percentage;
-      const pb = getTreeProgress(b).percentage;
-      return pb - pa; // highest first
-    });
+    trees.sort((a, b) => getTreeProgress(b).percentage - getTreeProgress(a).percentage);
   } else if (sort === "xp-available") {
     trees.sort((a, b) => {
-      const xa = getTreeProgress(a).xpTotal - getTreeProgress(a).xpEarned;
-      const xb = getTreeProgress(b).xpTotal - getTreeProgress(b).xpEarned;
-      return xb - xa; // most XP available first
+      const aProgress = getTreeProgress(a);
+      const bProgress = getTreeProgress(b);
+      return bProgress.xpTotal - bProgress.xpEarned - (aProgress.xpTotal - aProgress.xpEarned);
     });
   } else if (sort === "class-bonus") {
-    trees.sort((a, b) => {
-      const aBonus = bonusTrees.includes(a.id) ? -1 : 0;
-      const bBonus = bonusTrees.includes(b.id) ? -1 : 0;
-      return aBonus - bBonus;
-    });
+    trees.sort((a, b) => Number(bonusTrees.includes(b.id)) - Number(bonusTrees.includes(a.id)));
   }
 
   const sorts: { id: SortMode; label: string }[] = [
@@ -69,62 +63,69 @@ export default function SkillsPage() {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-3xl">Skill Trees</h1>
-        <p className="text-sm text-text-muted mt-1">
-          6 skill trees from foundation to mastery. Start with Prompt Architect if you&apos;re new.
-        </p>
-      </div>
+    <div className="space-y-6">
+      <section className="signal-band px-5 py-6 sm:px-7">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-3 py-1 text-xs font-semibold text-soft">
+              <Boxes className="h-4 w-4 text-signal" />
+              Arsenal
+            </div>
+            <h1 className="text-4xl font-black text-ink">Unlock the tools that make shipping repeatable.</h1>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-soft">
+              Skill trees are not trivia. Each one is a capability you use in the loop:
+              context, terminal fluency, integrations, agents, product slicing, and code judgment.
+            </p>
+          </div>
+          <div className="panel-strong min-w-[220px] p-4">
+            <p className="hud-label">Unlocked</p>
+            <p className="mt-2 text-3xl font-black text-ink">{completedSkills.size}/{totalSkills}</p>
+            <p className="text-xs text-muted">skills online</p>
+          </div>
+        </div>
+      </section>
 
-      {/* Sort + Filter controls */}
       <div className="flex flex-wrap items-center gap-2">
-        <ArrowDownAZ className="w-3.5 h-3.5 text-text-muted" />
-        {sorts.map((s) => (
+        <ArrowDownAZ className="h-4 w-4 text-muted" />
+        {sorts.map((item) => (
           <button
-            key={s.id}
-            onClick={() => setSort(s.id)}
-            className={`text-[11px] px-3 py-1.5 rounded-lg border transition-colors cursor-pointer ${
-              sort === s.id
-                ? "bg-gold/10 border-gold/20 text-gold"
-                : "border-border text-text-muted hover:text-text"
+            key={item.id}
+            onClick={() => setSort(item.id)}
+            className={`h-9 rounded-md border px-3 text-xs font-semibold transition ${
+              sort === item.id
+                ? "border-signal/50 bg-signal/10 text-signal"
+                : "border-line text-soft hover:border-line-strong hover:bg-panel-strong hover:text-ink"
             }`}
           >
-            {s.label}
+            {item.label}
           </button>
         ))}
-        <div className="w-px h-5 bg-border mx-1" />
         <button
-          onClick={() => setShowIncompleteOnly(!showIncompleteOnly)}
-          className={`text-[11px] px-3 py-1.5 rounded-lg border transition-colors cursor-pointer ${
+          onClick={() => setShowIncompleteOnly((value) => !value)}
+          className={`ml-0 inline-flex h-9 items-center gap-2 rounded-md border px-3 text-xs font-semibold transition sm:ml-2 ${
             showIncompleteOnly
-              ? "bg-gold/10 border-gold/20 text-gold"
-              : "border-border text-text-muted hover:text-text"
+              ? "border-cyan/50 bg-cyan/10 text-cyan"
+              : "border-line text-soft hover:border-line-strong hover:bg-panel-strong hover:text-ink"
           }`}
         >
-          Hide completed
+          <Filter className="h-4 w-4" />
+          Hide complete
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {trees.map((tree) => (
           <div key={tree.id} className="relative">
             {tree.id === "prompt-architect" && completedSkills.size === 0 && (
-              <div className="absolute -top-2 -right-2 z-10 flex items-center gap-1 px-2 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-[9px] font-mono">
-                <Sparkles className="w-2.5 h-2.5" />
-                Start here
+              <div className="absolute -right-2 -top-2 z-10 inline-flex items-center gap-1 rounded-full bg-signal px-2 py-1 text-[10px] font-black uppercase tracking-widest text-void">
+                <Sparkles className="h-3 w-3" />
+                Start
               </div>
             )}
             <SkillTreeCard tree={tree} completedSkills={completedSkills} />
           </div>
         ))}
       </div>
-
-      {trees.length === 0 && (
-        <p className="text-sm text-text-muted text-center py-12">
-          All skill trees completed. You&apos;re a Vibecoding Architect.
-        </p>
-      )}
     </div>
   );
 }
